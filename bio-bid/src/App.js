@@ -3,6 +3,9 @@ import './App.css';
 import Header from "./components/header";
 import styled from "styled-components";
 import Nav from "./components/navigation";
+import Overview from "./components/overview";
+import Projects from "./components/projects";
+
 
 const App = () =>{
   return (
@@ -10,6 +13,8 @@ const App = () =>{
       <Header/>
       <WorkSpace>
         <Nav/>
+        <Overview/>
+        <Projects/>
       </WorkSpace>
       </MainWrapper>
       

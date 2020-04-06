@@ -58,7 +58,7 @@ const NavWrapper = styled.div
 `
 border-right: 1px solid gray;
 background: white;
-width: 20%;
+width: 17%;
 height:10%;
 `
 const StyledLink =styled.div
@@ -67,12 +67,13 @@ display:flex;
 justify-content: space-between;
 color: #595959;
 font-size: 22px;
+height:10%;
 text-decoration:none;
 margin: 10% 5%;
 &: hover{
     background: #C4C4C4;
     border-radius: 0px 20px 20px 0px;
-    height:10%;
+    
     
 
 
@@ -98,7 +99,7 @@ font-weight: normal;
 font-size: 22px;
 line-height: 60%;
 color: #21242C;
-margin:150% 0 10% 5%;
+margin:600px 0 10% 5%;
 
 `
 
