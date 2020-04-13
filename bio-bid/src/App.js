@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./components/header";
 import styled from "styled-components";
 import Nav from "./components/navigation";
-import Overview from "./components/overview";
-import Projects from "./components/projects";
+import Table from "./components/bids";
+
 
 
 const App = () =>{
@@ -13,8 +14,7 @@ const App = () =>{
       <Header/>
       <WorkSpace>
         <Nav/>
-        <Overview/>
-        <Projects/>
+        <Table/>
       </WorkSpace>
       </MainWrapper>
       
