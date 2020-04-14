@@ -40,7 +40,7 @@
 
 1️⃣ [UX Design files](https://www.figma.com/file/o45cmaotaVWtBtlRblcMei/Bio-Bid%2C-Emmanuelle-%26-James?node-id=409%3A5265)
 
-🚫 Replace lorem ipsum with a description of your project
+# Description
 
 Connecting clinical trial sponsors to the right services providers for their needs.
 
