@@ -4,9 +4,7 @@
   height:100%;
   margin: 0 auto;
 }
-.nav-section{
-  border-right: 1px solid gray;
-}
+
 .new-study button{
   display:flex;
   justify-content: flex-end;
@@ -21,4 +19,6 @@
   box-sizing: border-box;
   border-radius: 6px;
  }
+
+
 
