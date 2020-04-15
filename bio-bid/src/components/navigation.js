@@ -26,35 +26,35 @@ const Nav =() =>{
                 
 
                 <div className="navWrapperDiv">
-                    <StyledLink to="/projects" style={{margin:'15%'}}>
+                    <StyledLink to="/projects" style={{margin:'11%', borderLeft: '15px solid #C4C4C4'}}>
                     <QrcodeOutlined/>
                         Current Projects
                     </StyledLink>
                 </div>
 
                 <div className="navWrapperDiv">
-                    <StyledLink to="/bids" style={{margin:'17%'}}>
+                    <StyledLink to="/bids" style={{margin:'17%', color:'#E8E8E8'}}>
                     <PieChartOutlined/>
                         Manage Bids
                     </StyledLink>
                 </div>
 
                 <div className="navWrapperDiv">
-                    <StyledLink to="/recommendations" style={{margin:'14%'}}>
+                    <StyledLink to="/recommendations" style={{margin:'14%', color:'#E8E8E8'}}>
                     <TeamOutlined/>
                     Recommendations
                     </StyledLink>
                 </div>
 
                 <div className="navWrapperDiv">
-                    <StyledLink to="/search" style={{margin:'17%'}}>
+                    <StyledLink to="/search" style={{margin:'17%', color:'#E8E8E8'}}>
                     <FileSearchOutlined />
                         Search studies
                     </StyledLink>
                 </div>
 
                 <div className="navWrapperDiv">
-                    <StyledLink to="/search" style={{margin:'18%'}}>
+                    <StyledLink to="/search" style={{margin:'18%', color:'#E8E8E8'}}>
                     <StarFilled />
                         Reviews
                     </StyledLink>
@@ -98,11 +98,6 @@ color: #595959;
 font-family:Lato;
 overflow: hidden;
 margin: 10px 0;
-&:hover {
-    background: #C4C4C4;
-    text-decoration: none;
-
-
 `
 const LinkProfile =styled.div
 `
@@ -121,7 +116,7 @@ font-family: Lato;
 font-style: normal;
 font-weight: normal;
 font-size: 22px;
-color: #595959;
+ color:#E8E8E8;
 
 
 
