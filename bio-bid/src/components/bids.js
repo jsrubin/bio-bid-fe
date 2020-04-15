@@ -6,6 +6,7 @@ import { Button } from "reactstrap";
 
 import { GET_STUDIES } from '../queries';
 import { useQuery } from '@apollo/react-hooks';
+import moment from 'moment';
 
 const Bids = (props) => {
   const { loading, data, error } = useQuery(GET_STUDIES);
@@ -28,7 +29,7 @@ const Bids = (props) => {
         <tbody>
           {data && (
             data.studies.map(study => <tr key={study.id}>
-              <th scope="row"> <Button style={{ width: '70px', height: '35px' }} color="secondary">Open</Button></th>
+              <th scope="row"> <Button style={{ width: '70px', height: '35px' }} color="secondary">{study.status}</Button></th>
               <td> {study.name}</td>
               <td> {study.area}<br>
               </br> Indication: Back pain<br>
@@ -37,7 +38,8 @@ const Bids = (props) => {
               </br> Title: {study.title} </td>
               <td> {study.phase}</td>
               <td> {study.services}</td>
-              <td> {study.modified_date}</td>
+              <td> {moment(study.modified_date).format('LL')} <br>
+            </br> {moment(study.modified_date).format('LTS')}</td>
               <td> <EllipsisOutlined style={{ fontSize: '25px' }} /></td>
             </tr>)
           )}
