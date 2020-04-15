@@ -4,145 +4,143 @@ import { Table } from 'reactstrap';
 import {EllipsisOutlined} from "@ant-design/icons";
 import {Button} from "reactstrap";
 
+import '../styles/bids.css';
+
 const Bids = (props) => {
   return (
-    <Table striped style={{ width:'100%'}}>
-      <thead style ={{ margin:'10%'}}>
-        <tr>
-          <th>BIDS</th>
-          <th>NAME</th>
-          <th>THERAPEUTIC AREA</th>
-          <th>PROTOCOL NO./TITLE</th>
-          <th>PHASE</th>
-          <th>SERVICE LIST</th>
-          <th>MODIFIED DATE</th>
-          <th>ACTIONS</th>
+    <Table striped style={{ width:'100%', display: 'flex', flexDirection: 'column', justifyContent: 'start'}}>
+      <thead style ={{ margin:'0%', display: 'flex', justifyContent: 'space-between' }}>
+        <tr style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+          <th style={{width: '80px', textAlign: 'center'}}>BIDS</th>
+          <th style={{width: '110px', textAlign: 'center'}}>NAME</th>
+          <th style={{width: '200px', textAlign: 'center'}}>THERAPEUTIC AREA</th>
+          <th style={{width: '200px', textAlign: 'center'}}>PROTOCOL NO./TITLE</th>
+          <th style={{width: '90px', textAlign: 'center'}}>PHASE</th>
+          <th style={{width: '140px', textAlign: 'center'}}>SERVICE LIST</th>
+          <th style={{width: '160px', textAlign: 'center'}}>MODIFIED DATE</th>
+          <th style={{width: '100px', textAlign: 'center'}}>ACTIONS</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <th scope="row"> <Button style={{ width: '70px', height: '35px'}} color="secondary">Open</Button></th>
-          <td> Second study</td>
-          <td> Inflammation<br>
+      <tbody class='table-body'>
+        <tr class='table-row'>
+          <th scope="row"> <Button class='open-item' color="secondary">Open</Button></th>
+          <td class='row-item name-item'> Second study</td>
+          <td class='row-item thera-item'> Inflammation<br>
           </br> Indication: Back pain<br>
           </br> Molecule type: Chemical</td>
-          <td> ABZ-123<br>
+          <td class='row-item proto-item'> ABZ-123<br>
           </br> Title: Atest </td>
-          <td> I</td>
-          <td> 1</td>
-          <td> April 19,2019<br>
+          <td class='row-item phase-item'> I</td>
+          <td class='row-item service-item'> 1</td>
+          <td class='row-item mod-item'> April 19,2019<br>
           </br> 07:09:50am</td>
-          <td> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
+          <td class='row-item action-item'> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
         </tr>
 
-        <tr>
-          <th scope="row"> <Button style={{ width: '70px', height: '35px'}} color="secondary">Open</Button></th>
-          <td> Second study</td>
-          <td> Inflammation<br>
+        <tr class='table-row'>
+          <th scope="row"> <Button class='open-item' color="secondary">Open</Button></th>
+          <td class='row-item name-item'> Second study</td>
+          <td class='row-item thera-item'> Inflammation<br>
           </br> Indication: Back pain<br>
           </br> Molecule type: Chemical</td>
-          <td> ABZ-123<br>
+          <td class='row-item proto-item'> ABZ-123<br>
           </br> Title: Atest </td>
-          <td> I</td>
-          <td> 1</td>
-          <td> April 19,2019<br>
+          <td class='row-item phase-item'> I</td>
+          <td class='row-item service-item'> 1</td>
+          <td class='row-item mod-item'> April 19,2019<br>
           </br> 07:09:50am</td>
-          <td> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
+          <td class='row-item action-item'> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
         </tr>
 
-        <tr>
-          <th scope="row"> <Button style={{ width: '70px', height: '35px'}} color="secondary">Closed</Button></th>
-          <td> Second study</td>
-          <td> Inflammation<br>
+        <tr class='table-row'>
+          <th scope="row"> <Button class='open-item' color="secondary">Closed</Button></th>
+          <td class='row-item name-item'> Second study</td>
+          <td class='row-item thera-item'> Inflammation<br>
           </br> Indication: Back pain<br>
           </br> Molecule type: Chemical</td>
-          <td> ABZ-123<br>
+          <td class='row-item proto-item'> ABZ-123<br>
           </br> Title: Atest </td>
-          <td> I</td>
-          <td> 1</td>
-          <td> April 19,2019<br>
+          <td class='row-item phase-item'> I</td>
+          <td class='row-item service-item'> 1</td>
+          <td class='row-item mod-item'> April 19,2019<br>
           </br> 07:09:50am</td>
-          <td> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
+          <td class='row-item action-item'> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
         </tr>
 
-        <tr>
-          <th scope="row"> <Button style={{ width: '70px', height: '35px'}} color="secondary">Open</Button></th>
-          <td> Second study</td>
-          <td> Inflammation<br>
+        <tr class='table-row'>
+          <th scope="row"> <Button class='open-item' color="secondary">Open</Button></th>
+          <td class='row-item name-item'> Second study</td>
+          <td class='row-item thera-item'> Inflammation<br>
           </br> Indication: Back pain<br>
           </br> Molecule type: Chemical</td>
-          <td> ABZ-123<br>
+          <td class='row-item proto-item'> ABZ-123<br>
           </br> Title: Atest </td>
-          <td> II</td>
-          <td> 1</td>
-          <td> April 19,2019<br>
+          <td class='row-item phase-item'> II</td>
+          <td class='row-item service-item'> 1</td>
+          <td class='row-item mod-item'> April 19,2019<br>
           </br> 07:09:50am</td>
-          <td> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
+          <td class='row-item action-item'> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
         </tr>
 
-        <tr>
-          <th scope="row"> <Button style={{ width: '70px', height: '35px'}} color="secondary">Active</Button></th>
-          <td> Second study</td>
-          <td> Inflammation<br>
+        <tr class='table-row'>
+          <th scope="row"> <Button class='open-item' color="secondary">Active</Button></th>
+          <td class='row-item name-item'> Second study</td>
+          <td class='row-item thera-item'> Inflammation<br>
           </br> Indication: Back pain<br>
           </br> Molecule type: Chemical</td>
-          <td> ABZ-123<br>
+          <td class='row-item proto-item'> ABZ-123<br>
           </br> Title: Atest </td>
-          <td> I</td>
-          <td> 1</td>
-          <td> April 19,2019<br>
+          <td class='row-item phase-item'> I</td>
+          <td class='row-item service-item'> 1</td>
+          <td class='row-item mod-item'> April 19,2019<br>
           </br> 07:09:50am</td>
-          <td> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
+          <td class='row-item action-item'> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
         </tr>
 
-        <tr>
-          <th scope="row"> <Button style={{ width: '70px', height: '35px'}} color="secondary">Closed</Button></th>
-          <td> Second study</td>
-          <td> Inflammation<br>
+        <tr class='table-row'>
+          <th scope="row"> <Button class='open-item' color="secondary">Closed</Button></th>
+          <td class='row-item name-item'> Second study</td>
+          <td class='row-item thera-item'> Inflammation<br>
           </br> Indication: Back pain<br>
           </br> Molecule type: Chemical</td>
-          <td> ABZ-123<br>
+          <td class='row-item proto-item'> ABZ-123<br>
           </br> Title: Atest </td>
-          <td> IV</td>
-          <td> 1</td>
-          <td> April 19,2019<br>
+          <td class='row-item phase-item'> IV</td>
+          <td class='row-item service-item'> 1</td>
+          <td class='row-item mod-item'> April 19,2019<br>
           </br> 07:09:50am</td>
-          <td> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
+          <td class='row-item action-item'> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
         </tr>
 
-        <tr>
-          <th scope="row"> <Button style={{ width: '70px', height: '35px'}} color="secondary">Open</Button></th>
-          <td> Second study</td>
-          <td> Inflammation<br>
+        <tr class='table-row'>
+          <th scope="row"> <Button class='open-item' color="secondary">Open</Button></th>
+          <td class='row-item name-item'> Second study</td>
+          <td class='row-item thera-item'> Inflammation<br>
           </br> Indication: Back pain<br>
           </br> Molecule type: Chemical</td>
-          <td> ABZ-123<br>
+          <td class='row-item proto-item'> ABZ-123<br>
           </br> Title: Atest </td>
-          <td> III</td>
-          <td> 1</td>
-          <td> April 19,2019<br>
+          <td class='row-item phase-item'> III</td>
+          <td class='row-item service-item'> 1</td>
+          <td class='row-item mod-item'> April 19,2019<br>
           </br> 07:09:50am</td>
-          <td> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
+          <td class='row-item action-item'> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
         </tr>
 
-        <tr>
-          <th scope="row"> <Button style={{ width: '70px', height: '35px'}} color="secondary">Open</Button></th>
-          <td> Second study</td>
-          <td> Inflammation<br>
+        <tr class='table-row'>
+          <th scope="row"> <Button class='open-item' color="secondary">Open</Button></th>
+          <td class='row-item name-item'> Second study</td>
+          <td class='row-item thera-item'> Inflammation<br>
           </br> Indication: Back pain<br>
           </br> Molecule type: Chemical</td>
-          <td> ABZ-123<br>
+          <td class='row-item proto-item'> ABZ-123<br>
           </br> Title: Atest </td>
-          <td> II</td>
-          <td> 1</td>
-          <td> April 19,2019<br>
+          <td class='row-item phase-item'> II</td>
+          <td class='row-item service-item'> 1</td>
+          <td class='row-item mod-item'> April 19,2019<br>
           </br> 07:09:50am</td>
-          <td> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
+          <td class='row-item action-item'> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
         </tr>
-
-        
-
-        
         
       </tbody>
     </Table>
