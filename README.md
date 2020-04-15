@@ -78,13 +78,13 @@ This framework was chosen as it's the framework we feel the most comfortable and
 
 #### Front end deployed to `Heroku.com`
 
-#### [Back end](🚫link to back end repo here) built using:
+#### [Back end](https://github.com/Lambda-School-Labs/bio-bid-fe/) built using: Node
 
 #### 🚫 back end framework goes here
 
--    point one
--    point two
--    point three
+-    Apollo/GraphQL
+-    PostGres
+-    Jest & Babel (Testing)
 
 🚫 List the rest of the back end end features and libraries in the same format as the framework above
 
