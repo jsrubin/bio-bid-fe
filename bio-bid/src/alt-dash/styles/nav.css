@@ -1,0 +1,17 @@
+#nav-wrapper {
+
+    height: 50px;
+    background: #21242C;
+
+}
+
+#nav-wrapper h1 {
+
+    color: white;
+    cursor: pointer;
+    font-size: 22px;
+    font-family: Lato;
+    font-weight: bold;
+    margin: 14px 0px 0px 25px;
+
+}

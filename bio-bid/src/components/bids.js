@@ -48,12 +48,3 @@ const Bids = (props) => {
     </div>
   );
 }
-
-export default Bids;
-
-
-
-
-
-
-
