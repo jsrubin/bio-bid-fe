@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./components/header";
 import styled from "styled-components";
 import Nav from "./components/navigation";
-import Table from "./components/bids";
+import Bids from "./components/bids";
 
 
 
@@ -14,7 +14,7 @@ const App = () =>{
       <Header/>
       <WorkSpace>
         <Nav/>
-        <Table/>
+        <Bids/>
       </WorkSpace>
       </MainWrapper>
       

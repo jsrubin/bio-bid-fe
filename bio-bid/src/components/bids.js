@@ -1,176 +1,168 @@
 import React from "react";
-import MaterialTable from "material-table";
-import {MinusCircleFilled} from "@ant-design/icons";
-import {EditFilled} from "@ant-design/icons";
-import {DeleteFilled} from "@ant-design/icons";
+import styled from "styled-components";
+import { Table } from 'reactstrap';
+import {EllipsisOutlined} from "@ant-design/icons";
+import {Button} from "reactstrap";
 
-export default function Table() {
-  const [state, setState] = React.useState({
-    columns: [
-        { title: "BIDS", field: "bids"},
-      { title: "NAME", field: "name" },
-      { title: "THERAPEUTIC AREA", field: "Therapeutic" },
-      { title: "PROTOCOL NO./TITLE", field: "protocol", type: "numeric" },
-      { title: "PHASE", field: "Phase"},
-      { title: "SERVICE LIST" , field: "Serverlist", type: "numeric" },
-      { title: "MODIFIED LIST", field: "modify", type: "numeric" },
-      {title: "ACTIONS", field: "actions"},
-      {
-        title: "",
-        field: "",
-        lookup: { }
-      }
-    ],
-    data: [
-      { bids:  <MinusCircleFilled  style={{fontSize: '20px'}}/>,
-        name: "Second study",
-        Therapeutic: "Inflammation",
-        protocol: "ABZ-123",
-        Phase: "I",
-        Serverlist: 1,
-        modify: "April 19 ,2019",
-        actions: <EditFilled icon={[DeleteFilled]} style={{fontSize: '20px'}}/>,
-      },
-      {
-        bids: <MinusCircleFilled style={{fontSize: '20px'}}/>,
-        name: "Second study",
-        Therapeutic: "Inflammation",
-        protocol: "ABZ-123",
-        Phase: "I",
-        Serverlist: 1,
-        modify: "April 19 ,2019",
-        actions: <DeleteFilled  style={{fontSize: '20px'}}/>
-      },
-      {
-        bids: "Closed",
-        name: "Second study",
-        Therapeutic: "Inflammation",
-        protocol: "ABZ-123",
-        Phase: "I",
-        Serverlist: 1,
-        modify: "April 19 ,2019",
-        actions: ""
-      },
-      {
-        name: "Second study",
-        Therapeutic: "Inflammation",
-        protocol: "ABZ-123",
-        Phase: "I",
-        Serverlist: 1,
-        modify: "April 19 ,2019",
-        actions: ""
-      },
-      {
-        name: "Second study",
-        Therapeutic: "Inflammation",
-        protocol: "ABZ-123",
-        Phase: "I",
-        Serverlist: 1,
-        modify: "April 19 ,2019",
-        actions: ""
-      },
-      {
-        name: "Second study",
-        Therapeutic: "Inflammation",
-        protocol: "ABZ-123",
-        Phase: "I",
-        Serverlist: 1,
-        modify: "April 19 ,2019",
-        actions: ""
-      },
-      {
-        name: "Second study",
-        Therapeutic: "Inflammation",
-        protocol: "ABZ-123",
-        Phase: "I",
-        Serverlist: 1,
-        modify: "April 19 ,2019",
-        actions: ""
-      },
-      {
-        name: "Second study",
-        Therapeutic: "Inflammation",
-        protocol: "ABZ-123",
-        Phase: "I",
-        Serverlist: 1,
-        modify: "April 19 ,2019",
-        actions: ""
-      },
-      {
-        name: "Second study",
-        Therapeutic: "Inflammation",
-        protocol: "ABZ-123",
-        Phase: "I",
-        Serverlist: 1,
-        modify: "April 19 ,2019",
-        actions: ""
-      },
-      {
-        name: "Second study",
-        Therapeutic: "Inflammation",
-        protocol: "ABZ-123",
-        Phase: "I",
-        Serverlist: 1,
-        modify: "April 19 ,2019",
-        actions: ""
-      },
-      {
-        name: "Second study",
-        Therapeutic: "Inflammation",
-        protocol: "ABZ-123",
-        Phase: "I",
-        Serverlist: 1,
-        modify: "April 19 ,2019",
-        actions: ""
-      },
-      {
-        name: "Second study",
-        Therapeutic: "Inflammation",
-        protocol: "ABZ-123",
-        Phase: "I",
-        Serverlist: 1,
-        modify: "April 19 ,2019",
-        actions: ""
-      },
-      {
-        name: "Second study",
-        Therapeutic: "Inflammation",
-        protocol: "ABZ-123",
-        Phase: "I",
-        Serverlist: 1,
-        modify: "April 19 ,2019",
-        actions: ""
-      },
-      {
-        name: "Second study",
-        Therapeutic: "Inflammation",
-        protocol: "ABZ-123",
-        Phase: "I",
-        Serverlist: 1,
-        modify: "April 19 ,2019",
-        actions: ""
-      },
-      {
-        name: "Second study",
-        Therapeutic: "Inflammation",
-        protocol: "ABZ-123",
-        Phase: "I",
-        Serverlist: 1,
-        modify: "April 19 ,2019",
-        actions: ""
-      },
-    ]
-  });
-
+const Bids = (props) => {
   return (
-    <MaterialTable
-       title="Current Projects"
-      columns={state.columns}
-      data={state.data}
-     
-    />
+    <Table striped style={{ width:'100%'}}>
+      <thead style ={{ margin:'10%'}}>
+        <tr>
+          <th>BIDS</th>
+          <th>NAME</th>
+          <th>THERAPEUTIC AREA</th>
+          <th>PROTOCOL NO./TITLE</th>
+          <th>PHASE</th>
+          <th>SERVICE LIST</th>
+          <th>MODIFIED DATE</th>
+          <th>ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"> <Button style={{ width: '70px', height: '35px'}} color="secondary">Open</Button></th>
+          <td> Second study</td>
+          <td> Inflammation<br>
+          </br> Indication: Back pain<br>
+          </br> Molecule type: Chemical</td>
+          <td> ABZ-123<br>
+          </br> Title: Atest </td>
+          <td> I</td>
+          <td> 1</td>
+          <td> April 19,2019<br>
+          </br> 07:09:50am</td>
+          <td> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
+        </tr>
+
+        <tr>
+          <th scope="row"> <Button style={{ width: '70px', height: '35px'}} color="secondary">Open</Button></th>
+          <td> Second study</td>
+          <td> Inflammation<br>
+          </br> Indication: Back pain<br>
+          </br> Molecule type: Chemical</td>
+          <td> ABZ-123<br>
+          </br> Title: Atest </td>
+          <td> I</td>
+          <td> 1</td>
+          <td> April 19,2019<br>
+          </br> 07:09:50am</td>
+          <td> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
+        </tr>
+
+        <tr>
+          <th scope="row"> <Button style={{ width: '70px', height: '35px'}} color="secondary">Closed</Button></th>
+          <td> Second study</td>
+          <td> Inflammation<br>
+          </br> Indication: Back pain<br>
+          </br> Molecule type: Chemical</td>
+          <td> ABZ-123<br>
+          </br> Title: Atest </td>
+          <td> I</td>
+          <td> 1</td>
+          <td> April 19,2019<br>
+          </br> 07:09:50am</td>
+          <td> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
+        </tr>
+
+        <tr>
+          <th scope="row"> <Button style={{ width: '70px', height: '35px'}} color="secondary">Open</Button></th>
+          <td> Second study</td>
+          <td> Inflammation<br>
+          </br> Indication: Back pain<br>
+          </br> Molecule type: Chemical</td>
+          <td> ABZ-123<br>
+          </br> Title: Atest </td>
+          <td> II</td>
+          <td> 1</td>
+          <td> April 19,2019<br>
+          </br> 07:09:50am</td>
+          <td> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
+        </tr>
+
+        <tr>
+          <th scope="row"> <Button style={{ width: '70px', height: '35px'}} color="secondary">Active</Button></th>
+          <td> Second study</td>
+          <td> Inflammation<br>
+          </br> Indication: Back pain<br>
+          </br> Molecule type: Chemical</td>
+          <td> ABZ-123<br>
+          </br> Title: Atest </td>
+          <td> I</td>
+          <td> 1</td>
+          <td> April 19,2019<br>
+          </br> 07:09:50am</td>
+          <td> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
+        </tr>
+
+        <tr>
+          <th scope="row"> <Button style={{ width: '70px', height: '35px'}} color="secondary">Closed</Button></th>
+          <td> Second study</td>
+          <td> Inflammation<br>
+          </br> Indication: Back pain<br>
+          </br> Molecule type: Chemical</td>
+          <td> ABZ-123<br>
+          </br> Title: Atest </td>
+          <td> IV</td>
+          <td> 1</td>
+          <td> April 19,2019<br>
+          </br> 07:09:50am</td>
+          <td> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
+        </tr>
+
+        <tr>
+          <th scope="row"> <Button style={{ width: '70px', height: '35px'}} color="secondary">Open</Button></th>
+          <td> Second study</td>
+          <td> Inflammation<br>
+          </br> Indication: Back pain<br>
+          </br> Molecule type: Chemical</td>
+          <td> ABZ-123<br>
+          </br> Title: Atest </td>
+          <td> III</td>
+          <td> 1</td>
+          <td> April 19,2019<br>
+          </br> 07:09:50am</td>
+          <td> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
+        </tr>
+
+        <tr>
+          <th scope="row"> <Button style={{ width: '70px', height: '35px'}} color="secondary">Open</Button></th>
+          <td> Second study</td>
+          <td> Inflammation<br>
+          </br> Indication: Back pain<br>
+          </br> Molecule type: Chemical</td>
+          <td> ABZ-123<br>
+          </br> Title: Atest </td>
+          <td> II</td>
+          <td> 1</td>
+          <td> April 19,2019<br>
+          </br> 07:09:50am</td>
+          <td> <EllipsisOutlined style={{fontSize:'25px'}}/></td>
+        </tr>
+
+        
+
+        
+        
+      </tbody>
+    </Table>
   );
 }
+
+export default Bids;
+
+
+const Title= styled.div
+`
+font-family: Inter;
+font-style: normal;
+font-weight: bold;
+font-size: 24px;
+color: #595959;
+
+
+`
+
 
 
 

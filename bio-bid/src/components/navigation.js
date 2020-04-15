@@ -6,6 +6,7 @@ import {TeamOutlined} from "@ant-design/icons";
 import {FileSearchOutlined} from "@ant-design/icons";
 import {QrcodeOutlined} from "@ant-design/icons";
 import {SettingOutlined} from "@ant-design/icons";
+import {StarFilled} from "@ant-design/icons";
 
 const Nav =() =>{
     return(
@@ -52,6 +53,13 @@ const Nav =() =>{
                     </StyledLink>
                 </div>
 
+                <div className="navWrapperDiv">
+                    <StyledLink to="/search" style={{margin:'25%'}}>
+                    <StarFilled />
+                        Reviews
+                    </StyledLink>
+                </div>
+
                 <div className="navWrapperDiv2">
                     <StyledLink2 to="/settings" style={{margin:'17%'}}>
                     <SettingOutlined/>
@@ -90,7 +98,7 @@ text-decoration:none;
 margin: 5% 0 0 5%;
 &: hover{
     background: #C4C4C4;
-    border-radius: 0px 20px 20px 0px;
+    border-left: 10%;
     
     
 
