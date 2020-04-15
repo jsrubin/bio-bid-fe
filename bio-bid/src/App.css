@@ -5,20 +5,39 @@
   margin: 0 auto;
 }
 
-.new-study button{
-  display:flex;
-  justify-content: flex-end;
-  background: #262626;
-   border-radius: 4px;
-   color:white;
-   height:30px;
-   
+
+.nav-section{
+  position: relative;
+  margin-left:auto;
+  margin-right:auto;
+  display: block;
 }
- .category-search input{
-  border: 1px solid #D4D4D4;
-  box-sizing: border-box;
-  border-radius: 6px;
- }
+
+.navWrapperDiv2{
+
+  display: flex;
+  line-height: 70px;
+  flex-direction: column;
+  margin: 15%;
+  transition: transform 0.5s linear;
+ border-top: 1px solid #e5e5e5;
+}
+
+.tableheader{
+  width:100%;
+  padding:2%;
+  
+}
+
+.btn-newstudy{
+  display: flex;
+justify-content: flex-end;
+padding:2%;
 
 
-
+}
+.btn-newstudy button{
+  background: #595959;
+border-radius: 4px;
+color:white;
+}

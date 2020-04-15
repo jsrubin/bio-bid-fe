@@ -6,6 +6,7 @@ import {TeamOutlined} from "@ant-design/icons";
 import {FileSearchOutlined} from "@ant-design/icons";
 import {QrcodeOutlined} from "@ant-design/icons";
 import {SettingOutlined} from "@ant-design/icons";
+import {StarFilled} from "@ant-design/icons";
 
 const Nav =() =>{
     return(
@@ -18,7 +19,7 @@ const Nav =() =>{
                         src={require(`../images/profile-avatar.png`)}
                         alt="profile image"
                         />
-                    </div>
+                    
                     <LinkProfile to="/profile">
                         Profile
                     </LinkProfile>
@@ -39,7 +40,7 @@ const Nav =() =>{
                 </div>
 
                 <div className="navWrapperDiv">
-                    <StyledLink to="/recommendations" style={{margin:'14%', padding:'2%'}}>
+                    <StyledLink to="/recommendations" style={{margin:'14%'}}>
                     <TeamOutlined/>
                     Recommendations
                     </StyledLink>
@@ -52,19 +53,24 @@ const Nav =() =>{
                     </StyledLink>
                 </div>
 
+                <div className="navWrapperDiv">
+                    <StyledLink to="/search" style={{margin:'18%'}}>
+                    <StarFilled />
+                        Reviews
+                    </StyledLink>
+                </div>
+
                 <div className="navWrapperDiv2">
-                    <StyledLink2 to="/settings" style={{margin:'17%'}}>
+                    <StyledLink2 to="/settings" >
                     <SettingOutlined/>
                         Settings
                     </StyledLink2>
-                </div>
-                <div className="navWrapperDiv2">
-                    <StyledLink2 to="/logout" style={{margin:'17%'}}>
+                    <StyledLink2 to="/logout">
                         Log out
                     </StyledLink2>
-                </div>
-            </div>     
-
+                </div>  
+                </div>   
+            </div>{/* nav section */}
            
            
         </NavWrapper>
@@ -75,27 +81,27 @@ const NavWrapper = styled.div
 `
 
 background: white;
-width: 20%;
-height:100vh;
+transition: transform 0.5s linear;
+border-right: 1px solid #e5e5e5;
+  width: 260px;
+  height: 100%;
+  
+
 
 `
 const StyledLink =styled.div
 `
-display:flex;
-justify-content: space-between;
+display: flex;
+text-decoration: none;
+font-size:20px;
 color: #595959;
-font-size: 22px;
-height:10%;
-text-decoration:none;
-margin: 5% 0 0 5%;
-&: hover{
+font-family:Lato;
+overflow: hidden;
+margin: 10px 0;
+&:hover {
     background: #C4C4C4;
-    border-radius: 0px 20px 20px 0px;
-    
-    
+    text-decoration: none;
 
-
-}
 
 `
 const LinkProfile =styled.div
@@ -116,7 +122,6 @@ font-style: normal;
 font-weight: normal;
 font-size: 22px;
 color: #595959;
-border-top: 1 px solid gray;
 
 
 
