@@ -6,6 +6,7 @@ import Header from "./components/header";
 import styled from "styled-components";
 import Nav from "./components/navigation";
 import Bids from "./components/bids";
+import Search from "./components/search";
 
 import Dashboard from "./alt-dash/dashboard";
 

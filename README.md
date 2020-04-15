@@ -4,19 +4,20 @@
 
 🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
-# 1️⃣ Title of project goes here
+# 1️⃣ Bio-Bid
 
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+1️⃣ You can find the deployed project at bio-bid.herokuapp.com.
 
 ## 4️⃣ Contributors
 
 🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
 
-|                                       [Student 1](https://github.com/)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
+|                                       [Alston Garrett](https://github.com/Neytoro)                                        |                                       [Andrea Harris](https://github.com/aharris1012)                                        |                                       [Joshua Agins](https://github.com/jagins)                                        |                                       [James Morris](https://github.com/)                                        |                                       [Emmanuelle Berda](https://github.com/)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
+|                      [<img src="https://media-exp1.licdn.com/dms/image/C4E03AQH6H2Cj37G6vg/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=ZhbMtphcvEVNFEnBElnCbc21UeCIYI-CNBDL4ZlsuTM" width = "200" />](https://github.com/Neytoro)                       |                      [<img src="https://media-exp1.licdn.com/dms/image/C5603AQF1vhKmFg6bzQ/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=ccBYIj04qklL-vodpXdsCgA1QsLkDXBj6mgvBdk9my0" width = "200" />](https://github.com/aharris1012)                       |                      [<img src="https://media-exp1.licdn.com/dms/image/C4D03AQGK50X4Z2x2tQ/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=KmuEaPKiaw76WYgVlTyBBIyrZT34mTkq9MXhAzbYv6Y" width = "200" />](https://github.com/jagins)                       |                      [<img src="https://media-exp1.licdn.com/dms/image/C4E03AQEf5pzWIdcJew/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=RyO9vQQQU-kGZwYeP6kq4R6ztMmxiuSdHgDr8JXvGQ4" width = "200" />](https://github.com/)                       |                      [<img src="https://media-exp1.licdn.com/dms/image/C5603AQFvch8L6IXveg/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=wy9i2SdOAub41qbBNikr44nyyxp19FiC5Fq8e_WEAqE" width = "200" />](https://github.com/)                       |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Neytoro)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/aharris1012)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jagins)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)             |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/Neytorokx/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/andrea-harris-208989174/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/joshua-agins-b15bb1199/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jasmorrisconsultant) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/emmanuelle-berda-26190862/) |
+|                                        **Web**                                        |                                       **Web**                                        |                                       **Web**                                        |                                       **UX**                                        |                                       **UX**                                        |
 
 <br>
 <br>
@@ -33,26 +34,26 @@
 
 ## Project Overview
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+1️⃣ [Trello Board](https://trello.com/b/lO90hEuU/labs-22-bio-bid)
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+1️⃣ [Product Canvas](https://www.notion.so/Bio-Bid-Dashboard-a9a7a54106e34ec9adc20ee33268c0b7)
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
+1️⃣ [UX Design files](https://www.figma.com/file/o45cmaotaVWtBtlRblcMei/Bio-Bid%2C-Emmanuelle-%26-James?node-id=409%3A5265)
 
-🚫 Replace lorem ipsum with a description of your project
+# Description
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Connecting clinical trial sponsors to the right services providers for their needs.
 
 
 ### 4️⃣ Key Features
 
--    feature one
--    feature two
--    feature three
--    feature four
--    feature five
+-    Dashboard for all users with a searchable table.
+-    Profile page with a description of what they offer, link to their site, picture or logo.
+-    Verified each company manually to approve them.
+-    Administrator Log in - is able to bid on services.
+-    Staff Log in -  is able to update the dashboard and flag "potential" services.
+-    Reviews for service providers.
+-    Ability to search for specific service providers.
 
 ## 1️⃣ Tech Stack
 
@@ -62,22 +63,28 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 🚫 Why did you choose this framework?
 
--    point one
--    point two
--    point three
--    point four
+This framework was chosen as it's the framework we feel the most comfortable and flexible using.
+
+-    React (Framework)
+     - Reactstrap
+     - React Router
+     - Protected Routes
 
 🚫List the rest of the front end features and libraries in the same format as the framework above.
 
-#### Front end deployed to `🚫insert service here`
+-    Apollo Client
+-    OAuth (Authorization)
+-    Axios/AxiosWithAuth (API Calls)
 
-#### [Back end](🚫link to back end repo here) built using:
+#### Front end deployed to `Heroku.com`
+
+#### [Back end](https://github.com/Lambda-School-Labs/bio-bid-fe/) built using: Node
 
 #### 🚫 back end framework goes here
 
--    point one
--    point two
--    point three
+-    Apollo/GraphQL
+-    PostGres
+-    Jest & Babel (Testing)
 
 🚫 List the rest of the back end end features and libraries in the same format as the framework above
 
@@ -94,24 +101,6 @@ Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do
 🚫Replace text below with a description of the API
 
 This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
 
 # 3️⃣ Environment Variables
 
