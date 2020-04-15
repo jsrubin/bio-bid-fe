@@ -6,9 +6,9 @@ import {Button} from "reactstrap";
 
 const Bids = (props) => {
   return (
-    <Table striped style={{ width:'100%'}}>
-      <thead style ={{ margin:'10%'}}>
-        <tr>
+    <Table striped style={{ width:'100%',padding:'10%'}}>
+      <thead>
+        <tr >
           <th>BIDS</th>
           <th>NAME</th>
           <th>THERAPEUTIC AREA</th>
