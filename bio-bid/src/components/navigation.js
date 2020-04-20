@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import {Link} from "react-router-dom";
 import {PieChartOutlined}from "@ant-design/icons";
 import {TeamOutlined} from "@ant-design/icons";
 import {FileSearchOutlined} from "@ant-design/icons";
