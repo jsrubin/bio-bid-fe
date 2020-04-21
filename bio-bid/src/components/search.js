@@ -9,7 +9,7 @@ const Search = () => {
         <BidHeaderWrapper>
              <Title>Current Projects</Title>
              <div className="btn-newstudy">
-             <button> <PlusOutlined />Create new study</button>
+             {/* <button> <PlusOutlined />Create new study</button> */}
              </div>
             
 
@@ -44,7 +44,6 @@ font-style: normal;
 font-weight: bold;
 font-size: 24px;
 color: #595959;
-margin:0 0 2% 2%;
 
 
 `
