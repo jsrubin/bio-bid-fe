@@ -7,24 +7,12 @@ import {PlusOutlined} from "@ant-design/icons";
 const Search = () => {
     return (
         <BidHeaderWrapper>
-             <Title>Current Projects</Title>
-             <div className="btn-newstudy">
-             <button> <PlusOutlined />Create new study</button>
-             </div>
-            
-
-            
-
-
+            <Title>Current Projects</Title>
+            <div className="btn-newstudy">
+                <button> <PlusOutlined />Create new study</button>
+            </div>
         </BidHeaderWrapper>
-       
-
-        
-        
-        
-
-)
-
+    )
 }
 
 export default Search;

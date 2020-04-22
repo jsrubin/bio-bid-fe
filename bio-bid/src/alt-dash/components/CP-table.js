@@ -31,17 +31,6 @@ const Table = (props) => {
                 {data && (props.studies.map(study => 
                     <Row first='first' active={true} name={study.name} status={study.status} thera={study.area} protocol='ABZ-123' proto_title={study.title} phase={study.phase} service_list={study.services} mod_date={moment(study.modified_date).format('LL')} mod_time={moment(study.modified_date).format('LTS')} />
                 ))}
-                {/* <Row first='first' active={true} name='Second study' status='Closed' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='I' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
-                <Row active={false} name='Second study' status='Open' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='I' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
-                <Row first='first' active={true} name='Second study' status='Closed' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='I' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
-                <Row active={false} name='Second study' status='Open' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='I' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
-                <Row first='first' active={true} name='Second study' status='Closed' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='I' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
-                <Row active={false} name='Second study' status='Open' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='I' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
-                <Row first='first' active={true} name='Second study' status='Closed' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='III' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
-                <Row active={false} name='Second study' status='Open' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='I' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
-                <Row first='first' active={true} name='Second study' status='Closed' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='IV' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
-                <Row active={false} name='Second study' status='Open' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='I' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
-                <Row first='first' active={true} name='Second study' status='Closed' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='II' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' /> */}
             </div>
         </div>
     );
