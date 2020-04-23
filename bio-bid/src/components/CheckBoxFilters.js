@@ -8,7 +8,6 @@ function CheckboxFilters(props) {
     const [phase2, setPhase2] = useState(false);
     const [phase3, setPhase3] = useState(false);
     const { data, loading, error } = useQuery(GET_STUDIES);
-    const [finalList, setFinalList] = useState([]);
     const Phases = {
         none: 0,
         phase1: 1,
@@ -19,7 +18,6 @@ function CheckboxFilters(props) {
     const [open, setOpen] = useState(false);
     const [closed, setClosed] = useState(false);
     const [active, setActive] = useState(false);
-    const [statusList, setStatusList] = useState([]);
     const Status = {
         none: 0,
         open: 1,
