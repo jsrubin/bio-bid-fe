@@ -3,8 +3,6 @@ import styled from "styled-components";
 import CheckBox from "./checkbox";
 
 
-
-
 class Checkboxes extends Component{
     constructor (props){
         super (props)
@@ -36,26 +34,18 @@ class Checkboxes extends Component{
     
       render() {
         return (
-          <div class="checkboxes-phase">
-          <h1> Phase</h1>
+          <div className="checkboxes-phase">
+          {/* <h1> Phase</h1>
             <ul>
             {
               this.state.Phases.map((phase) => {
-                return (<CheckBox handleCheckChieldElement={this.handleCheckChieldElement}  {...phase} />)
+                return (<CheckBox key={phase.id} handleCheckChieldElement={this.handleCheckChieldElement}  {...phase} />)
               })
             }
-            </ul>
+            </ul> */}
           </div>
         );
       }
     }
 
-    
-    
-    
-    
-    
-
-
 export default Checkboxes;
-

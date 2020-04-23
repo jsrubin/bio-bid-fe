@@ -3,8 +3,6 @@ import styled from "styled-components";
 import CheckBoxStatus from "./forstatuscheckbox";
 
 
-
-
 class StatusCheckboxes extends Component{
     constructor (props){
         super (props)
@@ -49,12 +47,6 @@ class StatusCheckboxes extends Component{
         );
       }
     }
-
-    
-    
-    
-    
-    
 
 
 export default StatusCheckboxes;

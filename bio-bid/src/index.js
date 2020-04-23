@@ -9,8 +9,6 @@ import {ApolloProvider} from 'react-apollo';
 
 const endpoint = process.env.REACT_APP_SERVER_ENDPOINT;
 
-console.log(endpoint);
-
 const client = new ApolloClient({uri: endpoint});
 
 ReactDOM.render(
