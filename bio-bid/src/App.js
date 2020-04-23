@@ -20,8 +20,8 @@ const App = () =>{
       <WorkSpace>
         {/* <Nav/> */}
         <DashSidebar />
-        <CP />
-        {/* <Bids/> */}
+        {/* <CP /> */}
+        <Bids/>
       </WorkSpace>
       </MainWrapper>
       

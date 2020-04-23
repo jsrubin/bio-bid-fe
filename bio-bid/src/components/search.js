@@ -32,7 +32,6 @@ font-style: normal;
 font-weight: bold;
 font-size: 24px;
 color: #595959;
-margin:0 0 2% 2%;
 
 
 `

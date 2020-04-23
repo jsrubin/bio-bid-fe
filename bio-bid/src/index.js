@@ -7,7 +7,9 @@ import * as serviceWorker from './serviceWorker';
 import ApolloClient from 'apollo-boost';
 import {ApolloProvider} from 'react-apollo';
 
-const client = new ApolloClient({uri: 'http://ec2-34-195-186-223.compute-1.amazonaws.com/'})
+// http://biobidbe-env.eba-ercbzmhq.us-east-1.elasticbeanstalk.com/
+// https://ec2-34-195-186-223.compute-1.amazonaws.com/
+const client = new ApolloClient({uri: 'http://biobidbe-env.eba-ercbzmhq.us-east-1.elasticbeanstalk.com/'})
 
 ReactDOM.render(
   <React.StrictMode>
