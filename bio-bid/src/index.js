@@ -7,14 +7,16 @@ import * as serviceWorker from './serviceWorker';
 import ApolloClient from 'apollo-boost';
 import {ApolloProvider} from 'react-apollo';
 
-const client = new ApolloClient({uri: 'https://ec2-34-195-186-223.compute-1.amazonaws.com/'})
+const endpoint = process.env.REACT_APP_SERVER_ENDPOINT;
+
+console.log(endpoint);
+
+const client = new ApolloClient({uri: endpoint});
 
 ReactDOM.render(
-  <React.StrictMode>
     <ApolloProvider client={client}>
       <App/>
-    </ApolloProvider>
-  </React.StrictMode>,
+    </ApolloProvider>,
   document.getElementById('root')
 );
 
