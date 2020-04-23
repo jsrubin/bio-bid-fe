@@ -6,6 +6,9 @@ import Header from "./components/header";
 import styled from "styled-components";
 import Nav from "./components/navigation";
 import Bids from "./components/bids";
+import Checkboxes from "./components/phase-checkbox";
+import StatusCheckboxes from "./components/forstatuscheckbox";
+
 
 // import Dashboard from "./alt-dash/dashboard";
 
@@ -13,12 +16,14 @@ const App = () =>{
   return (
     <MainWrapper>
       {/* <Dashboard /> */}
-      <Header/>
-      <WorkSpace>
-        <Nav/>
-        <Bids/>
-      </WorkSpace>
-      </MainWrapper>
+      <Header/> 
+     <WorkSpace> 
+      <Nav/> 
+       <Bids/>
+       <StatusCheckboxes />
+     </WorkSpace>
+     <Checkboxes/>
+    </MainWrapper>
       
   );
 };
