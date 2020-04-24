@@ -36,8 +36,9 @@ const CPTableRow = (props) => {
     return(
         <div id='table-row-wrapper' class={'' + props.first}>
             <div class='cat-item' style={{ width: '7%' }} >
-                { props.active == true && <p class='active-item'>Open</p> }
-                { props.active == false && <p class='active-item'>Closed</p> }
+                <p class='active-item'>{props.status}</p>
+                {/* { props.active == true && <p class='active-item'>Open</p> }
+                { props.active == false && <p class='active-item'>Closed</p> } */}
             </div>
             <div id='name-cat-container' class='cat-item' style={{ width: '10%' }} >
                 <p id='name-text-1'>{props.name}</p>

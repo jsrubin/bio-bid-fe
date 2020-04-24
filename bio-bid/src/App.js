@@ -6,7 +6,9 @@ import Header from "./components/header";
 import styled from "styled-components";
 import Nav from "./components/navigation";
 import Bids from "./components/bids";
-import Search from "./components/search";
+
+import CP from './alt-dash/current-projects-sub';
+import DashSidebar from './components/dash-sidebar';
 
 // import Dashboard from "./alt-dash/dashboard";
 
@@ -16,7 +18,9 @@ const App = () =>{
       {/* <Dashboard /> */}
       <Header/>
       <WorkSpace>
-        <Nav/>
+        {/* <Nav/> */}
+        <DashSidebar />
+        {/* <CP /> */}
         <Bids/>
       </WorkSpace>
       </MainWrapper>

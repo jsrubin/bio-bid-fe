@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { GET_STUDIES } from '../queries';
+import { useQuery } from '@apollo/react-hooks';
+import moment from 'moment';
+import * as JsSearch from 'js-search';
 
 /* STYLE IMPORT */
 import './styles/current-projects.css';
@@ -15,6 +19,18 @@ import { ReactComponent as SearchIcon } from '../images/search.svg';
 /* This is one of the sub pages for the dashboard. It features a table of the current projects. */
 function CurrentProjects() {
 
+    const { loading, data, error } = useQuery(GET_STUDIES);
+
+    const [studies, setStudies] = useState(undefined);
+    const [value, setValue] = useState('');
+
+    const search = new JsSearch.Search('name');
+
+    search.addIndex('name');
+    search.addIndex('area');
+    search.addIndex('protocol_number');
+    search.addIndex('title');
+
     const createStudy = () => {
 
         // Placeholder for the create button.
@@ -23,15 +39,60 @@ function CurrentProjects() {
 
     }
 
+    const handleSearch = (event) => {
+
+        event.preventDefault();
+
+        if (value.length <= 0)
+            setStudies(data.studies);
+        else
+            setStudies(search.search(value));
+
+    }
+
+    const processSearch = (event) => {
+
+        event.preventDefault();
+
+        setValue(event.target.value);
+
+        if (value.length <= 0)
+            setStudies(data.studies);
+        else
+            setStudies(search.search(value));
+
+    }
+
+    useEffect(() => {
+
+        if (data !== undefined) {
+
+            search.addDocuments(data.studies);
+
+            console.log(studies);
+
+            if (studies === undefined)
+                setStudies(data.studies);
+
+            if (value !== undefined) {
+
+                console.log(search.search(value));
+
+            }
+
+        }
+
+    });
+
     return(
 
         <div id='current-projects-wrapper'>
             <div id='current-projects-header'>
                 <p id='current-projects-header-text-1'>Current Projects</p>
                 <div id='input-container'>
-                    <form style={{ display: 'flex' }}>
+                    <form onSubmit={event => handleSearch(event)} style={{ display: 'flex' }}>
                         <SearchIcon id='search-icon' />
-                        <input id='search-input' placeholder='Enter Keyword' />
+                        <input onChange={event => processSearch(event)} id='search-input' placeholder='Enter Keyword' />
                         <button id='search-button'>Search</button>
                     </form> 
                 </div>
@@ -41,8 +102,8 @@ function CurrentProjects() {
                 </div>
             </div>
             {/* <SearchBar /> */}
-            <Table />
-            <Pageination />
+            <Table studies={studies}/>
+            {/* <Pageination /> */}
         </div>
 
     );

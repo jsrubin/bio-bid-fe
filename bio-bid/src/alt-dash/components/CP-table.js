@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { GET_STUDIES } from '../../queries';
+import { useQuery } from '@apollo/react-hooks';
+import moment from 'moment';
 
 /* STYLE IMPORT */
 import '../styles/CP-table.css';
@@ -9,6 +12,8 @@ import Row from './CP-table-row';
 /* This the core table for the dashboard. All 'rows' will be dynamically generated from the API.
    Will be adjusted to fit a more suitable and reasonable means in the future as time progresses. */
 const Table = (props) => {
+
+    const { loading, data, error } = useQuery(GET_STUDIES);
 
     return(
         <div id='table-wrapper'>
@@ -23,17 +28,9 @@ const Table = (props) => {
                 <p style={{ width: '12%', textAlign: 'center' }} class='table-header-item'>ACTIONS</p>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <Row first='first' active={true} name='Second study' status='Closed' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='I' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
-                <Row active={false} name='Second study' status='Open' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='I' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
-                <Row first='first' active={true} name='Second study' status='Closed' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='I' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
-                <Row active={false} name='Second study' status='Open' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='I' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
-                <Row first='first' active={true} name='Second study' status='Closed' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='I' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
-                <Row active={false} name='Second study' status='Open' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='I' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
-                <Row first='first' active={true} name='Second study' status='Closed' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='III' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
-                <Row active={false} name='Second study' status='Open' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='I' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
-                <Row first='first' active={true} name='Second study' status='Closed' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='IV' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
-                <Row active={false} name='Second study' status='Open' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='I' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
-                <Row first='first' active={true} name='Second study' status='Closed' thera='Inflammation Indication: Back pain Molecule type: Chemical' protocol='ABZ-123' proto_title='Atest' phase='II' service_list='1' mod_date='April 19, 2019' mod_time='07:09:50 AM' />
+                {data && (props.studies.map(study => 
+                    <Row first='first' active={true} name={study.name} status={study.status} thera={study.area} protocol='ABZ-123' proto_title={study.title} phase={study.phase} service_list={study.services} mod_date={moment(study.modified_date).format('LL')} mod_time={moment(study.modified_date).format('LTS')} />
+                ))}
             </div>
         </div>
     );
