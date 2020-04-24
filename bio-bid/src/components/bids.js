@@ -9,7 +9,7 @@ import moment from 'moment';
 import * as JsSearch from 'js-search';
 
 /* STYLE IMPORT */
-import '../alt-dash/styles/current-projects.css';
+import '../styles/CP-dash-header.css';
 
 /* IMAGE IMPORTS */
 import { ReactComponent as AddIcon } from '../images/add-button-1.svg';
