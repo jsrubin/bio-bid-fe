@@ -3,7 +3,7 @@ import { GET_STUDIES } from '../queries';
 import { useQuery } from '@apollo/react-hooks';
 
 
-function CheckboxFilters(props) {
+function CheckboxFilters() {
     const [phase1, setPhase1] = useState(false);
     const [phase2, setPhase2] = useState(false);
     const [phase3, setPhase3] = useState(false);

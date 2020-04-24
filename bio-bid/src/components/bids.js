@@ -15,9 +15,7 @@ import '../alt-dash/styles/current-projects.css';
 import { ReactComponent as AddIcon } from '../images/add-button-1.svg';
 import { ReactComponent as SearchIcon } from '../images/search.svg';
 
-import CheckBoxFilters from './CheckBoxFilters';
-
-const Bids = (props) => {
+const Bids = () => {
 
   const { loading, data, error } = useQuery(GET_STUDIES);
 
@@ -123,7 +121,6 @@ const Bids = (props) => {
           )}
         </tbody>
       </Table>
-     <CheckBoxFilters/>
     </div>
   );
 }

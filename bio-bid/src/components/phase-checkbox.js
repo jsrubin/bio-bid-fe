@@ -35,14 +35,14 @@ class Checkboxes extends Component{
       render() {
         return (
           <div className="checkboxes-phase">
-          {/* <h1> Phase</h1>
+          <h1> Phase</h1>
             <ul>
             {
               this.state.Phases.map((phase) => {
                 return (<CheckBox key={phase.id} handleCheckChieldElement={this.handleCheckChieldElement}  {...phase} />)
               })
             }
-            </ul> */}
+            </ul>
           </div>
         );
       }

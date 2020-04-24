@@ -7,7 +7,8 @@ import styled from "styled-components";
 import Nav from "./components/navigation";
 import Bids from "./components/bids";
 import Checkboxes from "./components/phase-checkbox";
-import StatusCheckboxes from "./components/forstatuscheckbox";
+// import StatusCheckboxes from "./components/forstatuscheckbox";
+import CheckBoxFilters from './components/CheckBoxFilters';
 
 
 // import Dashboard from "./alt-dash/dashboard";
@@ -20,9 +21,10 @@ const App = () =>{
      <WorkSpace> 
       <Nav/> 
        <Bids/>
-       <StatusCheckboxes />
+       {/* <StatusCheckboxes /> */}
+       <CheckBoxFilters/>
      </WorkSpace>
-     <Checkboxes/>
+     {/* <Checkboxes/> */}
     </MainWrapper>
       
   );
