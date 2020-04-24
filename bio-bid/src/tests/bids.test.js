@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, act, wait } from '@testing-library/react';
-import Bids from './bids';
+import Bids from '../components/bids';
 
 import { MockedProvider } from '@apollo/react-testing';
 import { GET_STUDIES } from '../queries';
