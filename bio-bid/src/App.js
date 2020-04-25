@@ -44,7 +44,7 @@ function App() {
         <Bids shadow={applyShadow} />
         {/* <StatusCheckboxes /> */}
       </WorkSpace>
-      <Checkboxes />
+      {/* <Checkboxes /> */}
     </MainWrapper>
   );
 

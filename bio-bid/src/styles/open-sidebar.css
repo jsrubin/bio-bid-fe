@@ -14,7 +14,7 @@
 .sidebar-open {
     
     left: 0px;
-    display: block;
+    /* display: block; */
     animation-name: openDash;
     animation-duration: 0.5s;
 
@@ -31,15 +31,15 @@
 
 @keyframes openDash {
 
-    from { left: -250px; }
-    to { left: 0px; }
+    from { left: -250px; display: none; }
+    to { left: 0px; display: block; }
 
 }
 
 @keyframes closeDash {
 
-    from { left: 0px; }
-    to { left: -250px; }
+    from { left: 0px; display: block; }
+    to { left: -250px; display: none; }
 
 }
 
