@@ -5,6 +5,16 @@
   margin: 0 auto;
 }
 
+.shadow-active {
+
+    z-index: 1;
+    width: 100%;
+    opacity: .4;
+    height: 100%;
+    position: absolute;
+    background: black;
+
+}
 
 .nav-section{
   position: relative;
@@ -40,4 +50,20 @@ padding:2%;
   background: #595959;
 border-radius: 4px;
 color:white;
+}
+.checkboxes-phase {
+  margin-left: 100px;
+  margin-top: 100px;
+  text-align: center;
+
+}
+.checkboxes-status{
+  margin-left: 80px;
+  margin-top: 80px;
+  text-align: center;
+}
+
+.checkboxes-phase ul{
+  
+    list-style: none;
 }

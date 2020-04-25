@@ -12,11 +12,9 @@ import {ApolloProvider} from 'react-apollo';
 const client = new ApolloClient({uri: 'http://biobidbe-env.eba-ercbzmhq.us-east-1.elasticbeanstalk.com/'})
 
 ReactDOM.render(
-  <React.StrictMode>
     <ApolloProvider client={client}>
       <App/>
-    </ApolloProvider>
-  </React.StrictMode>,
+    </ApolloProvider>,
   document.getElementById('root')
 );
 
