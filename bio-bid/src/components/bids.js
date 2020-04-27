@@ -233,10 +233,10 @@ const clearFilters = () =>
               <button id='search-button'>Search</button>
             </form>
           </div>
-          <div id='current-projects-header-2'>
+          {/* <div id='current-projects-header-2'>
             <p id='current-projects-header-text-2' onClick={() => { createStudy() }} >Create new study</p>
             <AddIcon style={{ width: '16px', height: '16px', margin: '8px 8px 8px 12px' }} />
-          </div>
+          </div> */}
           <div id='filter-container'>
             <div id='filter-sub-container' onClick={() => processFilter() } >
               <p id='filter-text'>Filter</p>

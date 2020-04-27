@@ -35,7 +35,7 @@ function OpenDash(props) {
                 <img src={Projects} style={{ filter: 'contrast(100%)' }} className={'menu-icon-img ' + (collapsed ? 'menu-icon-img-collapsed' : '')} />
                 <p className={'profile-menu-text '}>Current Projects</p>
             </div>
-            <div className='profile-menu-container menu-option-disabled'>
+            {/* <div className='profile-menu-container menu-option-disabled'>
                 <PieChartIcon className={'profile-menu-icon ' + (collapsed ? 'menu-icon-collapsed' : '')} />
                 <p className={'profile-menu-text '}>Manage Bids</p>
             </div>
@@ -58,7 +58,7 @@ function OpenDash(props) {
             </div>
             <div className='profile-menu-container menu-option-disabled'>
                 <p className='profile-menu-text menu-text-collapsed' style={{ marginLeft: '15px' }}>Log out</p>
-            </div>
+            </div> */}
         </div>
     );
 
