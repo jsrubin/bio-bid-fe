@@ -36,30 +36,30 @@ function DashSidebar(props) {
                 <img src={Projects} style={{ filter: 'contrast(100%)' }} className={'menu-icon-img ' + (collapsed ? 'menu-icon-img-collapsed' : '')} />
                 <p className={'profile-menu-text ' + (collapsed ? 'menu-text-collapsed' : '')}>Current Projects</p>
             </div>
-            <div className='profile-menu-container menu-option-disabled'>
+            {/* <div className='profile-menu-container menu-option-disabled'>
                 <PieChartIcon className={'profile-menu-icon ' + (collapsed ? 'menu-icon-collapsed' : '')} />
                 <p className={'profile-menu-text ' + (collapsed ? 'menu-text-collapsed' : '')}>Manage Bids</p>
-            </div>
-            <div className='profile-menu-container menu-option-disabled'>
+            </div> */}
+            {/* <div className='profile-menu-container menu-option-disabled'>
                 <RecommendationsIcon className={'profile-menu-icon ' + (collapsed ? 'menu-icon-collapsed' : '')} />
                 <p className={'profile-menu-text ' + (collapsed ? 'menu-text-collapsed' : '')}>Recommendations</p>
-            </div>
-            <div className='profile-menu-container menu-option-disabled'>
+            </div> */}
+            {/* <div className='profile-menu-container menu-option-disabled'>
                 <SearchStudiesIcon className={'profile-menu-icon ' + (collapsed ? 'menu-icon-collapsed' : '')} />
                 <p className={'profile-menu-text ' + (collapsed ? 'menu-text-collapsed' : '')}>Search Studies</p>
-            </div>
-            <div className='profile-menu-container menu-option-disabled'>
+            </div> */}
+            {/* <div className='profile-menu-container menu-option-disabled'>
                 <ReviewsIcon className={'profile-menu-icon ' + (collapsed ? 'menu-icon-collapsed' : '')} />
                 <p className={'profile-menu-text ' + (collapsed ? 'menu-text-collapsed' : '')}>Reviews</p>
-            </div>
-            <hr className='menu-bar' />
+            </div> */}
+            {/* <hr className='menu-bar' />
             <div className='profile-menu-container menu-option-disabled'>
                 <img src={Settings} className={'profile-menu-icon ' + (collapsed ? 'menu-icon-collapsed' : '')} />
                 <p className={'profile-menu-text ' + (collapsed ? 'menu-text-collapsed' : '')}>Settings</p>
             </div>
             <div className='profile-menu-container menu-option-disabled'>
                 <p className='profile-menu-text menu-text-collapsed' style={{ marginLeft: '15px' }}>Log out</p>
-            </div>
+            </div> */}
         </div>
     );
 
