@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 /* STYLE IMPORT */
-import '../styles/dash-sidebar.css';
+import '../styles/open-sidebar.css';
 
 /* IMAGE IMPORTS */
 import Projects from '../images/projects.png';
@@ -16,46 +16,45 @@ import { ReactComponent as SearchStudiesIcon } from '../images/search-studies.sv
 import { ReactComponent as RecommendationsIcon } from '../images/recommendations.svg';
 
 /* This is the dashboard sidebar. This contains the dashboard navigation. */
-function DashSidebar(props) {
+function OpenDash(props) {
 
     // True to collapse the side bar, false to open it. This variable is managed by the Dash Sidebar control icons, DashCollapseIcon and DashExpandIcon.
     const [collapsed, setCollapsed] = useState(true);
 
     return(
-        <div id='sidebar-wrapper' className={(collapsed ? 'sidebar-collapsed' : '')}>
+        <div id='sidebar-open-wrapper' className={ ( props.dashOpen ? 'sidebar-open' : 'sidebar-closed' ) }>
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '10px' }}>
-                {/* { collapsed ? <DashExpandIcon className='dash-control-icon' onClick={ () => setCollapsed(!collapsed) } /> : 
-                <DashCollapseIcon className='dash-control-icon' onClick={ () => setCollapsed(!collapsed) }/> } */}
-                <DashExpandIcon className='dash-control-icon' onClick={ () => { props.process(true); props.shadow(); } } />
+                <DashCollapseIcon className='dash-control-icon' onClick={ () => { props.process(false); props.shadow(); } } />
             </div>
-            <ProfilePic onClick={ () => { props.process(true); props.shadow(); } } className={'pfp ' + (collapsed ? 'pfp-collapsed' : '')} />
-            {/* <img src={DefaultAvatar} className={'pfp ' + (collapsed ? 'pfp-collapsed' : '')} /> */}
-            <p onClick={ () => { props.process(true); props.shadow(); } } className={'pfp-text ' + (collapsed ? 'pfp-text-collapsed' : '')}>Dr. Venter</p>
+            <ProfilePic className={'pfp ' + (collapsed ? 'pfp-collapsed' : '')} />
+            <div id='pfp-container'>
+                <p className={'pfp-text-2 '}>Dr. Venter</p>
+            </div>
             <hr className='menu-bar' />
             <div className='profile-menu-container selected'>
                 <img src={Projects} style={{ filter: 'contrast(100%)' }} className={'menu-icon-img ' + (collapsed ? 'menu-icon-img-collapsed' : '')} />
-                <p className={'profile-menu-text ' + (collapsed ? 'menu-text-collapsed' : '')}>Current Projects</p>
+                <p className={'profile-menu-text '}>Current Projects</p>
             </div>
             <div className='profile-menu-container menu-option-disabled'>
                 <PieChartIcon className={'profile-menu-icon ' + (collapsed ? 'menu-icon-collapsed' : '')} />
-                <p className={'profile-menu-text ' + (collapsed ? 'menu-text-collapsed' : '')}>Manage Bids</p>
+                <p className={'profile-menu-text '}>Manage Bids</p>
             </div>
             <div className='profile-menu-container menu-option-disabled'>
                 <RecommendationsIcon className={'profile-menu-icon ' + (collapsed ? 'menu-icon-collapsed' : '')} />
-                <p className={'profile-menu-text ' + (collapsed ? 'menu-text-collapsed' : '')}>Recommendations</p>
+                <p className={'profile-menu-text '}>Recommendations</p>
             </div>
             <div className='profile-menu-container menu-option-disabled'>
                 <SearchStudiesIcon className={'profile-menu-icon ' + (collapsed ? 'menu-icon-collapsed' : '')} />
-                <p className={'profile-menu-text ' + (collapsed ? 'menu-text-collapsed' : '')}>Search Studies</p>
+                <p className={'profile-menu-text '}>Search Studies</p>
             </div>
             <div className='profile-menu-container menu-option-disabled'>
                 <ReviewsIcon className={'profile-menu-icon ' + (collapsed ? 'menu-icon-collapsed' : '')} />
-                <p className={'profile-menu-text ' + (collapsed ? 'menu-text-collapsed' : '')}>Reviews</p>
+                <p className={'profile-menu-text '}>Reviews</p>
             </div>
             <hr className='menu-bar' />
             <div className='profile-menu-container menu-option-disabled'>
                 <img src={Settings} className={'profile-menu-icon ' + (collapsed ? 'menu-icon-collapsed' : '')} />
-                <p className={'profile-menu-text ' + (collapsed ? 'menu-text-collapsed' : '')}>Settings</p>
+                <p className={'profile-menu-text '}>Settings</p>
             </div>
             <div className='profile-menu-container menu-option-disabled'>
                 <p className='profile-menu-text menu-text-collapsed' style={{ marginLeft: '15px' }}>Log out</p>
@@ -65,4 +64,4 @@ function DashSidebar(props) {
 
 }
 
-export default DashSidebar;
+export default OpenDash;

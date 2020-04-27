@@ -16,7 +16,7 @@ import { ReactComponent as SearchStudiesIcon } from '../images/search-studies.sv
 import { ReactComponent as RecommendationsIcon } from '../images/recommendations.svg';
 
 /* This is the dashboard sidebar. This contains the dashboard navigation. */
-function DashSidebar(props) {
+function DashSidebar() {
 
     // True to collapse the side bar, false to open it. This variable is managed by the Dash Sidebar control icons, DashCollapseIcon and DashExpandIcon.
     const [collapsed, setCollapsed] = useState(true);
@@ -24,13 +24,12 @@ function DashSidebar(props) {
     return(
         <div id='sidebar-wrapper' className={(collapsed ? 'sidebar-collapsed' : '')}>
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '10px' }}>
-                {/* { collapsed ? <DashExpandIcon className='dash-control-icon' onClick={ () => setCollapsed(!collapsed) } /> : 
-                <DashCollapseIcon className='dash-control-icon' onClick={ () => setCollapsed(!collapsed) }/> } */}
-                <DashExpandIcon className='dash-control-icon' onClick={ () => { props.process(true); props.shadow(); } } />
+                { collapsed ? <DashExpandIcon className='dash-control-icon' onClick={ () => setCollapsed(!collapsed) } /> : 
+                <DashCollapseIcon className='dash-control-icon' onClick={ () => setCollapsed(!collapsed) }/> }
             </div>
-            <ProfilePic onClick={ () => { props.process(true); props.shadow(); } } className={'pfp ' + (collapsed ? 'pfp-collapsed' : '')} />
+            <ProfilePic className={'pfp ' + (collapsed ? 'pfp-collapsed' : '')} />
             {/* <img src={DefaultAvatar} className={'pfp ' + (collapsed ? 'pfp-collapsed' : '')} /> */}
-            <p onClick={ () => { props.process(true); props.shadow(); } } className={'pfp-text ' + (collapsed ? 'pfp-text-collapsed' : '')}>Dr. Venter</p>
+            <p className={'pfp-text ' + (collapsed ? 'pfp-text-collapsed' : '')}>Dr. Venter</p>
             <hr className='menu-bar' />
             <div className='profile-menu-container selected'>
                 <img src={Projects} style={{ filter: 'contrast(100%)' }} className={'menu-icon-img ' + (collapsed ? 'menu-icon-img-collapsed' : '')} />

@@ -1,7 +1,9 @@
-#sidebar-wrapper {
+#sidebar-open-wrapper {
 
+    z-index: 2;
     display: flex;
     min-height: 100%;
+    position: absolute;
     height: fit-content;
     background: #0050B3;
     flex-direction: column;
@@ -9,15 +11,44 @@
 
 }
 
-.sidebar-expanded { width: 250px;  }
+.sidebar-open {
+    
+    left: 0px;
+    /* display: block; */
+    animation-name: openDash;
+    animation-duration: 0.5s;
 
-.sidebar-collapsed { width: 125px; }
+}
+
+.sidebar-closed {
+
+    left: -250px;
+    display: none;
+    animation-name: closeDash;
+    animation-duration: 0.5s;
+
+}
+
+@keyframes openDash {
+
+    from { left: -250px; display: none; }
+    to { left: 0px; display: block; }
+
+}
+
+@keyframes closeDash {
+
+    from { left: 0px; display: block; }
+    to { left: -250px; display: none; }
+
+}
+
+.sidebar-expanded { width: 250px; }
 
 .menu-bar {
 
     margin: 20px 20px 30px 20px;
     border: 1.2px solid white;
-    /* border-color: white; */
 
 }
 
@@ -26,7 +57,7 @@
     width: 15px;
     height: 15px;
     cursor: pointer;
-    margin-right: 10px;
+    margin-right: 15px;
 
 }
 
@@ -42,21 +73,29 @@
 
 }
 
-/* .pfp-collapsed { margin-left: 20px; } */
+.pfp-collapsed { margin-left: calc(50% - 38px); }
 
-.pfp-text {
+#pfp-container {
 
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 500;
-    font-family: Lato;
-    margin-left: 50px;
-    text-align: center;
+    width: 100px;
+    height: 30px;
+    padding-left: 50px;
 
 }
 
-.pfp-text-collapsed { margin-left: 50px; }
+.pfp-text-2 {
+
+    width: 100px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: Lato;
+    text-align: center;
+    margin-left: calc(60% - 3px);
+
+}
+
+.pfp-text-collapsed { margin-left: 5px; }
 
 .profile-menu-container {
 
@@ -103,15 +142,16 @@
 
 .profile-menu-text {
 
+    color: white;
     font-size: 20px;
     margin: 0px 10px 0px 20px;
 
 }
 
-.profile-menu-text:hover {
+/* .profile-menu-text:hover {
 
     text-decoration: underline;
 
-}
+} */
 
 .menu-text-collapsed { display: none; }
