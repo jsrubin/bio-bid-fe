@@ -49,8 +49,6 @@ const Status = {
   closed: 3
 };
 
-
-
   const search = new JsSearch.Search('name');
 
   search.addIndex('name');
@@ -203,12 +201,12 @@ const filterStudiesStatus = (status) => {
 
 const clearFilters = () => 
 {
- setPhase1(false);
- setPhase2(false);
- setPhase3(false);
- setOpenStatus(false);
- setClosed(false);
- setActive(false);
+  setPhase1(false);
+  setPhase2(false);
+  setPhase3(false);
+  setOpenStatus(false);
+  setClosed(false);
+  setActive(false);
   setStudies(data.studies);
 }
 
@@ -220,6 +218,7 @@ const clearFilters = () =>
           if (studies.length <= 0 && value.length <= 0)
               setStudies(data.studies);
       }
+
   });
 
   return (
