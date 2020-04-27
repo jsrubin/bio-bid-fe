@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-//import { GET_STUDIES } from '../queries';
-//import { useQuery } from '@apollo/react-hooks';
 
 /* STYLE IMPORT */
 import '../styles/filter.css';
@@ -9,14 +7,7 @@ import '../styles/filter.css';
 import { ReactComponent as CloseIcon } from '../images/close.svg';
 
 function CheckboxFilters(props) {
-    //const { data, loading, error } = useQuery(GET_STUDIES);
-
-    // const processFilter = (props) => {
-
-    //     setOpen(!open);
-    //     props.shadow();
     
-      //}
     return (
         <div id='filter-wrapper' className={(props.open ? 'filter-open' : 'filter-closed')}>
             <div id='filter-header-container'>
