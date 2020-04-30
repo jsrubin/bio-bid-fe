@@ -80,7 +80,7 @@ const clearFilters = () =>
           if (studies.length <= 0 && value.length <= 0)
               setStudies(data.studies);
       }
-    });
+    }, [data, search, studies.length, value.length]);
 
   return (
     <div className="tableheader" id='core-wrapper'>
