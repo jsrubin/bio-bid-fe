@@ -6,7 +6,7 @@ import '../styles/dash-sidebar.css';
 /* IMAGE IMPORTS */
 import Projects from '../images/projects.png';
 import Settings from '../images/settings.png';
-import DefaultAvatar from '../images/profile-avatar.png';
+// import DefaultAvatar from '../images/profile-avatar.png';
 import { ReactComponent as ReviewsIcon } from '../images/reviews-1.svg';
 import { ReactComponent as ProfilePic } from '../images/profile-pic.svg';
 import { ReactComponent as PieChartIcon } from '../images/pie-chart.svg';
