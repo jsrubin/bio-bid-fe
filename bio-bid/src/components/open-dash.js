@@ -5,15 +5,15 @@ import '../styles/open-sidebar.css';
 
 /* IMAGE IMPORTS */
 import Projects from '../images/projects.png';
-import Settings from '../images/settings.png';
-import DefaultAvatar from '../images/profile-avatar.png';
-import { ReactComponent as ReviewsIcon } from '../images/reviews-1.svg';
+// import Settings from '../images/settings.png';
+// import DefaultAvatar from '../images/profile-avatar.png';
+// import { ReactComponent as ReviewsIcon } from '../images/reviews-1.svg';
 import { ReactComponent as ProfilePic } from '../images/profile-pic.svg';
-import { ReactComponent as PieChartIcon } from '../images/pie-chart.svg';
-import { ReactComponent as DashExpandIcon } from '../images/dash-expand.svg';
+// import { ReactComponent as PieChartIcon } from '../images/pie-chart.svg';
+// import { ReactComponent as DashExpandIcon } from '../images/dash-expand.svg';
 import { ReactComponent as DashCollapseIcon } from '../images/dash-collapse.svg';
-import { ReactComponent as SearchStudiesIcon } from '../images/search-studies.svg';
-import { ReactComponent as RecommendationsIcon } from '../images/recommendations.svg';
+// import { ReactComponent as SearchStudiesIcon } from '../images/search-studies.svg';
+// import { ReactComponent as RecommendationsIcon } from '../images/recommendations.svg';
 
 /* This is the dashboard sidebar. This contains the dashboard navigation. */
 function OpenDash(props) {
@@ -32,7 +32,7 @@ function OpenDash(props) {
             </div>
             <hr className='menu-bar' />
             <div className='profile-menu-container selected'>
-                <img src={Projects} style={{ filter: 'contrast(100%)' }} className={'menu-icon-img ' + (collapsed ? 'menu-icon-img-collapsed' : '')} />
+                <img src={Projects} style={{ filter: 'contrast(100%)' }} className={'menu-icon-img ' + (collapsed ? 'menu-icon-img-collapsed' : '')} alt='' />
                 <p className={'profile-menu-text '}>Current Projects</p>
             </div>
             {/* <div className='profile-menu-container menu-option-disabled'>
