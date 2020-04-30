@@ -1,27 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Table } from 'reactstrap';
-import { EllipsisOutlined } from "@ant-design/icons";
-import { Button } from "reactstrap";
-
-import { GET_STUDIES } from '../queries';
-import { useQuery } from '@apollo/react-hooks';
-import moment from 'moment';
-import * as JsSearch from 'js-search';
+import {React, useState, useEffect, Table, EllipsisOutlined, Button, GET_STUDIES, useQuery, moment, JsSearch, SearchIcon, FilterIcon, CheckBoxFilters, filterResults, tableHeaders} from '../imports/bidsImports';
 
 /* STYLE IMPORT */
 import '../styles/CP-dash-header.css';
 import '../styles/dash.css';
 
-/* IMAGE IMPORTS */
-import { ReactComponent as AddIcon } from '../images/add-button-1.svg';
-import { ReactComponent as SearchIcon } from '../images/search.svg';
-import { ReactComponent as FilterIcon } from '../images/filter-2.svg';
-
-import CheckBoxFilters from './CheckBoxFilters';
-
 const Bids = (props) => {
 
-  const { loading, data, error } = useQuery(GET_STUDIES);
+  const {data} = useQuery(GET_STUDIES);
 
   const [value, setValue] = useState('');
   const [open, setOpen] = useState(false);
@@ -35,34 +20,12 @@ const Bids = (props) => {
   const [closed, setClosed] = useState(false);
   const [active, setActive] = useState(false);
 
-  const Phases = {
-    none: 0,
-    phase1: 1,
-    phase2: 2,
-    phase3: 3
-};
-
-const Status = {
-  none: 0,
-  open: 1,
-  active: 2,
-  closed: 3
-};
-
   const search = new JsSearch.Search('name');
 
   search.addIndex('name');
   search.addIndex('area');
   search.addIndex('protocol_number');
   search.addIndex('title');
-
-  const createStudy = () => {
-
-      // Placeholder for the create button.
-
-      console.log('Creating new study...');
-
-  }
 
   const handleSearch = (event) => {
 
@@ -95,109 +58,10 @@ const Status = {
 
   }
 
-  const filterStudiesPhase = (phase) => {
-    if (data) {
-        switch (phase) {
-            case Phases.phase1:
-                return data.studies.filter(study => study.phase === 1);
-
-            case Phases.phase2:
-                return data.studies.filter(study => study.phase === 2);
-
-            case Phases.phase3:
-                return data.studies.filter(study => study.phase === 3);
-
-            default:
-                return [...data.studies];
-        }
-    }
-}
-
-const filterStudiesStatus = (status) => {
-    if (data) {
-        switch (status) {
-            case Status.open:
-                return data.studies.filter(study => study.status === "Open");
-
-            case Status.active:
-                return data.studies.filter(study => study.status === "Active");
-
-            case Status.closed:
-                return data.studies.filter(study => study.status === "Closed");
-
-            default:
-                return [...data.studies];
-        }
-    }
-}
-
   const handleFilterResults = (event) => {
     event.preventDefault();
-    let phaseList = [];
-    let phaseTemp = [];
-    let statusList = [];
-    let statusTemp = [];
-
-    if (phase1) {
-        phaseTemp = filterStudiesPhase(Phases.phase1);
-        phaseList.push(...phaseTemp);
-
-    }
-
-    if (phase2) {
-        phaseTemp = filterStudiesPhase(Phases.phase2);
-        phaseList.push(...phaseTemp);
-    }
-
-    if (phase3) {
-        phaseTemp = filterStudiesPhase(Phases.phase3);
-        phaseList.push(...phaseTemp);
-    }
-
-    if (openStatus) {
-        statusTemp = filterStudiesStatus(Status.open);
-        statusList.push(...statusTemp);
-
-    }
-
-    if (active) {
-        statusTemp = filterStudiesStatus(Status.active);
-        statusList.push(...statusTemp);
-    }
-
-    if (closed) {
-        statusTemp = filterStudiesStatus(Status.closed);
-        statusList.push(...statusTemp);
-    }
-
-    const finalList = [];
-
-    if (phaseList.length > 0) {
-        for (let i = 0; i < (phaseList.length + statusList.length); i++) {
-            if (phaseList[i] === statusList[i]) {
-                finalList.push(phaseList[i])
-            }
-            else {
-                const tempList = [phaseList[i], statusList[i]];
-                finalList.push(...tempList);
-            }
-        }
-    }
-    else {
-        for (let k = 0; k < statusList.length; k++) {
-            finalList.push(statusList[k]);
-        }
-    }
-    const returnList = [];
-
-    for (let m = 0; m < finalList.length; m++) {
-        if (finalList[m] !== undefined && finalList[m] !== finalList[m + 1]) {
-            returnList.push(finalList[m]);
-        }
-    }
-    setStudies(returnList);
-
-}
+    setStudies(filterResults(data, phase1, phase2, phase3, openStatus, closed, active));
+  }
 
 const clearFilters = () => 
 {
@@ -212,14 +76,11 @@ const clearFilters = () =>
 
   useEffect(() => {
       if (data !== undefined) {
-
           search.addDocuments(data.studies);
-
           if (studies.length <= 0 && value.length <= 0)
               setStudies(data.studies);
       }
-
-  });
+    });
 
   return (
     <div className="tableheader" id='core-wrapper'>
@@ -247,14 +108,7 @@ const clearFilters = () =>
         <Table striped id='core-table'>
           <thead>
             <tr id='bbb'>
-              <th>BIDS</th>
-              <th>NAME</th>
-              <th>THERAPEUTIC AREA</th>
-              <th>PROTOCOL NO./TITLE</th>
-              <th>PHASE</th>
-              <th>SERVICE LIST</th>
-              <th>MODIFIED DATE</th>
-              <th>ACTIONS</th>
+              {tableHeaders.map((header, index) => <th key={index}>{header}</th>)}
             </tr>
           </thead>
           <tbody>
