@@ -18,6 +18,7 @@
 | [James Morris](https://github.com/)
 | [Emmanuelle Berda](https://github.com/)
 | [Josiah Roa](https://github.com/josiahroa18)
+| [David Shestopal](https://github.com/DavidShestopal)
 | [Brandon Fulmer](https://github.com/nobro777)
 <br>
 <br>
