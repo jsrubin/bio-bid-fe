@@ -1,6 +1,6 @@
 🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
 
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
+🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by. Make sure to delete the numbers by the end of Labs.
 
 🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
@@ -20,6 +20,7 @@
 | [Josiah Roa](https://github.com/josiahroa18)
 | [David Shestopal](https://github.com/DavidShestopal)
 | [Brandon Fulmer](https://github.com/nobro777)
+
 <br>
 <br>
 
@@ -45,16 +46,15 @@
 
 Connecting clinical trial sponsors to the right services providers for their needs.
 
-
 ### 4️⃣ Key Features
 
--    Dashboard for all users with a searchable table.
--    Profile page with a description of what they offer, link to their site, picture or logo.
--    Verified each company manually to approve them.
--    Administrator Log in - is able to bid on services.
--    Staff Log in -  is able to update the dashboard and flag "potential" services.
--    Reviews for service providers.
--    Ability to search for specific service providers.
+- Dashboard for all users with a searchable table.
+- Profile page with a description of what they offer, link to their site, picture or logo.
+- Verified each company manually to approve them.
+- Administrator Log in - is able to bid on services.
+- Staff Log in - is able to update the dashboard and flag "potential" services.
+- Reviews for service providers.
+- Ability to search for specific service providers.
 
 ## 1️⃣ Tech Stack
 
@@ -66,16 +66,16 @@ Connecting clinical trial sponsors to the right services providers for their nee
 
 This framework was chosen as it's the framework we feel the most comfortable and flexible using.
 
--    React (Framework)
-     - Reactstrap
-     - React Router
-     - Protected Routes
+- React (Framework)
+  - Reactstrap
+  - React Router
+  - Protected Routes
 
 🚫List the rest of the front end features and libraries in the same format as the framework above.
 
--    Apollo Client
--    OAuth (Authorization)
--    Axios/AxiosWithAuth (API Calls)
+- Apollo Client
+- OAuth (Authorization)
+- Axios/AxiosWithAuth (API Calls)
 
 #### Front end deployed to `Heroku.com`
 
@@ -83,9 +83,9 @@ This framework was chosen as it's the framework we feel the most comfortable and
 
 #### 🚫 back end framework goes here
 
--    Apollo/GraphQL
--    PostGres
--    Jest & Babel (Testing)
+- Apollo/GraphQL
+- PostGres
+- Jest & Babel (Testing)
 
 🚫 List the rest of the back end end features and libraries in the same format as the framework above
 
@@ -153,12 +153,13 @@ When contributing to this repository, please first discuss the change you wish t
 Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it in all your interactions with the project.
 
 ## Issue/Bug Request
-   
- **If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
- - Check first to see if your issue has already been reported.
- - Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
- - Create a live example of the problem.
- - Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.
+
+**If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
+
+- Check first to see if your issue has already been reported.
+- Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
+- Create a live example of the problem.
+- Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes, where you believe the issue is originating from, and any potential solutions you have considered.
 
 ### Feature Requests
 
@@ -184,4 +185,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫_link to your backend readme here_) for details on the backend of our project.
+See [Backend Documentation](🚫*link to your backend readme here*) for details on the backend of our project.
