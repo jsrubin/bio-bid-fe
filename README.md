@@ -13,12 +13,12 @@
 🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
 
 [Alston Garrett](https://github.com/Neytoro) 
-[Andrea Harris](https://github.com/aharris1012)
-[Joshua Agins](https://github.com/jagins)
-[James Morris](https://github.com/)
-[Emmanuelle Berda](https://github.com/)
-[Josiah Roa](https://github.com/josiahroa18)
-[Brandon Fulmer](https://github.com/nobro777)
+| [Andrea Harris](https://github.com/aharris1012) 
+| [Joshua Agins](https://github.com/jagins) 
+| [James Morris](https://github.com/)
+| [Emmanuelle Berda](https://github.com/)
+| [Josiah Roa](https://github.com/josiahroa18)
+| [Brandon Fulmer](https://github.com/nobro777)
 <br>
 <br>
 
