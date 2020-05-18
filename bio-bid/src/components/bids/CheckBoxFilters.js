@@ -1,10 +1,10 @@
 import React from 'react';
 
 /* STYLE IMPORT */
-import '../styles/filter.css';
+import './styles/filter.css';
 
 /* IMAGE IMPORTS */
-import { ReactComponent as CloseIcon } from '../images/close.svg';
+import { ReactComponent as CloseIcon } from '../../images/close.svg';
 
 function CheckboxFilters(props) {
     
