@@ -1,9 +1,19 @@
 import React from 'react';
-import { Form } from './styles';
+import { Body, LinkedIn, Button, Form } from './styles';
+import scienceAsset from '../../../images/science-asset.svg';
+import defaultLogo from '../../../images/default-company-logo.png';
 
 export default props => {
+    const handleImportWarning = () => {
+
+    }
+
+    const handleCancelWarning = () => {
+
+    }
+
     return (
-        <Form>
+        <Body>
             <div className='body'>
                 <div className='header-wrapper'>
                     {props.edit ? (
@@ -12,18 +22,52 @@ export default props => {
                         <h1>Add company profile</h1>
                     )}
                     <div className='btn-container'>
-                        <div className='btn linkedin'>
+                        <Button onClick={handleImportWarning}>
+                            <LinkedIn/>
                             <p>Import</p>
-                        </div>          
-                        <div className='btn cancel'>
+                        </Button>
+                        <Button onClick={handleCancelWarning} cancel='true'>
                             <p>Cancel</p>
-                        </div>
-                        
+                        </Button>    
                     </div>
                 </div>
-                
                 <div className='bar'/>
+                <div className='form-wrapper'>
+                    <Form>
+                        <div className='basic-card'>
+                            <img src={defaultLogo} alt='company'/>
+                            <label>
+                                Website URL
+                                <input
+                                    name='websiteURL'
+                                />
+                            </label>
+                            <label>
+                                LinkedIn URL
+                                <input
+                                    name='linkedInURL'
+                                />
+                            </label>
+                            <label>
+                                Company Size
+                                <input
+                                    name='companySize'
+                                />
+                            </label>
+                            <label>
+                                Headquarters
+                                <input
+                                    name='headquarters'
+                                />
+                            </label>
+                        </div> 
+                        <div className='specialties-card'>
+                            <h2>Company Overview</h2>
+                        </div>
+                    </Form>
+                    <img className='background-asset' src={scienceAsset} alt=''/>
+                </div>
             </div>
-        </Form>
+        </Body>
     );
 }
