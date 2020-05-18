@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 import ApolloClient from 'apollo-boost';
 import {ApolloProvider} from 'react-apollo';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 // http://biobidbe-env.eba-ercbzmhq.us-east-1.elasticbeanstalk.com/
 // https://ec2-34-195-186-223.compute-1.amazonaws.com/
@@ -16,9 +17,11 @@ const client = new ApolloClient({
 //'https://us1.prisma.sh/biobid-team/production/prod'
 
 ReactDOM.render(
+  <Router>
     <ApolloProvider client={client}>
       <App/>
-    </ApolloProvider>,
+    </ApolloProvider>
+  </Router>,
   document.getElementById('root')
 );
 

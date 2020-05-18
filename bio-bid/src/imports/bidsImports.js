@@ -13,7 +13,7 @@ import * as JsSearch from 'js-search';
 import { ReactComponent as SearchIcon } from '../images/search.svg';
 import { ReactComponent as FilterIcon } from '../images/filter-2.svg';
 
-import CheckBoxFilters from '../components/CheckBoxFilters';
+import CheckBoxFilters from '../components/bids/CheckBoxFilters';
 
 import {filterResults} from '../utils/filterResults';
 import {tableHeaders} from '../utils/tableHeaders';

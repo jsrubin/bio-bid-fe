@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 
 /* STYLE IMPORT */
-import '../styles/open-sidebar.css';
+import './styles/open-sidebar.css';
 
 /* IMAGE IMPORTS */
-import Projects from '../images/projects.png';
+import Projects from '../../images/projects.png';
 // import Settings from '../images/settings.png';
 // import DefaultAvatar from '../images/profile-avatar.png';
 // import { ReactComponent as ReviewsIcon } from '../images/reviews-1.svg';
-import { ReactComponent as ProfilePic } from '../images/profile-pic.svg';
+import { ReactComponent as ProfilePic } from '../../images/profile-pic.svg';
 // import { ReactComponent as PieChartIcon } from '../images/pie-chart.svg';
 // import { ReactComponent as DashExpandIcon } from '../images/dash-expand.svg';
-import { ReactComponent as DashCollapseIcon } from '../images/dash-collapse.svg';
+import { ReactComponent as DashCollapseIcon } from '../../images/dash-collapse.svg';
 // import { ReactComponent as SearchStudiesIcon } from '../images/search-studies.svg';
 // import { ReactComponent as RecommendationsIcon } from '../images/recommendations.svg';
 

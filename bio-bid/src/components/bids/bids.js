@@ -1,8 +1,8 @@
-import {React, useState, useEffect, Table, EllipsisOutlined, Button, GET_STUDIES, useQuery, moment, JsSearch, SearchIcon, FilterIcon, CheckBoxFilters, filterResults, tableHeaders} from '../imports/bidsImports';
+import {React, useState, useEffect, Table, EllipsisOutlined, Button, GET_STUDIES, useQuery, moment, JsSearch, SearchIcon, FilterIcon, CheckBoxFilters, filterResults, tableHeaders} from '../../imports/bidsImports';
 
 /* STYLE IMPORT */
-import '../styles/CP-dash-header.css';
-import '../styles/dash.css';
+import './styles/CP-dash-header.css';
+import './styles/dash.css';
 
 const Bids = (props) => {
 
