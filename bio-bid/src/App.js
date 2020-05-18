@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 // Component Imports
 import Bids from './components/bids';
 import Form from './components/company-profile/Form/Form';
-
+import ServiceProviders from './components/company-index/list'
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Bids/>
       </Route>
       <Route path='/service-providers'>
-
+        <ServiceProviders />
       </Route>
       <Route path='/service-providers/:id'>
 
