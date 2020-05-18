@@ -5,11 +5,11 @@ import defaultLogo from '../../../images/default-company-logo.png';
 
 export default props => {
     const handleImportWarning = () => {
-
+        console.log('Import Warning')
     }
 
     const handleCancelWarning = () => {
-
+        console.log('Cancel Warning')
     }
 
     return (
@@ -34,35 +34,40 @@ export default props => {
                 <div className='bar'/>
                 <div className='form-wrapper'>
                     <Form>
-                        <div className='basic-card'>
-                            <img src={defaultLogo} alt='company'/>
-                            <label>
-                                Website URL
-                                <input
-                                    name='websiteURL'
-                                />
-                            </label>
-                            <label>
-                                LinkedIn URL
-                                <input
-                                    name='linkedInURL'
-                                />
-                            </label>
-                            <label>
-                                Company Size
-                                <input
-                                    name='companySize'
-                                />
-                            </label>
-                            <label>
-                                Headquarters
-                                <input
-                                    name='headquarters'
-                                />
-                            </label>
-                        </div> 
-                        <div className='specialties-card'>
-                            <h2>Company Overview</h2>
+                        <img src={defaultLogo} alt='company'/>
+                        <div className='input-wrapper'>
+                            <div className='input-container'>
+                                <label>Company Name</label>
+                                <input/>
+                            </div>
+                            <div className='input-container'>
+                                <label>LinkedIn</label>
+                                <input/>
+                            </div>
+                            <div className='input-container'>
+                                <label>Website</label>
+                                <input/>
+                            </div>
+                            <div className='input-container'>
+                                <label>Company Description</label>
+                                <textarea></textarea>
+                            </div>
+                            <div className='input-container'>
+                                <label>Headquarters</label>
+                                <input/>
+                            </div>
+                            <div className='input-container'>
+                                <label>Regions Covered</label>
+                            </div>
+                            <div className='input-container'>
+                                <label>Therapeutic Areas </label>
+                            </div>
+                            <div className='input-container'>
+                                <label>Services</label>
+                            </div>
+                            <div className='input-container'>
+                                <label>Specialties</label>
+                            </div>
                         </div>
                     </Form>
                     <img className='background-asset' src={scienceAsset} alt=''/>

@@ -73,42 +73,45 @@ export const Form = styled.form`
     position: absolute;
     z-index: 1;
     display: flex;
-    height: calc(100% - 50px);
-    .basic-card{
-        width: 300px;
+    width: 100%;
+    img{
+        border-radius: 50%;
+        border: 1px solid ${theme.colors.mineShaft};
+        width: 200px;
+        height: 200px;
+        margin: 20px 0;
+    }
+    .input-wrapper{
+        margin-left: 50px;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        background-color: rgba(250, 250, 250, 0.75);
-        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-        img{
-            border-radius: 50%;
-            border: 1px solid ${theme.colors.mineShaft};
-            width: 200px;
-            margin: 20px 0;
-        }
-        label{
+        .input-container{
             display: flex;
-            flex-direction: column;
-            width: 90%;
-            font: ${theme.fontStyling.text};
+            justify-content: space-between;
+            align-items: center;
+            width: 500px;
+            margin: 10px 0;
+            label{
+                font: ${theme.fontStyling.text};
+                margin: 0;
+            }
             input{
-                margin-top: 10px;
+                width: 250px;
                 height: 30px;
+                border-radius: 5px;
+                border: 1px solid ${theme.colors.silver};
+                padding-left: 8px;
+            }
+            textarea{
+                resize: none;
+                width: 250px;
+                height: 100px;
+                border-radius: 5px;
+                border: 1px solid ${theme.colors.silver};
+                padding-left: 8px;
             }
         }
     }
-    .specialties-card{
-        width: 500px;
-        height: 300px;
-        background-color: rgba(250, 250, 250, 0.75);
-        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-        margin: 0 30px;
-        h2{
-            font: ${theme.fontStyling.header3};
-        }
-    }
-    
 `;
 
 export const LinkedIn = styled(LinkedinSquare)`
