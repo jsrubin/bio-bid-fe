@@ -1,9 +1,10 @@
 import React from 'react';
+import { Form } from './styles';
 
-export default () => {
+export default props => {
     return (
-        <div>
+        <Form>
             <h1>Form</h1>
-        </div>
+        </Form>
     );
 }

@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 // Component Imports
 import Bids from './components/bids';
+import Form from './components/company-profile/Form/Form';
 
 
 function App() {
@@ -17,8 +18,11 @@ function App() {
       <Route path='/service-providers/:id'>
 
       </Route>
-      <Route path='/service-providers/form'>
-
+      <Route path='/service-providers/add'>
+        <Form edit={false}/>
+      </Route>
+      <Route path='/service-providers/edit/:id'>
+        <Form edit={true}/>
       </Route>
     </div>
   );
