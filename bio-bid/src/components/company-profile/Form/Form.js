@@ -1,19 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Body, LinkedIn, Button, Form } from './styles';
 import scienceAsset from '../../../images/science-asset.svg';
 import defaultLogo from '../../../images/default-company-logo.png';
+import Backdrop from '@material-ui/core/Backdrop';
+import { makeStyles } from '@material-ui/core/styles';
+import WarningCard from './WarningCard';
+
+const useStyles = makeStyles((theme) => ({
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 1,
+      color: '#fff',
+    },
+  }));
+
 
 export default props => {
+    const classes = useStyles();
+    const [ open, setOpen ] = useState(false);
+    const [ importWarning, setImportWarning ] = useState(false);
+    const [ data, setData ] = useState({
+        name: '',
+        website: '',
+        linkedin: '',
+        overview: '',
+        headquarters: ''
+    })
+
     const handleImportWarning = () => {
-        console.log('Import Warning')
+        setImportWarning(true);
+        setOpen(true);
     }
 
-    const handleCancelWarning = () => {
+    const handleCancelWarningOpen = () => {
         console.log('Cancel Warning')
+    }
+
+    const handleImportWarningClose = () => {
+        setImportWarning(false);
+        setOpen(false);
+    }
+
+    const handleUpdate = e => {
+        setData({
+            ...data,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        console.log(data);
     }
 
     return (
         <Body>
+            <Backdrop className={classes.backdrop} open={open}>
+                <WarningCard close={handleImportWarningClose}/>
+            </Backdrop>
             <div className='body'>
                 <div className='header-wrapper'>
                     {props.edit ? (
@@ -26,7 +69,7 @@ export default props => {
                             <LinkedIn/>
                             <p>Import</p>
                         </Button>
-                        <Button onClick={handleCancelWarning} cancel='true'>
+                        <Button cancel='true'>
                             <p>Cancel</p>
                         </Button>    
                     </div>
@@ -34,39 +77,69 @@ export default props => {
                 <div className='bar'/>
                 <div className='form-wrapper'>
                     <Form>
-                        <img src={defaultLogo} alt='company'/>
+                        <div className='side-bar'>
+                            <img src={defaultLogo} alt='company'/>
+                            <Button noMargin onClick={handleSubmit}>
+                                {props.edit ? (
+                                    <p>Save changes</p>
+                                ) : (
+                                    <p>Add company</p>
+                                )}
+                            </Button>
+                        </div>
                         <div className='input-wrapper'>
-                            <div className='input-container'>
-                                <label>Company Name</label>
-                                <input/>
+                            <div className='col'>
+                                <div className='input-container'>
+                                    <label>Company Name</label>
+                                    <input
+                                        name='name'
+                                        value={data.name}
+                                        onChange={handleUpdate}
+                                    />
+                                </div>
+                                <div className='input-container'>
+                                    <label>LinkedIn</label>
+                                    <input
+                                        name='linkedin'
+                                        value={data.linkedin}
+                                        onChange={handleUpdate}
+                                    />
+                                </div>
+                                <div className='input-container'>
+                                    <label>Website</label>
+                                    <input
+                                        name='website'
+                                        value={data.website}
+                                        onChange={handleUpdate}
+                                    />
+                                </div>
+                                <div className='input-container'>
+                                    <label>Headquarters</label>
+                                    <input/>
+                                </div>
+                                <div className='input-container'>
+                                    <label>Company Description</label>
+                                    <textarea></textarea>
+                                </div>
+                                {/* TODO: Company Size Dropdown */}
                             </div>
-                            <div className='input-container'>
-                                <label>LinkedIn</label>
-                                <input/>
-                            </div>
-                            <div className='input-container'>
-                                <label>Website</label>
-                                <input/>
-                            </div>
-                            <div className='input-container'>
-                                <label>Company Description</label>
-                                <textarea></textarea>
-                            </div>
-                            <div className='input-container'>
-                                <label>Headquarters</label>
-                                <input/>
-                            </div>
-                            <div className='input-container'>
-                                <label>Regions Covered</label>
-                            </div>
-                            <div className='input-container'>
-                                <label>Therapeutic Areas </label>
-                            </div>
-                            <div className='input-container'>
-                                <label>Services</label>
-                            </div>
-                            <div className='input-container'>
-                                <label>Specialties</label>
+                            <div className='col'>
+                                <div className='input-container'>
+                                    <label>Regions Covered</label>
+                                    <textarea placeholder='region1, region2, region3, ...'></textarea>
+                                </div>
+                                <div className='input-container'>
+                                    <label>Therapeutic Areas </label>
+                                    <textarea placeholder='area1, area2, area3, ...'></textarea>
+                                </div>
+                                <div className='input-container'>
+                                    <label>Services</label>
+                                    <textarea placeholder='service1, service2, service3, ...'></textarea>
+                                </div>
+                                <div className='input-container'>
+                                    <label>Specialties</label>
+                                    <textarea placeholder='specialty1, specialty2, ...'></textarea>
+                                </div>
                             </div>
                         </div>
                     </Form>

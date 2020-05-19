@@ -33,6 +33,8 @@ export const Body= styled.div`
             position: relative;
             height: 800px;
             margin-top: 50px;
+            display: flex;
+            justify-content: center;
             .background-asset{
                 position: absolute;
                 right: 0;
@@ -52,7 +54,7 @@ export const Button = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 20px;
+    margin-left: ${props => props.noMargin ? '0' : '20px'};
     border-radius: 10px;
     border: 1px solid ${props => props.cancel ? theme.colors.sun : theme.colors.scienceBlue};
     background-color: ${props => props.cancel ? theme.colors.sun : theme.colors.scienceBlue};
@@ -74,6 +76,11 @@ export const Form = styled.form`
     z-index: 1;
     display: flex;
     width: 100%;
+    .side-bar{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     img{
         border-radius: 50%;
         border: 1px solid ${theme.colors.mineShaft};
@@ -82,14 +89,14 @@ export const Form = styled.form`
         margin: 20px 0;
     }
     .input-wrapper{
+        margin-top: 20px;
         margin-left: 50px;
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
         .input-container{
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            width: 500px;
+            width: 450px;
             margin: 10px 0;
             label{
                 font: ${theme.fontStyling.text};
@@ -101,6 +108,10 @@ export const Form = styled.form`
                 border-radius: 5px;
                 border: 1px solid ${theme.colors.silver};
                 padding-left: 8px;
+                outline: none;
+                &:focus{
+                    box-shadow: 0 0 5px ${theme.colors.scienceBlue};
+                }
             }
             textarea{
                 resize: none;
@@ -109,6 +120,10 @@ export const Form = styled.form`
                 border-radius: 5px;
                 border: 1px solid ${theme.colors.silver};
                 padding-left: 8px;
+                outline: none;
+                &:focus{
+                    box-shadow: 0 0 5px ${theme.colors.scienceBlue};
+                }
             }
         }
     }
@@ -117,4 +132,27 @@ export const Form = styled.form`
 export const LinkedIn = styled(LinkedinSquare)`
     width: 30px;
     color: inherit;
+`;
+
+export const Card = styled.div`
+    width: 400px;
+    height: 200px;
+    background-color: ${theme.colors.alabaster};
+    border-radius: 10px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h1{
+        font: ${theme.fontStyling.header2};
+        color: ${theme.colors.torchRead};
+    }
+    .message{
+        font: ${theme.fontStyling.text};
+        color: ${theme.colors.mineShaft};
+    }
+    .btn-container{
+        color: ${theme.colors.alabaster};
+        display: flex;
+    }
 `;
