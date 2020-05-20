@@ -28,7 +28,7 @@ export default companypage;
 
 const Container = styled.header`
   width: 100%;
-  height: 5rem;
+  height: 6rem;
   background: #0050b3;
 
   display: flex;

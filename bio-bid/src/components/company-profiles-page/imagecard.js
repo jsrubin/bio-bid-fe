@@ -1,5 +1,16 @@
 import React from 'react';
-import { Card, CardBody, CardTitle, CardText, CardImg, CardLink, CardDeck, Button, ButtonGroup } from 'reactstrap';
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  CardText,
+  CardImg,
+  CardLink,
+  CardDeck,
+  Button,
+  ButtonGroup,
+  Progress,
+} from 'reactstrap';
 import styled from 'styled-components';
 
 const imagecard = (props) => {
@@ -7,10 +18,17 @@ const imagecard = (props) => {
     <div className="div">
       <Container>
         <CardDeck>
+          {/* card with image  */}
+
           <Card className="card">
             <CardImg
               className="portfolioimage"
               src="https://i.ya-webdesign.com/images/funny-png-avatar-2.png"
+              alt="Card image cap"
+            />
+            <CardImg
+              className="stars"
+              src="https://www.judsonsmartliving.org/wp-content/uploads/5-stars.png"
               alt="Card image cap"
             />
             <CardBody className="cardbody">
@@ -47,12 +65,11 @@ const imagecard = (props) => {
                   aliquip ex ea commodo consequat.
                 </p>
               </CardText>
-              <ButtonGroup className="buttons">
-                <Button style={{ backgroundColor: '#0050B3' }}>Claim</Button> <Button>Edit</Button>
-                <Button style={{ backgroundColor: '#F5222D' }}>Delete</Button>{' '}
-              </ButtonGroup>
             </CardBody>
           </Card>
+
+          {/* card with services, specialties/ regions covered etc. */}
+
           <Card className="cardTWO">
             <CardBody className="cardbody">
               <CardText>
@@ -76,14 +93,16 @@ const imagecard = (props) => {
                 </p>
               </CardText>
               <CardText>
-                {' '}
-                <h3>Regions Covered:</h3>{' '}
-                <p>
+                <div>
                   {' '}
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat.
-                </p>
+                  <h3>Regions Covered:</h3>{' '}
+                  <p>
+                    {' '}
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat.
+                  </p>
+                </div>
               </CardText>
 
               <CardText>
@@ -97,6 +116,13 @@ const imagecard = (props) => {
                 </p>
               </CardText>
             </CardBody>
+            {/* edit delete and claim buttons */}
+
+            <ButtonGroup className="buttons">
+              <Button style={{ backgroundColor: '#389E0D' }}>Claim</Button>{' '}
+              <Button style={{ backgroundColor: '#BFBFBF' }}>Edit</Button>
+              <Button style={{ backgroundColor: '#F5222D' }}>Delete</Button>{' '}
+            </ButtonGroup>
           </Card>
         </CardDeck>
       </Container>
@@ -105,18 +131,29 @@ const imagecard = (props) => {
 };
 export default imagecard;
 
+// styling for cards and buttons
+
 const Container = styled.header`
   width: 100%;
   width: 50rem;
   padding: 2rem;
+  margin-top: 1.4rem;
+  margin-left: 2.4rem;
 
   .portfolioimage {
     display: flex;
     margin-top: 1rem;
     align-self: center;
-    width: 200px;
-    height: 200px;
+    width: 15rem;
+    height: 15rem;
     border-radius: 50%;
+  }
+  .stars {
+    display: flex;
+    align-self: center;
+    margin-top: 1rem;
+    width: 50%;
+    hieght: 50%;
   }
   a {
     color: black;
@@ -144,5 +181,10 @@ const Container = styled.header`
   }
   .buttons {
     display: flex;
+    margin-bottom: 1rem;
+  }
+
+  button {
+    border-color: white;
   }
 `;
