@@ -29,22 +29,6 @@ export const Body= styled.div`
             height: 1px;
             background-color: ${theme.colors.scienceBlue};
         }
-        .form-wrapper{
-            position: relative;
-            height: 800px;
-            margin-top: 50px;
-            display: flex;
-            justify-content: center;
-            .background-asset{
-                position: absolute;
-                right: 0;
-                top: 50%;
-                transform: translate(0, -50%);
-                width: 800px;
-                opacity: 0.6;
-                z-index: -1;
-            }
-        }
     }
 `;
 
@@ -71,36 +55,105 @@ export const Button = styled.div`
     }
 `;
 
-export const Form = styled.form`
-    position: absolute;
-    z-index: 1;
-    display: flex;
+export const Form = styled.div`
     width: 100%;
-    .side-bar{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    height: 800px;
+    .background-asset{
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translate(0, -50%);
+        width: 800px;
+        opacity: 0.6;
+        z-inedx: -1;
     }
-    img{
-        border-radius: 50%;
-        border: 1px solid ${theme.colors.mineShaft};
-        width: 200px;
-        height: 200px;
-        margin: 20px 0;
-    }
-    .input-wrapper{
-        margin-top: 20px;
-        margin-left: 50px;
+    .top-row{
         display: flex;
-        flex-wrap: wrap;
-        .input-container{
+        z-index: 1;
+        position: absolute;
+        .side-bar{
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            align-items: center;
+            img{
+                border-radius: 50%;
+                border: 1px solid ${theme.colors.mineShaft};
+                width: 200px;
+                height: 200px;
+                margin-bottom: 20px;
+            }
+        }
+        .col{
             width: 450px;
-            margin: 10px 0;
+            height: 280px;
+            padding: 0;
+            margin-left: 20px;
+            .input-container{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 40px;
+                label{
+                    font: ${theme.fontStyling.text};
+                    margin: 0;
+                }
+                input{
+                    width: 250px;
+                    height: 30px;
+                    border-radius: 5px;
+                    border: 1px solid ${theme.colors.silver};
+                    padding-left: 8px;
+                    outline: none;
+                    &:focus{
+                        box-shadow: 0 0 5px ${theme.colors.scienceBlue};
+                    }
+                }
+                textarea{
+                    resize: none;
+                    width: 250px;
+                    height: 100px;
+                    border-radius: 5px;
+                    border: 1px solid ${theme.colors.silver};
+                    padding-left: 8px;
+                    outline: none;
+                    &:focus{
+                        box-shadow: 0 0 5px ${theme.colors.scienceBlue};
+                    }
+                }   
+                select{
+                    width: 250px;
+                    height: 30px;
+                    border-radius: 5px;
+                    border: 1px solid ${theme.colors.silver};
+                    background-color: #FFFFFF;
+                    outline: none;
+                    &:focus{
+                        box-shadow: 0 0 5px ${theme.colors.scienceBlue};
+                    }
+                }   
+            }
+        }
+    }
+    .bottom-row{
+        display: flex;
+        position: absolute;
+        z-index: 1;
+        margin-top: 300px;
+        width: 100%;
+        justify-content: space-around;
+        .multi-container{
+            display: flex;
+            flex-direction: column;
+            width: 250px;
             label{
                 font: ${theme.fontStyling.text};
                 margin: 0;
+                margin-bottom: 10px;
             }
             input{
                 width: 250px;
@@ -113,29 +166,6 @@ export const Form = styled.form`
                     box-shadow: 0 0 5px ${theme.colors.scienceBlue};
                 }
             }
-            textarea{
-                resize: none;
-                width: 250px;
-                height: 100px;
-                border-radius: 5px;
-                border: 1px solid ${theme.colors.silver};
-                padding-left: 8px;
-                outline: none;
-                &:focus{
-                    box-shadow: 0 0 5px ${theme.colors.scienceBlue};
-                }
-            }   
-            select{
-                width: 250px;
-                height: 30px;
-                border-radius: 5px;
-                border: 1px solid ${theme.colors.silver};
-                background-color: #FFFFFF;
-                outline: none;
-                &:focus{
-                    box-shadow: 0 0 5px ${theme.colors.scienceBlue};
-                }
-            }         
         }
     }
 `;
