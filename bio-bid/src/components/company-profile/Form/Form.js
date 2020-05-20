@@ -23,7 +23,8 @@ export default props => {
         website: '',
         linkedin: '',
         overview: '',
-        headquarters: ''
+        headquarters: '',
+        companySize: ''
     })
 
     const handleImportWarning = () => {
@@ -122,6 +123,25 @@ export default props => {
                                     <textarea></textarea>
                                 </div>
                                 {/* TODO: Company Size Dropdown */}
+                                <div className='input-container'>
+                                    <label>Company Size</label>
+                                    <select 
+                                        name='companySize' 
+                                        value={data.companySize}
+                                        onChange={handleUpdate}
+                                    >
+                                        <option value='' defaultValue disabled hidden>Choose company size</option>
+                                        <option value='A'>A: Self Employed</option>
+                                        <option value='B'>B: 1-10 Employees</option>
+                                        <option value='C'>C: 11-50 Employees</option>
+                                        <option value='D'>D: 51-200 Employees</option>
+                                        <option value='E'>E: 201-500 Employees</option>
+                                        <option value='F'>F: 501-1,000 Employees</option>
+                                        <option value='G'>G: 1,001-5,000 Employees</option>
+                                        <option value='H'>H: 5,001-10,000 Employees</option>
+                                        <option value='I'>I: 10,000+ Employees</option>
+                                    </select>
+                                </div>
                             </div>
                             <div className='col'>
                                 <div className='input-container'>
