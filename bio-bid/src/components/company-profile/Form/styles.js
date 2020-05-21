@@ -7,7 +7,7 @@ export const Body= styled.div`
     width: 100%;
     .body{
         margin: 0 auto;
-        width: 80%;
+        width: 90%;
         .header-wrapper{
             margin-top: 50px;
             margin-bottom: 10px;
@@ -91,7 +91,7 @@ export const Form = styled.div`
             }
         }
         .col-custom{
-            width: 400px;
+            width: 480px;
             height: 280px;
             padding: 0;
             margin-left: 50px;
@@ -149,7 +149,7 @@ export const Form = styled.div`
         display: flex;
         position: absolute;
         z-index: 1;
-        margin-top: 300px;
+        margin-top: 350px;
         width: 100%;
         justify-content: center;
         .multi-container{

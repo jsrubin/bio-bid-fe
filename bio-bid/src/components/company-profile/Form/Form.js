@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Body, LinkedIn, Button, Form } from './styles';
-import scienceAsset from '../../../images/science-asset.svg';
-import defaultLogo from '../../../images/default-company-logo.png';
-import Backdrop from '@material-ui/core/Backdrop';
+import { useQuery } from '@apollo/react-hooks';
+import { GET_COMPANIES } from '../../../queries';
 import { makeStyles } from '@material-ui/core/styles';
+
 import WarningCard from './WarningCard';
 import MultipleInput from './MultipleInput';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { Body, LinkedIn, Button, Form } from './styles';
+
+import scienceAsset from '../../../images/science-asset.svg';
+import defaultLogo from '../../../images/default-company-logo.png';
 import theme from '../../../theme';
 
 const useStyles = makeStyles((theme) => ({
@@ -15,12 +20,17 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-
 export default (props) => {
     const classes = useStyles();
+
     const [ open, setOpen ] = useState(false);
     const [ importWarning, setImportWarning ] = useState(false);
-    const [ data, setData ] = useState({
+    const [ linkedInError, setLinkedInError] = useState(false);
+    const [ appError, setAppError] = useState(null);
+
+    const { loading, error, data } = useQuery(GET_COMPANIES);
+
+    const [ formData, setFormData ] = useState({
         name: '',
         imgURL: '',
         website: '',
@@ -33,18 +43,13 @@ export default (props) => {
         regionsCovered: [],
         therapeuticAreas: []
     })
-    const [ linkedInError, setLinkedInError] = useState(false);
-    const [ error, setError] = useState(null);
 
     const handleImportWarning = () => {
-        if(data.linkedin){
+        console.log(linkedInError);
+        if(!linkedInError){
             setImportWarning(true);
             setOpen(true);
-        }else{
-            setLinkedInError(true);
-            setError('Must enter a valid LinkedIn URL')
         }
-        
     }
 
     const handleImportWarningClose = () => {
@@ -53,22 +58,30 @@ export default (props) => {
     }
 
     const handleUpdate = e => {
-        setData({
-            ...data,
+        setFormData({
+            ...formData,
             [e.target.name]: e.target.value
         })
     }
 
     const handleMultiUpdate = (name, element) => {
-        setData({
-            ...data,
-            [name]: [element]
+        setFormData({
+            ...formData,
+            [name]: element.map(value => {
+                return {'name': value}
+            })
         })
     }
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(data);
+        console.log(formData);
+    }
+
+    const validateUrl = url => {
+        const regex = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
+        if(regex.test(url)) return true;
+        return false;
     }
 
     const serviceData = [
@@ -81,16 +94,23 @@ export default (props) => {
     ]
 
     useEffect(() => {
-        if(data.linkedin){
+        // Handle LinkedIn Error
+        if(formData.linkedin && validateUrl(formData.linkedin)){
             setLinkedInError(false);
-            setError('');
+            setAppError('');
+        }else{
+            setLinkedInError(true);
+            setAppError('Must enter a valid LinkedIn URL')
         }
-    }, [data.linkedin])
+    }, [formData.linkedin])
 
     return (
         <Body>
             <Backdrop className={classes.backdrop} open={open}>
                 {importWarning ? <WarningCard close={handleImportWarningClose}/> : null}
+            </Backdrop>
+            <Backdrop className={classes.backdrop} open={loading}>
+                <CircularProgress color="inherit" />
             </Backdrop>
             <div className='body'>
                 <div className='header-wrapper'>
@@ -127,7 +147,7 @@ export default (props) => {
                                 <label>Company Name</label>
                                 <input
                                     name='name'
-                                    value={data.name}
+                                    value={formData.name}
                                     onChange={handleUpdate}
                                 />
                             </div>
@@ -135,7 +155,7 @@ export default (props) => {
                                 <label>Website</label>
                                 <input
                                     name='website'
-                                    value={data.website}
+                                    value={formData.website}
                                     onChange={handleUpdate}
                                 />
                             </div>
@@ -143,7 +163,7 @@ export default (props) => {
                                 <label>Company Description</label>
                                 <textarea
                                     name='overview'
-                                    value={data.overview}
+                                    value={formData.overview}
                                     onChange={handleUpdate}
                                 />
                             </div>
@@ -156,20 +176,20 @@ export default (props) => {
                                 <div className='linkedIn-container'>
                                     <input
                                         name='linkedin'
-                                        value={data.linkedin}
+                                        value={formData.linkedin}
                                         onChange={handleUpdate}
                                         style={{ 
                                             borderColor: linkedInError ? 'red' : theme.colors.silver,
                                         }}
                                     />
-                                    <p className='error'>{error}</p>
+                                    <p className='error'>{appError}</p>
                                 </div>
                             </div>
                             <div className='input-container'>
                                 <label>Headquarters</label>
                                 <input
                                     name='headquarters'
-                                    value={data.headquarters}
+                                    value={formData.headquarters}
                                     onChange={handleUpdate}
                                 />
                             </div>
@@ -177,7 +197,7 @@ export default (props) => {
                                 <label>Company Size</label>
                                 <select 
                                     name='companySize' 
-                                    value={data.companySize}
+                                    value={formData.companySize}
                                     onChange={handleUpdate}
                                 >
                                     <option value='' defaultValue disabled hidden>Choose company size</option>
