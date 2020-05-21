@@ -19,59 +19,63 @@ const imagecard = (props) => {
       <Container>
         <CardDeck>
           {/* card with image  */}
+          <div className="cardonediv">
+            <Card className="card">
+              <CardImg
+                className="portfolioimage"
+                src="https://i.ya-webdesign.com/images/funny-png-avatar-2.png"
+                alt="Card image cap"
+              />
 
-          <Card className="card">
-            <CardImg
-              className="portfolioimage"
-              src="https://i.ya-webdesign.com/images/funny-png-avatar-2.png"
-              alt="Card image cap"
-            />
-            <CardImg
-              className="stars"
-              src="https://www.judsonsmartliving.org/wp-content/uploads/5-stars.png"
-              alt="Card image cap"
-            />
-            <CardBody className="cardbody">
-              <CardTitle>
-                {' '}
-                <h3>Company Name:</h3> <p>Halson Medical Co </p>
-              </CardTitle>
-
-              <CardTitle>
-                {' '}
-                <h3>Website:</h3>
-                <CardLink href="www.halsonmedical.com"> Click Here</CardLink>
-              </CardTitle>
-              <CardTitle>
-                {' '}
-                <h3>Linkedin:</h3>
-                <CardLink href="www.linkedin.com/halsonmedical.com"> Click Here</CardLink>
-              </CardTitle>
-              <CardTitle>
-                {' '}
-                <h3>Headquarters: </h3> <p>Sacramento, Ca</p>
-              </CardTitle>
-              <CardTitle>
-                {' '}
-                <h3>Company Size: </h3> <p>A lot</p>
-              </CardTitle>
-              <CardText>
-                {' '}
-                <h3>Company Description:</h3>{' '}
-                <p>
+              <CardBody className="cardbody">
+                <CardTitle>
                   {' '}
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat.
-                </p>
-              </CardText>
-            </CardBody>
-          </Card>
+                  <h3>Company Name:</h3> <p>Halson Medical Co </p>
+                </CardTitle>
+
+                <CardTitle>
+                  {' '}
+                  <h3>Website:</h3>
+                  <CardLink href="www.halsonmedical.com"> Click Here</CardLink>
+                </CardTitle>
+                <CardTitle>
+                  {' '}
+                  <h3>Linkedin:</h3>
+                  <CardLink href="www.linkedin.com/halsonmedical.com"> Click Here</CardLink>
+                </CardTitle>
+                <CardTitle>
+                  {' '}
+                  <h3>Headquarters: </h3> <p>Sacramento, Ca</p>
+                </CardTitle>
+                <CardTitle>
+                  {' '}
+                  <h3>Company Size: </h3> <p>A lot</p>
+                </CardTitle>
+                <CardText>
+                  {' '}
+                  <h3>Company Description:</h3>{' '}
+                  <p>
+                    {' '}
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat.
+                  </p>
+                </CardText>
+                {/* edit delete and claim buttons */}
+
+                <ButtonGroup className="buttons">
+                  <Button style={{ backgroundColor: '#389E0D' }}>Claim</Button>{' '}
+                  <Button style={{ backgroundColor: '#BFBFBF' }}>Edit</Button>
+                  <Button style={{ backgroundColor: '#F5222D' }}>Delete</Button>{' '}
+                </ButtonGroup>
+              </CardBody>
+            </Card>
+          </div>
 
           {/* card with services, specialties/ regions covered etc. */}
 
           <Card className="cardTWO">
-            <CardBody className="cardbody">
+            <CardBody className="cardtwobody">
               <CardText>
                 {' '}
                 <h3>Services:</h3>{' '}
@@ -116,13 +120,14 @@ const imagecard = (props) => {
                 </p>
               </CardText>
             </CardBody>
-            {/* edit delete and claim buttons */}
-
-            <ButtonGroup className="buttons">
-              <Button style={{ backgroundColor: '#389E0D' }}>Claim</Button>{' '}
-              <Button style={{ backgroundColor: '#BFBFBF' }}>Edit</Button>
-              <Button style={{ backgroundColor: '#F5222D' }}>Delete</Button>{' '}
-            </ButtonGroup>
+          </Card>
+          <Card className="cardthreebody">
+            <CardBody>
+              <CardTitle>
+                {' '}
+                <h1 style={{ color: '#0050b3', fontSize: '1.9rem' }}>Future Company Rating ... </h1>
+              </CardTitle>
+            </CardBody>
           </Card>
         </CardDeck>
       </Container>
@@ -135,10 +140,10 @@ export default imagecard;
 
 const Container = styled.header`
   width: 100%;
-  width: 50rem;
+
   padding: 2rem;
   margin-top: 1.4rem;
-  margin-left: 2.4rem;
+  ${'' /* margin-left: 2.4rem; */}
 
   .portfolioimage {
     display: flex;
@@ -176,8 +181,9 @@ const Container = styled.header`
     box-shadow: 4px 0px 20px rgba(0, 0, 0, 0.1);
   }
   .cardTWO {
-    margin-left: 49px;
+    ${'' /* margin-left: 49px; */}
     padding: 10px;
+    max-width: 40rem;
   }
   .buttons {
     display: flex;
@@ -186,5 +192,13 @@ const Container = styled.header`
 
   button {
     border-color: white;
+    margin-right: 0.3rem;
+    border-radius: 0.3rem;
+  }
+  .cardbody {
+    width: 25rem;
+  }
+  .cardthreebody {
+    max-width: 40rem;
   }
 `;
