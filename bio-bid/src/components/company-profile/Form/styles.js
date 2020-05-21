@@ -76,6 +76,8 @@ export const Form = styled.div`
         display: flex;
         z-index: 1;
         position: absolute;
+        width: 100%;
+        justify-content: center;
         .side-bar{
             display: flex;
             flex-direction: column;
@@ -88,11 +90,15 @@ export const Form = styled.div`
                 margin-bottom: 20px;
             }
         }
-        .col{
-            width: 450px;
+        .col-custom{
+            width: 400px;
             height: 280px;
             padding: 0;
-            margin-left: 20px;
+            margin-left: 50px;
+            .error{
+                color: red;
+                margin: 0;
+            }
             .input-container{
                 width: 100%;
                 display: flex;
@@ -145,11 +151,12 @@ export const Form = styled.div`
         z-index: 1;
         margin-top: 300px;
         width: 100%;
-        justify-content: space-around;
+        justify-content: center;
         .multi-container{
             display: flex;
             flex-direction: column;
             width: 250px;
+            margin: 0 20px;
             label{
                 font: ${theme.fontStyling.text};
                 margin: 0;

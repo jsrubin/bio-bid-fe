@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Body, LinkedIn, Button, Form } from './styles';
 import scienceAsset from '../../../images/science-asset.svg';
 import defaultLogo from '../../../images/default-company-logo.png';
@@ -6,6 +6,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import { makeStyles } from '@material-ui/core/styles';
 import WarningCard from './WarningCard';
 import MultipleInput from './MultipleInput';
+import theme from '../../../theme';
 
 const useStyles = makeStyles((theme) => ({
     backdrop: {
@@ -15,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-export default props => {
+export default (props) => {
     const classes = useStyles();
     const [ open, setOpen ] = useState(false);
     const [ importWarning, setImportWarning ] = useState(false);
@@ -32,10 +33,18 @@ export default props => {
         regionsCovered: [],
         therapeuticAreas: []
     })
+    const [ linkedInError, setLinkedInError] = useState(false);
+    const [ error, setError] = useState(null);
 
     const handleImportWarning = () => {
-        setImportWarning(true);
-        setOpen(true);
+        if(data.linkedin){
+            setImportWarning(true);
+            setOpen(true);
+        }else{
+            setLinkedInError(true);
+            setError('Must enter a valid LinkedIn URL')
+        }
+        
     }
 
     const handleImportWarningClose = () => {
@@ -47,6 +56,13 @@ export default props => {
         setData({
             ...data,
             [e.target.name]: e.target.value
+        })
+    }
+
+    const handleMultiUpdate = (name, element) => {
+        setData({
+            ...data,
+            [name]: [element]
         })
     }
 
@@ -63,6 +79,13 @@ export default props => {
         {name: 'Service 5'},
         {name: 'Service 6'}
     ]
+
+    useEffect(() => {
+        if(data.linkedin){
+            setLinkedInError(false);
+            setError('');
+        }
+    }, [data.linkedin])
 
     return (
         <Body>
@@ -99,7 +122,7 @@ export default props => {
                                 )}
                             </Button>
                         </div>
-                        <div className='col'>
+                        <div className='col-custom'>
                             <div className='input-container'>
                                 <label>Company Name</label>
                                 <input
@@ -118,21 +141,37 @@ export default props => {
                             </div>
                             <div className='input-container'>
                                 <label>Company Description</label>
-                                <textarea></textarea>
-                            </div>
-                        </div>
-                        <div className='col'>
-                            <div className='input-container'>
-                                <label>LinkedIn</label>
-                                <input
-                                    name='linkedin'
-                                    value={data.linkedin}
+                                <textarea
+                                    name='overview'
+                                    value={data.overview}
                                     onChange={handleUpdate}
                                 />
                             </div>
+                        </div>
+                        <div className='col-custom'>
+                            <div className='input-container' style={{
+                                 marginBottom: linkedInError ? '18px' : '40px'
+                            }}>
+                                <label>LinkedIn</label>
+                                <div className='linkedIn-container'>
+                                    <input
+                                        name='linkedin'
+                                        value={data.linkedin}
+                                        onChange={handleUpdate}
+                                        style={{ 
+                                            borderColor: linkedInError ? 'red' : theme.colors.silver,
+                                        }}
+                                    />
+                                    <p className='error'>{error}</p>
+                                </div>
+                            </div>
                             <div className='input-container'>
                                 <label>Headquarters</label>
-                                <input/>
+                                <input
+                                    name='headquarters'
+                                    value={data.headquarters}
+                                    onChange={handleUpdate}
+                                />
                             </div>
                             <div className='input-container'>
                                 <label>Company Size</label>
@@ -158,19 +197,35 @@ export default props => {
                     <div className='bottom-row'>
                         <div className='multi-container'>
                             <label>Regions Covered</label>
-                            <MultipleInput name='regionsCovered' suggestions={undefined}/>
+                            <MultipleInput 
+                                name='regionsCovered' 
+                                suggestions={undefined} 
+                                handleMultiUpdate={handleMultiUpdate}
+                            />
                         </div>
                         <div className='multi-container'>
                             <label>Therapeutic Areas</label>
-                            <MultipleInput name='therapeuticAreas' suggestions={undefined}/>
+                            <MultipleInput 
+                                name='therapeuticAreas' 
+                                suggestions={undefined} 
+                                handleMultiUpdate={handleMultiUpdate}
+                            />
                         </div>
                         <div className='multi-container'>
                             <label>Services</label>
-                            <MultipleInput name='services' suggestions={serviceData}/>
+                            <MultipleInput 
+                                name='services' 
+                                suggestions={serviceData} 
+                                handleMultiUpdate={handleMultiUpdate}
+                            />
                         </div>
                         <div className='multi-container'>
                             <label>Specialties</label>
-                            <MultipleInput name='specialties' suggestions={undefined}/>
+                            <MultipleInput 
+                                name='specialties' 
+                                suggestions={undefined} 
+                                handleMultiUpdate={handleMultiUpdate}
+                            />
                         </div>
                     </div>
                     <img className='background-asset' src={scienceAsset} alt=''/>

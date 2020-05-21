@@ -11,7 +11,7 @@ const InputWrapper = styled.form`
     }
     .preview-container{
         width: 100%;
-        min-height: 50px;
+        min-height: 40px;
         background-color: ${theme.colors.alabaster};
         border-radius: 10px;
         display: flex;
@@ -85,10 +85,13 @@ const DropDown = styled.div`
     }
 `;
 
-export default props => {
+export default (props) => {
     const [ open, setOpen ] = useState(false);
     const [ preview, setPreview ] = useState([]);
     const [ custom, setCustom ] = useState('');
+    const [ filter, setFilter ] = useState(props.suggestions);
+
+    const {handleMultiUpdate} = props;
 
     const handleFocus = () => {
         setOpen(true);
@@ -102,7 +105,6 @@ export default props => {
     }
 
     const handleSelect = name => {
-        console.log('Selected ', name)
         setPreview([
             ...preview,
             name
@@ -111,6 +113,11 @@ export default props => {
 
     const handleChange = e => {
         setCustom(e.target.value);
+        if(e.target.value){
+            setFilter(props.suggestions.filter(element => element.name.toLowerCase().includes(e.target.value)));
+        }else{
+            setFilter(props.suggestions);
+        }
     }
 
     const handleSubmit = e => {
@@ -124,24 +131,29 @@ export default props => {
     }
 
     const handleDelete = name => {
-        console.log(name);
         setPreview(preview.filter(element => element !== name));
     }
 
+    // Send preview data to parent component
     useEffect(() => {
-
+        handleMultiUpdate(props.name, preview);
     }, [preview])
 
     return (
         <InputWrapper onSubmit={handleSubmit}>
             <input onFocus={handleFocus} onBlur={handleBlur} name={props.name} value={custom} onChange={handleChange} autoComplete='off'></input>
             <DropDown open={open}>
-                {props.suggestions && props.suggestions.map(suggestion => {
+                {filter && filter.map(suggestion => {
                     return <div className='suggestion' key={suggestion.name} onClick={() => handleSelect(suggestion.name)}>
                         <p value={suggestion.name}>{suggestion.name}</p>
                     </div>
                 })}
-                {!props.suggestions && (
+                {!filter && (
+                    <div className='no-suggestion'>
+                        <p>No suggestions available</p>
+                    </div>
+                )}
+                {filter && filter.length < 1 && (
                     <div className='no-suggestion'>
                         <p>No suggestions available</p>
                     </div>
