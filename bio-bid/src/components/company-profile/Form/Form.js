@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { GET_COMPANY_BY_ID } from '../../../queries';
+import { GET_COMPANY_BY_ID, GET_REGIONS, GET_THERAPEUTICS, GET_SERVICES, GET_SPECIALTIES } from '../../../queries';
 import { ADD_COMPANY } from '../../../mutations';
 import { useHistory, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
@@ -38,6 +38,10 @@ export default (props) => {
     const [ linkedInError, setLinkedInError] = useState(false);
     const [ appError, setAppError] = useState(null);
     const [ logo, setLogo ] = useState(defaultLogo);
+    const [ regions, setRegions ] = useState(null);
+    const [ therapeutics, setTherapeutics ] = useState(null);
+    const [ services, setServices ] = useState(null);
+    const [ specialties, setSpecialties ] = useState(null);
 
     /*
         useQuery and useMutation
@@ -52,7 +56,12 @@ export default (props) => {
                 addCompany({ variables: {name: formData.name, imgURL: formData.imgURL} })
             
     */
-    const { loading, error, data } = useQuery(GET_COMPANY_BY_ID, { variables: { id } });
+    const { loading: companyLoading, error: companyError, data: companyData } = useQuery(GET_COMPANY_BY_ID, { variables: { id } });
+    const { error: regionsError, data: regionsData } = useQuery(GET_REGIONS);
+    const { error: therapeuticsError, data: therapeuticsData } = useQuery(GET_THERAPEUTICS);
+    const { error: servicesError, data: servicesData} = useQuery(GET_SERVICES);
+    const { error: specialtiesError, data: specialtiesData } = useQuery(GET_SPECIALTIES);
+
     const [ addCompany ] = useMutation(ADD_COMPANY);
 
     /*
@@ -118,22 +127,27 @@ export default (props) => {
     const handleSubmit = e => {
         e.preventDefault();
         console.log(formData);
-        // Validation here
-        // if(!formData.companySize || !formData.name){
-        //     console.log('Error');
-        // }
-        // Mutation here
-        // else{
-            addCompany({ variables: {
-                name: formData.name,
-                logoURL: formData.logoURL,
-                website: formData.website,
-                linkedin: formData.linkedin,
-                overview: formData.overview,
-                headquarters: formData.headquarters,
-                companySize: formData.companySize
-            } })
-        // }
+        if(props.edit){
+            // Edit mutation here
+        }else{
+            if(!formData.name){
+                console.log('Submission error');
+            }else{
+                addCompany({ variables: {
+                    name: formData.name,
+                    logoURL: formData.logoURL,
+                    website: formData.website,
+                    linkedin: formData.linkedin,
+                    overview: formData.overview,
+                    headquarters: formData.headquarters,
+                    companySize: formData.companySize === '' ? null : formData.companySize,
+                    regions: formData.regionsCovered,
+                    therapeutics: formData.therapeuticAreas,
+                    services: formData.services,
+                    specialties: formData.specialties
+                }})
+            }
+        }        
     }
 
     const handleReDirect = () => {
@@ -146,17 +160,8 @@ export default (props) => {
         return false;
     }
 
-    const serviceData = [
-        {name: 'Service 1'},
-        {name: 'Service 2'},
-        {name: 'Service 3'},
-        {name: 'Service 4'},
-        {name: 'Service 5'},
-        {name: 'Service 6'}
-    ]
-
+    // Handle LinkedIn Error
     useEffect(() => {
-        // Handle LinkedIn Error
         if(formData.linkedin && validateUrl(formData.linkedin)){
             setLinkedInError(false);
             setAppError('');
@@ -171,29 +176,76 @@ export default (props) => {
         }
     }, [ formData.linkedin ])
 
+    /*
+        Fill in current data
+        - When editing a company profile, chances are that the profile is already filled out
+        - All current data stored with the profile in the database is filled in here to
+            display on the UI for the user
+    */
     useEffect(() => {
         if(props.edit){
-            if(data){
-                console.log(data.company);
+            console.log(companyData);
+            if(companyData){
+                const regionsMapped = companyData.company.regions.map(region => ({ name: region.name }));
+                const therapeuticsMapped = companyData.company.therapeutics.map(therapeutic => ({ name: therapeutic.name }));
+                const servicesMapped = companyData.company.services.map(service => ({ name: service.name }));
+                const specialtiesMapped = companyData.company.specialties.map(specialty => ({ name: specialty.name }));
                 setFormData({
-                    name: data.company.name,
-                    logoURL: data.company.logoURL,
-                    website: data.company.website,
-                    linkedin: data.company.linkedin,
-                    overview: data.company.overview,
-                    headquarters: data.company.headquarters,
-                    companySize: data.company.companySize,
-                    services: [],
-                    specialties: [],
-                    regionsCovered: [],
-                    therapeuticAreas: []
+                    name: companyData.company.name,
+                    logoURL: companyData.company.logoURL,
+                    website: companyData.company.website,
+                    linkedin: companyData.company.linkedin,
+                    overview: companyData.company.overview,
+                    headquarters: companyData.company.headquarters,
+                    companySize: companyData.company.companySize ? companyData.company.companySize : '',
+                    regionsCovered: regionsMapped,
+                    therapeuticAreas: therapeuticsMapped,
+                    services: servicesMapped,
+                    specialties: specialtiesMapped
                 })
             }
-            if(error){
-                console.log(error);
+            if(companyError){
+                console.log(companyError);
             }
         }
-    }, [ data, error ])
+    }, [ companyData, companyError ])
+
+    /*
+        Updating suggestive data
+        - Suggestive data is querried from backend and stored in their respective array
+        - This useEffects updates and structures the state so that it may be passed 
+            to its appropiate MultipleInput component
+        - TODO?: Display any errors in the UI for feedback to the user
+    */
+    useEffect(() => {
+        if(regionsData){
+            const mappedData = regionsData.regions.map(region => ({ name: region.name }))
+            setRegions(mappedData);
+        }else{
+            console.log('Error', regionsError)
+        }
+
+        if(therapeuticsData){
+            const mappedData = therapeuticsData.therapeutics.map(therapeutic => ({ name: therapeutic.name }));
+            setTherapeutics(mappedData);
+        }else{
+            console.log('Error', therapeuticsError);
+        }
+
+        if(servicesData){
+            const mappedData = servicesData.services.map(service => ({ name: service.name }));
+            setServices(mappedData);
+        }else{
+            console.log('Error', servicesError)
+        }
+
+        if(specialtiesData){
+            const mappedData = specialtiesData.specialties.map(specialty => ({ name: specialty.name }));
+            setSpecialties(mappedData);
+        }else{
+            console.log('Error', specialtiesError);
+        }
+    }, [ regionsData, regionsError, therapeuticsData, therapeuticsError, servicesData, servicesError, specialtiesData, specialtiesError ]);
 
     useEffect(() => {
         if(formData.logoURL){
@@ -211,7 +263,7 @@ export default (props) => {
 
                 )}
             </Backdrop>
-            <Backdrop className={classes.backdrop} open={loading}>
+            <Backdrop className={classes.backdrop} open={companyLoading}>
                 <CircularProgress color="inherit" />
             </Backdrop>
             <div className='body'>
@@ -303,6 +355,7 @@ export default (props) => {
                                     onChange={handleUpdate}
                                 >
                                     <option value='' defaultValue disabled hidden>Choose company size</option>
+                                    <option value='N/A'>N/A</option>
                                     <option value='A'>A: Self Employed</option>
                                     <option value='B'>B: 1-10 Employees</option>
                                     <option value='C'>C: 11-50 Employees</option>
@@ -319,35 +372,47 @@ export default (props) => {
                     <div className='bottom-row'>
                         <div className='multi-container'>
                             <label>Regions Covered</label>
-                            <MultipleInput 
+                            {regions && (
+                                <MultipleInput 
                                 name='regionsCovered' 
-                                suggestions={undefined} 
+                                suggestions={regions} 
+                                preview={formData.regionsCovered}
                                 handleMultiUpdate={handleMultiUpdate}
                             />
+                            )}
                         </div>
                         <div className='multi-container'>
                             <label>Therapeutic Areas</label>
-                            <MultipleInput 
+                            {therapeutics && (
+                                <MultipleInput 
                                 name='therapeuticAreas' 
-                                suggestions={undefined} 
+                                suggestions={therapeutics} 
+                                preview={formData.therapeuticAreas}
                                 handleMultiUpdate={handleMultiUpdate}
                             />
+                            )}
                         </div>
                         <div className='multi-container'>
                             <label>Services</label>
-                            <MultipleInput 
+                            {services && (
+                                <MultipleInput 
                                 name='services' 
-                                suggestions={serviceData} 
+                                suggestions={services} 
+                                preview={formData.services}
                                 handleMultiUpdate={handleMultiUpdate}
                             />
+                            )}
                         </div>
                         <div className='multi-container'>
                             <label>Specialties</label>
-                            <MultipleInput 
+                            {specialties && (
+                                <MultipleInput 
                                 name='specialties' 
-                                suggestions={undefined} 
+                                suggestions={specialties}
+                                preview={formData.specialties} 
                                 handleMultiUpdate={handleMultiUpdate}
                             />
+                            )}
                         </div>
                     </div>
                     <img className='background-asset' src={scienceAsset} alt=''/>

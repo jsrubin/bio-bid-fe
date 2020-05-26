@@ -15,7 +15,7 @@ const client = new ApolloClient({
     uri: process.env.REACT_APP_SERVER_ENDPOINT || 'https://us1.prisma.sh/biobid-team/production/prod',
     typeDefs: gql`
       enum CompanySize {
-        A, B, C, D, E, F, G, H, I
+        A, B, C, D, E, F, G, H, I, null
       }
     `,
 })

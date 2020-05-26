@@ -139,6 +139,13 @@ export default (props) => {
         handleMultiUpdate(props.name, preview);
     }, [preview])
 
+    useEffect(() => {
+        if(props.preview){
+            const previewMapped = props.preview.map(item => item.name);
+            setPreview(previewMapped);
+        }
+    }, [])
+
     return (
         <InputWrapper onSubmit={handleSubmit}>
             <input onFocus={handleFocus} onBlur={handleBlur} name={props.name} value={custom} onChange={handleChange} autoComplete='off'></input>

@@ -38,6 +38,50 @@ export const GET_COMPANY_BY_ID = gql`
       overview
       headquarters
       companySize
+      regions{
+        name
+      }
+      therapeutics{
+        name
+      }
+      services{
+        name
+      }
+      specialties{
+        name
+      }
     }
   }
+`
+
+export const GET_SERVICES = gql`
+{
+  services{
+    name
+  }
+}
+`
+
+export const GET_REGIONS = gql`
+{
+  regions{
+    name
+  }
+}
+`
+
+export const GET_THERAPEUTICS = gql`
+{
+  therapeutics{
+    name
+  }
+}
+`
+
+export const GET_SPECIALTIES = gql`
+{
+  specialties{
+    name
+  }
+}
 `
