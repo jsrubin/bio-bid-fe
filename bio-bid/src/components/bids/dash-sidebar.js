@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 
 /* STYLE IMPORT */
 import './styles/dash-sidebar.css';
+import './styles/global.css';
+import './styles/main.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 /* IMAGE IMPORTS */
 import Projects from '../../images/projects.png';

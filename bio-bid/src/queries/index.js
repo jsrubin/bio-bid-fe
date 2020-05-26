@@ -15,3 +15,29 @@ export const GET_STUDIES = gql`
   }
 }
 `;
+
+export const GET_COMPANIES = gql`
+{
+  companies{
+    name
+    logoURL
+    website
+    linkedin
+    overview
+  }
+}
+`
+
+export const GET_COMPANY_BY_ID = gql`
+  query Company($id: ID){
+    company(id: $id){
+      name
+      logoURL
+      website
+      linkedin
+      overview
+      headquarters
+      companySize
+    }
+  }
+`
