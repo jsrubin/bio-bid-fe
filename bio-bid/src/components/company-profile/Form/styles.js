@@ -95,6 +95,7 @@ export const Form = styled.div`
             height: 280px;
             padding: 0;
             margin-left: 50px;
+            margin-top: 50px;
             .error{
                 color: red;
                 margin: 0;

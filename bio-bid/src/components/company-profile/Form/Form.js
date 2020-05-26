@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import { GET_COMPANIES } from '../../../queries';
+import { useQuery, useMutation } from '@apollo/react-hooks';
+import { GET_COMPANY_BY_ID } from '../../../queries';
+import { ADD_COMPANY } from '../../../mutations';
+import { useHistory, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 import WarningCard from './WarningCard';
@@ -21,18 +23,47 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 export default (props) => {
+    const { id } = useParams();
     const classes = useStyles();
+    const history = useHistory();
 
+    /*
+        open - Boolean state for whether the backdrop for warnings/loading should be opened.
+        importWarning - Boolean state for warning type when attempting to import
+        linkedInError - Boolean state based on if the linkedInUrl in the `linkedin` input field is valid
+        appError - Stores any errors that exist in the Form component
+    */
     const [ open, setOpen ] = useState(false);
     const [ importWarning, setImportWarning ] = useState(false);
     const [ linkedInError, setLinkedInError] = useState(false);
     const [ appError, setAppError] = useState(null);
+    const [ logo, setLogo ] = useState(defaultLogo);
 
-    const { loading, error, data } = useQuery(GET_COMPANIES);
+    /*
+        useQuery and useMutation
+        - useQuery will accept a gql query that is defined in the `src/queries` directory.
+            - Conditionally returns a `loading` boolean true/false based on if the query is running
+            - Conditionally returns an `error` object if there was an error with the query
+            - Conditionally returns the `data` requested by the query if successful
+        - useMutation will accept a gql mutation that is defined in the `src/mutations` directory.
+            - Returns a functions that can be used to insert data into the mutation as arguments
+            - Example: 
+                addCompany({ variables: formData }) 
+                addCompany({ variables: {name: formData.name, imgURL: formData.imgURL} })
+            
+    */
+    const { loading, error, data } = useQuery(GET_COMPANY_BY_ID, { variables: { id } });
+    const [ addCompany ] = useMutation(ADD_COMPANY);
 
+    /*
+        formData
+        - Inputs in the form components are controlled with `handleUpdate` and `handleMultiUpdate`.
+        - Everything is saved in formData state until the component is unMounted 
+            or there is a successful submission in `handleSubmit`
+    */
     const [ formData, setFormData ] = useState({
         name: '',
-        imgURL: '',
+        logoURL: '',
         website: '',
         linkedin: '',
         overview: '',
@@ -44,15 +75,26 @@ export default (props) => {
         therapeuticAreas: []
     })
 
+    /*
+        handleImportWarning
+        - Checks to se if there is a valid LinkedInURL. The state of `linkedInError` is set
+            in a useEffect hook that checks the linkedin input every time it is updated
+    */
     const handleImportWarning = () => {
-        console.log(linkedInError);
         if(!linkedInError){
             setImportWarning(true);
             setOpen(true);
         }
     }
 
-    const handleImportWarningClose = () => {
+    /*
+
+    */
+    const handleCancelWarning = () => {
+        setOpen(true);
+    }  
+
+    const handleWarningClose = () => {
         setImportWarning(false);
         setOpen(false);
     }
@@ -76,6 +118,26 @@ export default (props) => {
     const handleSubmit = e => {
         e.preventDefault();
         console.log(formData);
+        // Validation here
+        // if(!formData.companySize || !formData.name){
+        //     console.log('Error');
+        // }
+        // Mutation here
+        // else{
+            addCompany({ variables: {
+                name: formData.name,
+                logoURL: formData.logoURL,
+                website: formData.website,
+                linkedin: formData.linkedin,
+                overview: formData.overview,
+                headquarters: formData.headquarters,
+                companySize: formData.companySize
+            } })
+        // }
+    }
+
+    const handleReDirect = () => {
+        history.goBack();
     }
 
     const validateUrl = url => {
@@ -99,15 +161,55 @@ export default (props) => {
             setLinkedInError(false);
             setAppError('');
         }else{
-            setLinkedInError(true);
-            setAppError('Must enter a valid LinkedIn URL')
+            if(formData.linkedin.length > 0){
+                setLinkedInError(true);
+                setAppError('Must enter a valid LinkedIn URL')
+            }else{
+                setLinkedInError(false);
+                setAppError('');
+            } 
         }
-    }, [formData.linkedin])
+    }, [ formData.linkedin ])
+
+    useEffect(() => {
+        if(props.edit){
+            if(data){
+                console.log(data.company);
+                setFormData({
+                    name: data.company.name,
+                    logoURL: data.company.logoURL,
+                    website: data.company.website,
+                    linkedin: data.company.linkedin,
+                    overview: data.company.overview,
+                    headquarters: data.company.headquarters,
+                    companySize: data.company.companySize,
+                    services: [],
+                    specialties: [],
+                    regionsCovered: [],
+                    therapeuticAreas: []
+                })
+            }
+            if(error){
+                console.log(error);
+            }
+        }
+    }, [ data, error ])
+
+    useEffect(() => {
+        if(formData.logoURL){
+            setLogo(formData.logoURL);
+        }
+    }, [ logo ])
 
     return (
         <Body>
             <Backdrop className={classes.backdrop} open={open}>
-                {importWarning ? <WarningCard close={handleImportWarningClose}/> : null}
+                {importWarning ? (
+                    <WarningCard close={handleWarningClose} warning='import'/>
+                ) : (
+                    <WarningCard close={handleWarningClose} warning='cancel' action={handleReDirect}/>
+
+                )}
             </Backdrop>
             <Backdrop className={classes.backdrop} open={loading}>
                 <CircularProgress color="inherit" />
@@ -124,7 +226,7 @@ export default (props) => {
                             <LinkedIn/>
                             <p>Import</p>
                         </Button>
-                        <Button cancel='true'>
+                        <Button onClick={handleCancelWarning} cancel='true'>
                             <p>Cancel</p>
                         </Button>    
                     </div>
@@ -133,7 +235,7 @@ export default (props) => {
                 <Form>
                     <div className='top-row'>
                         <div className='side-bar'>
-                            <img src={defaultLogo} alt='company'/>
+                            <img src={logo} alt='company'/>
                             <Button noMargin onClick={handleSubmit}>
                                 {props.edit ? (
                                     <p>Save changes</p>
