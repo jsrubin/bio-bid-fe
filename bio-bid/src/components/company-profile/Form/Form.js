@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { GET_COMPANY_BY_ID, GET_REGIONS, GET_THERAPEUTICS, GET_SERVICES, GET_SPECIALTIES } from '../../../queries';
-import { ADD_COMPANY } from '../../../mutations';
+import { ADD_COMPANY, EDIT_COMPANY } from '../../../mutations';
 import { useHistory, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -9,7 +9,7 @@ import WarningCard from './WarningCard';
 import MultipleInput from './MultipleInput';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { Body, LinkedIn, Button, Form } from './styles';
+import { Body, LinkedIn, Button, Form, Error } from './styles';
 
 import scienceAsset from '../../../images/science-asset.svg';
 import defaultLogo from '../../../images/default-company-logo.png';
@@ -37,11 +37,14 @@ export default (props) => {
     const [ importWarning, setImportWarning ] = useState(false);
     const [ linkedInError, setLinkedInError] = useState(false);
     const [ appError, setAppError] = useState(null);
+    const [ headerError, setHeaderError ] = useState(null);
     const [ logo, setLogo ] = useState(defaultLogo);
     const [ regions, setRegions ] = useState(null);
     const [ therapeutics, setTherapeutics ] = useState(null);
     const [ services, setServices ] = useState(null);
     const [ specialties, setSpecialties ] = useState(null);
+    const [ newId, setNewId ] = useState(null);
+    const [ addLoading, setAddLoading ] = useState(false);
 
     /*
         useQuery and useMutation
@@ -62,7 +65,13 @@ export default (props) => {
     const { error: servicesError, data: servicesData} = useQuery(GET_SERVICES);
     const { error: specialtiesError, data: specialtiesData } = useQuery(GET_SPECIALTIES);
 
-    const [ addCompany ] = useMutation(ADD_COMPANY);
+    const [ addCompany ] = useMutation(ADD_COMPANY, {
+        update: (proxy, result) => {
+            setNewId(result.data.createCompany.id);
+        }
+    });
+
+    const [ editCompany ] = useMutation(EDIT_COMPANY);
 
     /*
         formData
@@ -96,9 +105,6 @@ export default (props) => {
         }
     }
 
-    /*
-
-    */
     const handleCancelWarning = () => {
         setOpen(true);
     }  
@@ -124,16 +130,17 @@ export default (props) => {
         })
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log(formData);
         if(props.edit){
-            // Edit mutation here
-        }else{
             if(!formData.name){
-                console.log('Submission error');
+                setHeaderError('Missing required field: Company Name');
+                window.scrollTo(0, 0);
             }else{
-                addCompany({ variables: {
+                setHeaderError(null);
+                setAddLoading(true);
+                await editCompany({ variables: {
+                    id: id,
                     name: formData.name,
                     logoURL: formData.logoURL,
                     website: formData.website,
@@ -145,13 +152,36 @@ export default (props) => {
                     therapeutics: formData.therapeuticAreas,
                     services: formData.services,
                     specialties: formData.specialties
-                }})
+                }});
+                setAddLoading(false);
+            }
+        }else{
+            if(!formData.name){
+                setHeaderError('Missing required field: Company Name');
+                window.scrollTo(0, 0);
+            }else{
+                setHeaderError(null);
+                setAddLoading(true);
+                await addCompany({ variables: {
+                    name: formData.name,
+                    logoURL: formData.logoURL,
+                    website: formData.website,
+                    linkedin: formData.linkedin,
+                    overview: formData.overview,
+                    headquarters: formData.headquarters,
+                    companySize: formData.companySize === '' ? null : formData.companySize,
+                    regions: formData.regionsCovered,
+                    therapeutics: formData.therapeuticAreas,
+                    services: formData.services,
+                    specialties: formData.specialties
+                }});
+                setAddLoading(false);
             }
         }        
     }
 
     const handleReDirect = () => {
-        history.goBack();
+        history.push('/service-providers')
     }
 
     const validateUrl = url => {
@@ -160,7 +190,11 @@ export default (props) => {
         return false;
     }
 
-    // Handle LinkedIn Error
+    /*
+        Handle LinkedIn error
+        - If the url in the linkedin input field is invalid, display an error below the input field
+        - If the url is valid, the error goes away
+    */
     useEffect(() => {
         if(formData.linkedin && validateUrl(formData.linkedin)){
             setLinkedInError(false);
@@ -184,8 +218,8 @@ export default (props) => {
     */
     useEffect(() => {
         if(props.edit){
-            console.log(companyData);
             if(companyData){
+                setHeaderError(null);
                 const regionsMapped = companyData.company.regions.map(region => ({ name: region.name }));
                 const therapeuticsMapped = companyData.company.therapeutics.map(therapeutic => ({ name: therapeutic.name }));
                 const servicesMapped = companyData.company.services.map(service => ({ name: service.name }));
@@ -205,7 +239,7 @@ export default (props) => {
                 })
             }
             if(companyError){
-                console.log(companyError);
+                setHeaderError('Error fetching previous company data');
             }
         }
     }, [ companyData, companyError ])
@@ -219,31 +253,36 @@ export default (props) => {
     */
     useEffect(() => {
         if(regionsData){
+            setHeaderError(false);
             const mappedData = regionsData.regions.map(region => ({ name: region.name }))
             setRegions(mappedData);
-        }else{
-            console.log('Error', regionsError)
+        }
+        if(regionsError){
+            console.log(regionsError);
         }
 
         if(therapeuticsData){
             const mappedData = therapeuticsData.therapeutics.map(therapeutic => ({ name: therapeutic.name }));
             setTherapeutics(mappedData);
-        }else{
-            console.log('Error', therapeuticsError);
+        }
+        if(therapeuticsError){
+            console.log(therapeuticsError);
         }
 
         if(servicesData){
             const mappedData = servicesData.services.map(service => ({ name: service.name }));
             setServices(mappedData);
-        }else{
-            console.log('Error', servicesError)
+        }
+        if(servicesError){
+            console.log(servicesError);
         }
 
         if(specialtiesData){
             const mappedData = specialtiesData.specialties.map(specialty => ({ name: specialty.name }));
             setSpecialties(mappedData);
-        }else{
-            console.log('Error', specialtiesError);
+        }
+        if(specialtiesError){
+            console.log(specialtiesError);
         }
     }, [ regionsData, regionsError, therapeuticsData, therapeuticsError, servicesData, servicesError, specialtiesData, specialtiesError ]);
 
@@ -253,8 +292,18 @@ export default (props) => {
         }
     }, [ logo ])
 
+    /*
+        Re-direct on successful submission
+        - When creating a new company, if an id is successfully returned, re-direct to the new company profile
+    */
+    useEffect(() => {
+        if(!props.edit && newId && !addLoading){
+            history.push(`/service-providers/${newId}`)
+        }
+    }, [ props.edit, newId, addLoading ])
+
     return (
-        <Body>
+        <Body error={headerError}>
             <Backdrop className={classes.backdrop} open={open}>
                 {importWarning ? (
                     <WarningCard close={handleWarningClose} warning='import'/>
@@ -266,6 +315,12 @@ export default (props) => {
             <Backdrop className={classes.backdrop} open={companyLoading}>
                 <CircularProgress color="inherit" />
             </Backdrop>
+            <Backdrop className={classes.backdrop} open={addLoading}>
+                <CircularProgress color="inherit" />
+            </Backdrop>
+            <Error display={headerError}>
+                <p>{headerError}</p>
+            </Error>
             <div className='body'>
                 <div className='header-wrapper'>
                     {props.edit ? (
