@@ -6,7 +6,7 @@ export default {
         laPalma: '#389E0D',
         torchRead: '#F5222D',
         sun: '#FAAD14',
-        scorption: '#595959',
+        scorpion: '#595959',
         silver: '#BFBFBF'
     },
     font: 'Inter, sans-serif',

@@ -2,6 +2,9 @@ import React from 'react';
 
 /* STYLE IMPORT */
 import './styles/filter.css';
+import './styles/global.css';
+import './styles/main.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 /* IMAGE IMPORTS */
 import { ReactComponent as CloseIcon } from '../../images/close.svg';

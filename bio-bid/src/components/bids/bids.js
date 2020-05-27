@@ -3,6 +3,9 @@ import {React, useState, useEffect, Table, EllipsisOutlined, Button, GET_STUDIES
 /* STYLE IMPORT */
 import './styles/CP-dash-header.css';
 import './styles/dash.css';
+import './styles/global.css';
+import './styles/main.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Bids = (props) => {
 
