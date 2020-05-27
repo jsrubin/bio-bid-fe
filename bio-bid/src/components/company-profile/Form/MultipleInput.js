@@ -137,7 +137,7 @@ export default (props) => {
     // Send preview data to parent component
     useEffect(() => {
         handleMultiUpdate(props.name, preview);
-    }, [preview])
+    }, [ preview ])
 
     useEffect(() => {
         if(props.preview){

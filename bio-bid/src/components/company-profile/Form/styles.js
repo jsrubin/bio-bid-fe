@@ -5,8 +5,11 @@ import { LinkedinSquare } from '@styled-icons/boxicons-logos'
 export const Body= styled.div`
     display: flex;
     width: 100%;
+    display: flex;
+    flex-direction: column;
     .body{
         margin: 0 auto;
+        margin-top: ${props => props.error ? '0px' : '50px'};
         width: 90%;
         .header-wrapper{
             margin-top: 50px;
@@ -29,6 +32,20 @@ export const Body= styled.div`
             height: 1px;
             background-color: ${theme.colors.scienceBlue};
         }
+    }
+`;
+
+export const Error = styled.div`
+    height: 50px;
+    width: 100%;
+    display: ${props => props.display ? 'flex' : 'none'};
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    p{
+        font: ${theme.fontStyling.header3};
+        color: ${theme.colors.alabaster};
+        margin: 0;
     }
 `;
 
@@ -95,7 +112,6 @@ export const Form = styled.div`
             height: 280px;
             padding: 0;
             margin-left: 50px;
-            margin-top: 50px;
             .error{
                 color: red;
                 margin: 0;

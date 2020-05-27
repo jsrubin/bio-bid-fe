@@ -32,11 +32,37 @@ export const ADD_COMPANY = gql`
     }
 `;
 
-// export const EDIT_COMPANY = gql`
-//     mutation editCompany(
-
-//     ){
-
-//     }
-// `;
+export const EDIT_COMPANY = gql`
+    mutation editCompany(
+        $id: ID!,
+        $name: String,
+        $logoURL: String,
+        $website: String,
+        $linkedin: String,
+        $overview: String,
+        $headquarters: String,
+        $companySize: CompanySize,
+        $regions: [RegionInput],
+        $therapeutics: [TherapeuticInput],
+        $services: [ServiceInput],
+        $specialties: [SpecialtyInput]
+    ){
+        updateCompany(
+            id: $id
+            updated_name: $name
+            updated_logoURL: $logoURL
+            updated_website: $website
+            updated_linkedin: $linkedin
+            updated_overview: $overview
+            updated_headquarters: $headquarters
+            updated_companySize: $companySize
+            updated_services: $services
+            updated_specialties: $specialties
+            updated_regions: $regions
+            updated_therapeutics: $therapeutics
+        ){
+            id
+        }
+    }
+`;
 
