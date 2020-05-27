@@ -4,13 +4,32 @@ import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button
 } from 'reactstrap';
+// import Bids from '../bids/bids'
+
+import { gql } from 'apollo-boost';
+import { graphql } from 'react-apollo';
+import { BookFilled } from '@ant-design/icons';
+
+const GET_COMPANIES = gql`
+{
+    companies{
+        name
+        logoURL
+        website
+        linkedin
+        overview
+    }
+}
+`
 
     const ServiceProviders = (props) => {
-    console.log(fakeData)
+
+    console.log("my props", props.data.companies)
+
+
     return (
         
     <div className="container">
-
         <div style={{display:"flex"}}>
             <h2 style={{display:"flex", justifyContent:"left", margin:"3% 0 3% 0"}}>List of Service Providers</h2>
                 <span style={{display:"flex", position:"relative", margin:"0 0 0 35%", top: "35px"}}>
@@ -20,7 +39,23 @@ import {
                 </span>
         </div>
 
-        {fakeData.map( item => {
+        <hr></hr>
+{/* 
+        {
+            props.companies.map(item => {
+                if (item){
+                    return(
+                        item.name
+                    )
+                } else {
+                    return(
+                        <div>Loading..</div>
+                    )
+                }
+            })
+        } */}
+
+        {/* {fakeData.map( item => {
             if (item.claimed) {
                 return (
                     <div style={{margin:"1% 0 0 0", border:"3px solid green"}}>
@@ -60,8 +95,8 @@ import {
                     </div>
                 )
             }
-        })}
+        })} */}
     </div>
 )};
 
-export default ServiceProviders;
+export default graphql(GET_COMPANIES)(ServiceProviders);
