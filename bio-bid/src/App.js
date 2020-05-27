@@ -4,12 +4,12 @@ import { Route } from 'react-router-dom';
 // Component Imports
 import Bids from './components/bids';
 import Form from './components/company-profile/Form/Form';
-import Companypage from '../src/components/company-profiles-page/companyPage';
+// import Companypage from '../src/components/company-profiles-page/companyPage';
 
 function App() {
   return (
     <div>
-      <Companypage />
+      {/* <Companypage /> */}
       <Route path="/bids">
         <Bids />
       </Route>
