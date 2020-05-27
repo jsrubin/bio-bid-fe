@@ -14,6 +14,9 @@ import { ReactComponent as DashExpandIcon } from '../../images/dash-expand.svg';
 import { ReactComponent as DashCollapseIcon } from '../../images/dash-collapse.svg';
 import { ReactComponent as SearchStudiesIcon } from '../../images/search-studies.svg';
 import { ReactComponent as RecommendationsIcon } from '../../images/recommendations.svg';
+import './styles/global.css';
+import './styles/main.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 /* This is the dashboard sidebar. This contains the dashboard navigation. */
 function DashSidebar() {
