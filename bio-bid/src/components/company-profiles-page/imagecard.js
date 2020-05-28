@@ -1,19 +1,21 @@
-import React from 'react';
-import {
-  Card,
-  CardBody,
-  CardTitle,
-  CardText,
-  CardImg,
-  CardLink,
-  CardDeck,
-  Button,
-  ButtonGroup,
-  Progress,
-} from 'reactstrap';
+import React, { useState, useEffect } from 'react';
+import { Card, CardBody, CardTitle, CardText, CardImg, CardLink, CardDeck, Button, ButtonGroup } from 'reactstrap';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
+import { useHistory, useParams } from 'react-router-dom';
 
-const imagecard = (props) => {
+import { GET_COMPANY_BY_ID } from '../../queries/index';
+
+export default (props) => {
+  const { id } = useParams();
+
+  const { loading, error, data } = useQuery(GET_COMPANY_BY_ID, {
+    variables: { id },
+  });
+  if (loading) return <h3>Loading...</h3>;
+  if (error) return <p>Error</p>;
+
+  console.log(data);
   return (
     <div className="div">
       <Container>
@@ -21,45 +23,35 @@ const imagecard = (props) => {
           {/* card with image  */}
           <div className="cardonediv">
             <Card className="card">
-              <CardImg
-                className="portfolioimage"
-                src="https://i.ya-webdesign.com/images/funny-png-avatar-2.png"
-                alt="Card image cap"
-              />
+              <CardImg className="portfolioimage" src={data.company.logoURL} alt="Company Image" />
 
               <CardBody className="cardbody">
                 <CardTitle>
                   {' '}
-                  <h3>Company Name:</h3> <p>Halson Medical Co </p>
+                  <h3>Company Name:</h3> <p>{data.company.name} </p>
                 </CardTitle>
 
                 <CardTitle>
                   {' '}
                   <h3>Website:</h3>
-                  <CardLink href="www.halsonmedical.com"> Click Here</CardLink>
+                  <CardLink href={data.company.website}> Click Here</CardLink>
                 </CardTitle>
                 <CardTitle>
                   {' '}
                   <h3>Linkedin:</h3>
-                  <CardLink href="www.linkedin.com/halsonmedical.com"> Click Here</CardLink>
+                  <CardLink href={data.company.linkedin}> Click Here</CardLink>
                 </CardTitle>
                 <CardTitle>
                   {' '}
-                  <h3>Headquarters: </h3> <p>Sacramento, Ca</p>
+                  <h3>Headquarters: </h3> <p>{data.company.headquarters}</p>
                 </CardTitle>
                 <CardTitle>
                   {' '}
-                  <h3>Company Size: </h3> <p>A lot</p>
+                  <h3>Company Size: </h3> {data.company.companySize}
                 </CardTitle>
                 <CardText>
                   {' '}
-                  <h3>Company Description:</h3>{' '}
-                  <p>
-                    {' '}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.
-                  </p>
+                  <h3>Company Overview:</h3> <p> {data.company.overview}</p>
                 </CardText>
                 {/* edit delete and claim buttons */}
 
@@ -78,46 +70,22 @@ const imagecard = (props) => {
             <CardBody className="cardtwobody">
               <CardText>
                 {' '}
-                <h3>Services:</h3>{' '}
-                <p>
-                  {' '}
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat.
-                </p>
+                <h3>Services:</h3> {data.company.services.name}
               </CardText>
               <CardText>
                 {' '}
-                <h3>Specialties:</h3>{' '}
-                <p>
-                  {' '}
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat.
-                </p>
+                <h3>Specialties:</h3> {data.company.specialties.name}
               </CardText>
               <CardText>
                 <div>
                   {' '}
-                  <h3>Regions Covered:</h3>{' '}
-                  <p>
-                    {' '}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.
-                  </p>
+                  <h3>Regions Covered:</h3> {data.company.regions.name}
                 </div>
               </CardText>
 
               <CardText>
                 {' '}
-                <h3>Therapeutic Areas:</h3>{' '}
-                <p>
-                  {' '}
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat.
-                </p>
+                <h3>Therapeutic Areas:</h3> {data.company.therapeutics.name}
               </CardText>
             </CardBody>
           </Card>
@@ -134,8 +102,6 @@ const imagecard = (props) => {
     </div>
   );
 };
-export default imagecard;
-
 // styling for cards and buttons
 
 const Container = styled.header`

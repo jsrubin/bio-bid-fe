@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Imagecard from './imagecard';
 
-class companypage extends React.Component {
+class CompanyPage extends React.Component {
   render() {
     return (
       <div className="companypage">
@@ -18,13 +18,14 @@ class companypage extends React.Component {
             </h2>
           </nav>
         </Container>
+
         <Imagecard />
       </div>
     );
   }
 }
 
-export default companypage;
+export default CompanyPage;
 
 const Container = styled.header`
   width: 100%;
