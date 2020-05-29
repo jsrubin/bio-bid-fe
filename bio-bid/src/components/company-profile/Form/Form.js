@@ -26,6 +26,8 @@ export default (props) => {
     // id will only be available if props.edit === true
     const { id } = useParams();
 
+    console.log(id);
+
     const classes = useStyles();
     const history = useHistory();
 
