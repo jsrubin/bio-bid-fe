@@ -1,8 +1,10 @@
 import React from "react";
-import { render } from "@testing-library/react";
 
 // The unit we're testing
 import Form from "../components/company-profile/Form/Form";
+
+// Render using the React Testing Library (https://testing-library.com/docs/react-testing-library/api#render)
+import { render } from "@testing-library/react";
 
 // Need to mock these queries to run the test
 import {
@@ -20,7 +22,6 @@ import { MockedProvider } from "@apollo/react-testing";
 
 // We're going mock this whole module
 import { Route, MemoryRouter } from "react-router-dom";
-// jest.mock("react-router");
 
 // Our mock Apollo hooks
 const mocks = [
@@ -87,10 +88,10 @@ const mocks = [
 ];
 
 // Write test to ensure an error appears when no company name is provided
+// MemoryRouter provides an in-memory React Router to fake navigation
+// Route mimics the Route inside the app
+// MockedProvider is a mock ApolloClient (https://www.apollographql.com/docs/react/development-testing/testing/#mockedprovider)
 test("Error appears when no name is provided", () => {
-  // Mock the return value for useParams()
-  //   ReactRouter.useParams.mockReturnValue({ id: "123" });
-
   const { debug } = render(
     <MemoryRouter initialEntries={["/service-providers/edit/123"]}>
       <Route path="/service-providers/edit/:id">
