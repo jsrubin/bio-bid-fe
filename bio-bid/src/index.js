@@ -9,6 +9,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { gql } from 'apollo-boost';
+import * as FullStory from '@fullstory/browser';
 
 // http://biobidbe-env.eba-ercbzmhq.us-east-1.elasticbeanstalk.com/
 // https://ec2-34-195-186-223.compute-1.amazonaws.com/
@@ -31,6 +32,8 @@ const client = new ApolloClient({
 });
 
 //'https://us1.prisma.sh/biobid-team/production/prod'
+
+FullStory.init({ orgId: 'VHMTY' });
 
 ReactDOM.render(
   <Router>
