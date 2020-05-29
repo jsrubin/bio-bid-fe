@@ -1,36 +1,36 @@
 import { gql } from 'apollo-boost';
 
 export const GET_STUDIES = gql`
-{
-  studies{
-    id
-    name
-    area
-    protocol_number
-    title
-    phase
-    services
-    modified_date
-    status
+  {
+    studies {
+      id
+      name
+      area
+      protocol_number
+      title
+      phase
+      services
+      modified_date
+      status
+    }
   }
-}
 `;
 
 export const GET_COMPANIES = gql`
-{
-  companies{
-    name
-    logoURL
-    website
-    linkedin
-    overview
+  {
+    companies {
+      name
+      logoURL
+      website
+      linkedin
+      overview
+    }
   }
-}
-`
+`;
 
 export const GET_COMPANY_BY_ID = gql`
-  query Company($id: ID){
-    company(id: $id){
+  query Company($id: ID) {
+    company(id: $id) {
       name
       logoURL
       website
@@ -38,50 +38,50 @@ export const GET_COMPANY_BY_ID = gql`
       overview
       headquarters
       companySize
-      regions{
+      regions {
         name
       }
-      therapeutics{
+      therapeutics {
         name
       }
-      services{
+      services {
         name
       }
-      specialties{
+      specialties {
         name
       }
     }
   }
-`
+`;
 
 export const GET_SERVICES = gql`
-{
-  services{
-    name
+  {
+    services {
+      name
+    }
   }
-}
-`
+`;
 
 export const GET_REGIONS = gql`
-{
-  regions{
-    name
+  {
+    regions {
+      name
+    }
   }
-}
-`
+`;
 
 export const GET_THERAPEUTICS = gql`
-{
-  therapeutics{
-    name
+  {
+    therapeutics {
+      name
+    }
   }
-}
-`
+`;
 
 export const GET_SPECIALTIES = gql`
-{
-  specialties{
-    name
+  {
+    specialties {
+      name
+    }
   }
-}
-`
+`;
