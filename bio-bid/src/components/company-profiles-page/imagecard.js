@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardBody, CardTitle, CardText, CardImg, CardLink, CardDeck, Button, ButtonGroup } from 'reactstrap';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 import { GET_COMPANY_BY_ID } from '../../queries/index';
+import { DELETE_COMPANY } from '../../mutations/index';
+import { specifiedScalarTypes } from 'graphql';
 
 export default (props) => {
   const { id } = useParams();
@@ -16,6 +20,13 @@ export default (props) => {
   if (error) return <p>Error</p>;
 
   console.log(data);
+
+  function sayHello() {
+    alert('The Company Has Been Claimed Successfully');
+  }
+
+  const [deleteCompany] = useMutation(DELETE_COMPANY);
+
   return (
     <div className="div">
       <Container>
@@ -56,9 +67,17 @@ export default (props) => {
                 {/* edit delete and claim buttons */}
 
                 <ButtonGroup className="buttons">
-                  <Button style={{ backgroundColor: '#389E0D' }}>Claim</Button>{' '}
-                  <Button style={{ backgroundColor: '#BFBFBF' }}>Edit</Button>
-                  <Button style={{ backgroundColor: '#F5222D' }}>Delete</Button>{' '}
+                  <Button style={{ backgroundColor: '#389E0D' }} onClick={sayHello}>
+                    Claim
+                  </Button>{' '}
+                  <Button style={{ backgroundColor: '#BFBFBF' }}>
+                    <Link to="/service-providers/edit/:id">Edit</Link>
+                  </Button>
+                  <Button
+                    style={{ backgroundColor: '#F5222D' }}
+                    onClick={() => deleteCompany({ variables: { name: data.company.name } })}>
+                    Delete
+                  </Button>{' '}
                 </ButtonGroup>
               </CardBody>
             </Card>
@@ -70,22 +89,36 @@ export default (props) => {
             <CardBody className="cardtwobody">
               <CardText>
                 {' '}
-                <h3>Services:</h3> {data.company.services.name}
+                <h3>Services:</h3>{' '}
+                <ul>
+                  {data.company.services.map((service) => (
+                    <li>{service.name}</li>
+                  ))}
+                </ul>
               </CardText>
               <CardText>
                 {' '}
-                <h3>Specialties:</h3> {data.company.specialties.name}
+                <h3>Specialties:</h3>{' '}
+                {data.company.specialties.map((specialty) => (
+                  <li> {specialty.name} </li>
+                ))}
               </CardText>
               <CardText>
                 <div>
                   {' '}
-                  <h3>Regions Covered:</h3> {data.company.regions.name}
+                  <h3>Regions Covered:</h3>{' '}
+                  {data.company.regions.map((region) => (
+                    <li>{region.name}</li>
+                  ))}
                 </div>
               </CardText>
 
               <CardText>
                 {' '}
-                <h3>Therapeutic Areas:</h3> {data.company.therapeutics.name}
+                <h3>Therapeutic Areas:</h3>{' '}
+                {data.company.therapeutics.map((therapeutic) => (
+                  <li>{therapeutic.name}</li>
+                ))}
               </CardText>
             </CardBody>
           </Card>
