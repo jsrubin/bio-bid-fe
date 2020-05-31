@@ -26,8 +26,6 @@ export default (props) => {
     // id will only be available if props.edit === true
     const { id } = useParams();
 
-    console.log(id);
-
     const classes = useStyles();
     const history = useHistory();
 
@@ -366,7 +364,7 @@ export default (props) => {
                 {importWarning ? (
                     <WarningCard close={handleWarningClose} warning='import'/>
                 ) : (
-                    <WarningCard close={handleWarningClose} warning='cancel' action={handleReDirect}/>
+                    <WarningCard close={handleWarningClose} warning='cancel' action={handleReDirect} data-testid='warning-card'/>
                 )}
             </Backdrop>
             <Backdrop className={classes.backdrop} open={companyLoading}>
@@ -375,10 +373,10 @@ export default (props) => {
             <Backdrop className={classes.backdrop} open={addLoading}>
                 <CircularProgress color="inherit" />
             </Backdrop>
-            <HeaderError display={headerError ? 1 : 0}>
+            <HeaderError display={headerError ? 1 : 0} data-testid='header-error'>
                 <p>{headerErrorText}</p>
             </HeaderError>
-            <SucceessMessage display={headerSuccess ? 1 : 0}>
+            <SucceessMessage display={headerSuccess ? 1 : 0} data-testid='header-success'>
                 <p>Changes were successfully saved</p>
             </SucceessMessage>
             <div className='body'>
@@ -403,7 +401,7 @@ export default (props) => {
                     <div className='top-row'>
                         <div className='side-bar'>
                             <img src={logo} alt='company'/>
-                            <Button noMargin onClick={handleSubmit}>
+                            <Button noMargin onClick={handleSubmit} id='submit-test'>
                                 {props.edit ? (
                                     <p>Save changes</p>
                                 ) : (
@@ -418,6 +416,7 @@ export default (props) => {
                                     name='name'
                                     value={formData.name}
                                     onChange={handleUpdate}
+                                    data-testid='name'
                                 />
                             </div>
                             <div className='input-container'>
