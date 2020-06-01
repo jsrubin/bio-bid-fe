@@ -6,7 +6,6 @@ import defaultLogo from '../../../images/default-company-logo.png';
 import { CompanyCard, CardButton } from './styles';
 
 export default ({company}) => {
-    console.log(company);
     return (
         <CompanyCard>
             {company.logoURL ? (

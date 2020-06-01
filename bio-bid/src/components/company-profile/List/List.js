@@ -20,7 +20,27 @@ const useStyles = makeStyles((theme) => ({
 export default () => {        
     const classes = useStyles();
 
+    const [ companyData, setCompanyData ] = useState(null);
+    const [ search, setSearch ] = useState('');
+
     const {loading, error, data} = useQuery(GET_COMPANIES);
+
+    const handleChange = e => {
+        setSearch(e.target.value);
+    }
+
+    const handleSearch = () => {
+        if(search.length > 0){
+            setCompanyData({companies: data.companies.filter(company => company.name.toLowerCase().includes(search.toLowerCase()))});
+        }else{
+            console.log(data);
+            setCompanyData(data);
+        }
+    }
+
+    useEffect(() => {
+        setCompanyData(data);
+    }, [data]);
 
     return (
         <CompanyList>
@@ -28,8 +48,12 @@ export default () => {
                 <div className='header-container'>
                     <h2>List of Service Providers</h2>
                     <div className='search-container'>
-                        <input type="text"/>
-                        <Button>
+                        <input 
+                            type='search'
+                            value={search}
+                            onChange={handleChange}
+                        />
+                        <Button onClick={handleSearch}>
                             <p>Search</p>
                         </Button>
                     </div>
@@ -38,9 +62,9 @@ export default () => {
             <Backdrop className={classes.backdrop} open={loading}>
                 <CircularProgress color="inherit" />
             </Backdrop>
-            {data && data.companies.map(company => {
+            {companyData && companyData.companies.map(company => {
                 return <CompanyCard company={company} key={company.id}/>
             })}
-            </CompanyList>
+        </CompanyList>
     )
 };
