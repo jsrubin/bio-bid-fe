@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, waitForElement, getByText } from '@testing-library/react';
-import List from './list';
-import { fakeData } from './fake-data'
+import List from '../components/company-profile/List/List';
+import { fakeData } from '../components/company-index/fake-data'
 
 test('Checking to see if the correct labels render to the page', () => {
     const { getByText, getByLabel } = render(<List />)
