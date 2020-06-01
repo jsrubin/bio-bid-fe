@@ -23,7 +23,7 @@ export default () => {
     const [ companyData, setCompanyData ] = useState(null);
     const [ search, setSearch ] = useState('');
 
-    const {loading, error, data} = useQuery(GET_COMPANIES);
+    const {loading, data} = useQuery(GET_COMPANIES);
 
     const handleChange = e => {
         setSearch(e.target.value);
@@ -33,7 +33,6 @@ export default () => {
         if(search.length > 0){
             setCompanyData({companies: data.companies.filter(company => company.name.toLowerCase().includes(search.toLowerCase()))});
         }else{
-            console.log(data);
             setCompanyData(data);
         }
     }
