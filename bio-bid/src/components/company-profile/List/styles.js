@@ -49,7 +49,6 @@ export const CompanyCard = styled.div`
     align-items: center;
     border-bottom: 1px solid ${theme.colors.silver};
     img{
-        border-radius: 50%;
         width: 200px;
         height: 200px;
     }
@@ -74,16 +73,21 @@ export const CompanyCard = styled.div`
                     }
                 }
             }
+            .btn-container{
+                margin-top: 30px;
+                width: 100%;
+                height: 50px;
+                display: flex;
+                a{
+                    text-decoration: none;
+                }
+            }
         }
         .overview{
             width: 300px;
             .bold{
                 font: ${theme.fontStyling.text};
                 font-weight: bold;
-            }
-            .btn-container{
-                width: 100%;
-                height: 50px;
             }
         }
     }
@@ -109,5 +113,28 @@ export const Button = styled.div`
     &:hover{
         background-color: ${theme.colors.silver};
         color: ${theme.colors.alabaster};
+    }
+`;
+
+export const CardButton = styled.div`
+    margin-right: 10px;
+    width: 150px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid ${props => props.gray ? theme.colors.laPalma : theme.colors.scienceBlue};
+    background-color: ${props => props.gray ? theme.colors.laPalma : theme.colors.scienceBlue};
+    color: ${theme.colors.alabaster};
+    cursor: pointer;
+    p{
+        margin: 0;
+        font: ${theme.fontStyling.text};
+        color: inherit;
+    }
+    &:hover{
+        background-color: ${theme.colors.alabaster};
+        color: ${props => props.gray ? theme.colors.laPalma : theme.colors.scienceBlue};
     }
 `;

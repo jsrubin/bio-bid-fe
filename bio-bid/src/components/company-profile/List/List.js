@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_COMPANIES } from '../../../queries';
+import { makeStyles } from '@material-ui/core/styles';
+
 
 import CompanyCard from './CompanyCard';
 
 import { CompanyList, Button } from './styles';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+const useStyles = makeStyles((theme) => ({
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 1,
+      color: '#fff',
+    },
+  }));
 
 export default () => {        
-    const {loading, error, data} = useQuery(GET_COMPANIES);
+    const classes = useStyles();
 
-    if(loading) return <p>Loading...</p>
-    if(error) return <p>{`Error: ${error.message}`}</p>
+    const {loading, error, data} = useQuery(GET_COMPANIES);
 
     return (
         <CompanyList>
@@ -25,32 +35,11 @@ export default () => {
                     </div>
                 </div>
             </header>
-            {data.companies.map(company => {
+            <Backdrop className={classes.backdrop} open={loading}>
+                <CircularProgress color="inherit" />
+            </Backdrop>
+            {data && data.companies.map(company => {
                 return <CompanyCard company={company} key={company.id}/>
-                // if (item){
-                //     console.log("each item", item)
-                //     return (
-                //         <div>
-                //             <span>
-                //                 <h4>{item.name}</h4>
-                //                 <img src={item.logoURL}></img>
-                //             </span>
-                //             <p>{item.overview}</p>
-                //             <p>{item.website}</p>
-                //             <p>{item.linkedin}</p>
-                            
-                //             <div >
-                //                 <button>Claim this company</button>
-                //                 <button>More Info</button>
-                //                 <button>Reviews</button>
-                //             </div>
-                //         </div>
-                //     )
-                // } else {
-                //     return (
-                //         <p>Failed to load company info</p>
-                //     )
-                // }
             })}
             </CompanyList>
     )

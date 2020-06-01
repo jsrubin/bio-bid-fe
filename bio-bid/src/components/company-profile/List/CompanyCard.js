@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 import defaultLogo from '../../../images/default-company-logo.png';
 
-import { CompanyCard } from './styles';
+import { CompanyCard, CardButton } from './styles';
 
 export default ({company}) => {
     console.log(company);
@@ -20,13 +21,20 @@ export default ({company}) => {
                         <p><span>Website URL: </span>{company.website}</p>
                         <p><span>LinkedIn URL: </span>{company.website}</p>
                     </div>
+                    <div className='btn-container'>
+                        <CardButton gray> 
+                            <p>Claim</p>
+                        </CardButton>
+                        <Link to={`/service-providers/${company.id}`}>
+                            <CardButton>
+                                <p>Details</p>
+                            </CardButton>
+                        </Link>
+                    </div>
                 </div>
                 <div className='overview'>
                     <p className='bold'>Company Overview</p>
                     <p>{company.overview}</p>
-                    <div className='btn-container'>
-                        
-                    </div>
                 </div>
             </div>
         </CompanyCard>
