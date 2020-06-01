@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { GET_COMPANY_BY_ID } from '../../../queries';
-import { ADD_COMPANY } from '../../../mutations';
+import { GET_COMPANY_BY_ID, GET_REGIONS, GET_THERAPEUTICS, GET_SERVICES, GET_SPECIALTIES } from '../../../queries';
+import { ADD_COMPANY, EDIT_COMPANY } from '../../../mutations';
 import { useHistory, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -9,7 +9,7 @@ import WarningCard from './WarningCard';
 import MultipleInput from './MultipleInput';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { Body, LinkedIn, Button, Form } from './styles';
+import { Body, LinkedIn, Button, Form, HeaderError, SucceessMessage } from './styles';
 
 import scienceAsset from '../../../images/science-asset.svg';
 import defaultLogo from '../../../images/default-company-logo.png';
@@ -23,7 +23,9 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 export default (props) => {
+    // id will only be available if props.edit === true
     const { id } = useParams();
+
     const classes = useStyles();
     const history = useHistory();
 
@@ -32,12 +34,29 @@ export default (props) => {
         importWarning - Boolean state for warning type when attempting to import
         linkedInError - Boolean state based on if the linkedInUrl in the `linkedin` input field is valid
         appError - Stores any errors that exist in the Form component
+        headerError - Boolean state for whether an error should be displayed or not
+        headerErrorText - Stores the value of the error
+        headerSuccess- Boolean state for when changes are saved successfully
+        logo - The current logo image pulled in from LinkedIn/default
+        regions, therapeutics, services, specialties - State to keep track of the mapped 
+            data from the database for these properties
+        newId - When creating a new company profile, this is the new id is stored here
+        addLoading - State to determine if the mutation to add/update a company is loading
     */
     const [ open, setOpen ] = useState(false);
     const [ importWarning, setImportWarning ] = useState(false);
     const [ linkedInError, setLinkedInError] = useState(false);
     const [ appError, setAppError] = useState(null);
+    const [ headerError, setHeaderError ] = useState(false);
+    const [ headerErrorText, setHeaderErrorText ] = useState('');
+    const [ headerSuccess, setHeaderSuccess ] = useState(false);
     const [ logo, setLogo ] = useState(defaultLogo);
+    const [ regions, setRegions ] = useState(null);
+    const [ therapeutics, setTherapeutics ] = useState(null);
+    const [ services, setServices ] = useState(null);
+    const [ specialties, setSpecialties ] = useState(null);
+    const [ newId, setNewId ] = useState(null);
+    const [ addLoading, setAddLoading ] = useState(false);
 
     /*
         useQuery and useMutation
@@ -52,8 +71,22 @@ export default (props) => {
                 addCompany({ variables: {name: formData.name, imgURL: formData.imgURL} })
             
     */
-    const { loading, error, data } = useQuery(GET_COMPANY_BY_ID, { variables: { id } });
-    const [ addCompany ] = useMutation(ADD_COMPANY);
+    const { loading: companyLoading, error: companyError, data: companyData } = useQuery(GET_COMPANY_BY_ID, { 
+        variables: { id },
+        skip: props.edit === false
+    });
+    const { error: regionsError, data: regionsData } = useQuery(GET_REGIONS);
+    const { error: therapeuticsError, data: therapeuticsData } = useQuery(GET_THERAPEUTICS);
+    const { error: servicesError, data: servicesData} = useQuery(GET_SERVICES);
+    const { error: specialtiesError, data: specialtiesData } = useQuery(GET_SPECIALTIES);
+
+    const [ addCompany ] = useMutation(ADD_COMPANY, {
+        update: (proxy, result) => {
+            setNewId(result.data.createCompany.id);
+        }
+    });
+
+    const [ editCompany ] = useMutation(EDIT_COMPANY);
 
     /*
         formData
@@ -87,9 +120,6 @@ export default (props) => {
         }
     }
 
-    /*
-
-    */
     const handleCancelWarning = () => {
         setOpen(true);
     }  
@@ -115,29 +145,86 @@ export default (props) => {
         })
     }
 
-    const handleSubmit = e => {
+    /*
+        Submit event handler
+        - Handles sending the formData to backend for adding a new company
+        - Handles sending the formData to the backend for edits
+        - Checks to make sure that the name field isn't null or empty
+        - Handles loading state to display a spinner while mutations run
+    */
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log(formData);
-        // Validation here
-        // if(!formData.companySize || !formData.name){
-        //     console.log('Error');
-        // }
-        // Mutation here
-        // else{
-            addCompany({ variables: {
-                name: formData.name,
-                logoURL: formData.logoURL,
-                website: formData.website,
-                linkedin: formData.linkedin,
-                overview: formData.overview,
-                headquarters: formData.headquarters,
-                companySize: formData.companySize
-            } })
-        // }
+        if(props.edit){
+            if(!formData.name){
+                setHeaderError(true);
+                setHeaderErrorText('Missing required field: Company Name');
+                window.scrollTo(0, 0);
+            }else{
+                setHeaderError(false);
+                setHeaderErrorText('');
+                setAddLoading(true);
+                try{
+                    await editCompany({ variables: {
+                        id: id,
+                        name: formData.name,
+                        logoURL: formData.logoURL,
+                        website: formData.website,
+                        linkedin: formData.linkedin,
+                        overview: formData.overview,
+                        headquarters: formData.headquarters,
+                        companySize: formData.companySize === '' ? null : formData.companySize,
+                        regions: formData.regionsCovered,
+                        therapeutics: formData.therapeuticAreas,
+                        services: formData.services,
+                        specialties: formData.specialties
+                    }});
+                    setAddLoading(false);
+                    setHeaderSuccess(true);
+                }
+                catch(error){
+                    console.log(error);
+                    setAddLoading(false);
+                    setHeaderError(true);
+                    setHeaderErrorText('The company name already exists');
+                }
+            }
+        }else{
+            if(!formData.name){
+                setHeaderError(true);
+                setHeaderErrorText('Missing required field: Company Name');
+                window.scrollTo(0, 0);
+            }else{
+                setHeaderError(false);
+                setHeaderErrorText('');
+                setAddLoading(true);
+                try{
+                    await addCompany({ variables: {
+                        name: formData.name,
+                        logoURL: formData.logoURL,
+                        website: formData.website,
+                        linkedin: formData.linkedin,
+                        overview: formData.overview,
+                        headquarters: formData.headquarters,
+                        companySize: formData.companySize === '' ? null : formData.companySize,
+                        regions: formData.regionsCovered,
+                        therapeutics: formData.therapeuticAreas,
+                        services: formData.services,
+                        specialties: formData.specialties
+                    }});
+                    setAddLoading(false);
+                }
+                catch(error){
+                    console.log(error);
+                    setAddLoading(false);
+                    setHeaderError(true);
+                    setHeaderErrorText('The company name already exists');
+                }
+            }
+        }        
     }
 
     const handleReDirect = () => {
-        history.goBack();
+        history.push('/service-providers')
     }
 
     const validateUrl = url => {
@@ -146,17 +233,12 @@ export default (props) => {
         return false;
     }
 
-    const serviceData = [
-        {name: 'Service 1'},
-        {name: 'Service 2'},
-        {name: 'Service 3'},
-        {name: 'Service 4'},
-        {name: 'Service 5'},
-        {name: 'Service 6'}
-    ]
-
+    /*
+        Handle LinkedIn error
+        - If the url in the linkedin input field is invalid, display an error below the input field
+        - If the url is valid, the error goes away
+    */
     useEffect(() => {
-        // Handle LinkedIn Error
         if(formData.linkedin && validateUrl(formData.linkedin)){
             setLinkedInError(false);
             setAppError('');
@@ -171,35 +253,110 @@ export default (props) => {
         }
     }, [ formData.linkedin ])
 
+    /*
+        Fill in current data
+        - When editing a company profile, chances are that the profile is already filled out
+        - All current data stored with the profile in the database is filled in here to
+            display on the UI for the user
+    */
     useEffect(() => {
         if(props.edit){
-            if(data){
-                console.log(data.company);
+            if(companyData){
+                setHeaderErrorText('');
+                setHeaderError(false);
+                const regionsMapped = companyData.company.regions.map(region => ({ name: region.name }));
+                const therapeuticsMapped = companyData.company.therapeutics.map(therapeutic => ({ name: therapeutic.name }));
+                const servicesMapped = companyData.company.services.map(service => ({ name: service.name }));
+                const specialtiesMapped = companyData.company.specialties.map(specialty => ({ name: specialty.name }));
                 setFormData({
-                    name: data.company.name,
-                    logoURL: data.company.logoURL,
-                    website: data.company.website,
-                    linkedin: data.company.linkedin,
-                    overview: data.company.overview,
-                    headquarters: data.company.headquarters,
-                    companySize: data.company.companySize,
-                    services: [],
-                    specialties: [],
-                    regionsCovered: [],
-                    therapeuticAreas: []
+                    name: companyData.company.name,
+                    logoURL: companyData.company.logoURL,
+                    website: companyData.company.website,
+                    linkedin: companyData.company.linkedin,
+                    overview: companyData.company.overview,
+                    headquarters: companyData.company.headquarters,
+                    companySize: companyData.company.companySize ? companyData.company.companySize : '',
+                    regionsCovered: regionsMapped,
+                    therapeuticAreas: therapeuticsMapped,
+                    services: servicesMapped,
+                    specialties: specialtiesMapped
                 })
             }
-            if(error){
-                console.log(error);
+            if(companyError){
+                setHeaderError(true);
+                setHeaderErrorText('Error fetching previous company data');
             }
         }
-    }, [ data, error ])
+    }, [ props.edit, companyData, companyError ])
 
+    /*
+        Updating suggestive data
+        - Suggestive data is querried from backend and stored in their respective array
+        - This useEffects updates and structures the state so that it may be passed 
+            to its appropiate MultipleInput component
+        - TODO?: Display any errors in the UI for feedback to the user
+    */
+    useEffect(() => {
+        if(regionsData){
+            const mappedData = regionsData.regions.map(region => ({ name: region.name }))
+            setRegions(mappedData);
+        }
+        if(regionsError){
+            console.log(regionsError);
+        }
+
+        if(therapeuticsData){
+            const mappedData = therapeuticsData.therapeutics.map(therapeutic => ({ name: therapeutic.name }));
+            setTherapeutics(mappedData);
+        }
+        if(therapeuticsError){
+            console.log(therapeuticsError);
+        }
+
+        if(servicesData){
+            const mappedData = servicesData.services.map(service => ({ name: service.name }));
+            setServices(mappedData);
+        }
+        if(servicesError){
+            console.log(servicesError);
+        }
+
+        if(specialtiesData){
+            const mappedData = specialtiesData.specialties.map(specialty => ({ name: specialty.name }));
+            setSpecialties(mappedData);
+        }
+        if(specialtiesError){
+            console.log(specialtiesError);
+        }
+    }, [ regionsData, regionsError, therapeuticsData, therapeuticsError, servicesData, servicesError, specialtiesData, specialtiesError ]);
+
+    /*
+        Filling in logo url
+        - If there is a logo url stored in the database, overwrite the default logo
+    */
     useEffect(() => {
         if(formData.logoURL){
             setLogo(formData.logoURL);
         }
-    }, [ logo ])
+    }, [ formData.logoURL ]);
+
+    /*
+        Re-direct on successful submission
+        - When creating a new company, if an id is successfully returned, re-direct to the new company profile
+    */
+    useEffect(() => {
+        if(!props.edit && newId && !addLoading){
+            history.push(`/service-providers/${newId}`)
+        }
+    }, [ props.edit, newId, addLoading, history ])
+
+    useEffect(() => {
+        if(headerSuccess === true){
+            setTimeout(() => {
+                setHeaderSuccess(false);
+            }, 3000)
+        }
+    }, [ headerSuccess ]);
 
     return (
         <Body>
@@ -207,13 +364,21 @@ export default (props) => {
                 {importWarning ? (
                     <WarningCard close={handleWarningClose} warning='import'/>
                 ) : (
-                    <WarningCard close={handleWarningClose} warning='cancel' action={handleReDirect}/>
-
+                    <WarningCard close={handleWarningClose} warning='cancel' action={handleReDirect} data-testid='warning-card'/>
                 )}
             </Backdrop>
-            <Backdrop className={classes.backdrop} open={loading}>
+            <Backdrop className={classes.backdrop} open={companyLoading}>
                 <CircularProgress color="inherit" />
             </Backdrop>
+            <Backdrop className={classes.backdrop} open={addLoading}>
+                <CircularProgress color="inherit" />
+            </Backdrop>
+            <HeaderError display={headerError ? 1 : 0} data-testid='header-error'>
+                <p>{headerErrorText}</p>
+            </HeaderError>
+            <SucceessMessage display={headerSuccess ? 1 : 0} data-testid='header-success'>
+                <p>Changes were successfully saved</p>
+            </SucceessMessage>
             <div className='body'>
                 <div className='header-wrapper'>
                     {props.edit ? (
@@ -236,7 +401,7 @@ export default (props) => {
                     <div className='top-row'>
                         <div className='side-bar'>
                             <img src={logo} alt='company'/>
-                            <Button noMargin onClick={handleSubmit}>
+                            <Button noMargin onClick={handleSubmit} id='submit-test'>
                                 {props.edit ? (
                                     <p>Save changes</p>
                                 ) : (
@@ -251,6 +416,7 @@ export default (props) => {
                                     name='name'
                                     value={formData.name}
                                     onChange={handleUpdate}
+                                    data-testid='name'
                                 />
                             </div>
                             <div className='input-container'>
@@ -303,6 +469,7 @@ export default (props) => {
                                     onChange={handleUpdate}
                                 >
                                     <option value='' defaultValue disabled hidden>Choose company size</option>
+                                    <option value='N/A'>N/A</option>
                                     <option value='A'>A: Self Employed</option>
                                     <option value='B'>B: 1-10 Employees</option>
                                     <option value='C'>C: 11-50 Employees</option>
@@ -319,35 +486,47 @@ export default (props) => {
                     <div className='bottom-row'>
                         <div className='multi-container'>
                             <label>Regions Covered</label>
-                            <MultipleInput 
+                            {regions && (
+                                <MultipleInput 
                                 name='regionsCovered' 
-                                suggestions={undefined} 
+                                suggestions={regions} 
+                                preview={formData.regionsCovered}
                                 handleMultiUpdate={handleMultiUpdate}
                             />
+                            )}
                         </div>
                         <div className='multi-container'>
                             <label>Therapeutic Areas</label>
-                            <MultipleInput 
+                            {therapeutics && (
+                                <MultipleInput 
                                 name='therapeuticAreas' 
-                                suggestions={undefined} 
+                                suggestions={therapeutics} 
+                                preview={formData.therapeuticAreas}
                                 handleMultiUpdate={handleMultiUpdate}
                             />
+                            )}
                         </div>
                         <div className='multi-container'>
                             <label>Services</label>
-                            <MultipleInput 
+                            {services && (
+                                <MultipleInput 
                                 name='services' 
-                                suggestions={serviceData} 
+                                suggestions={services} 
+                                preview={formData.services}
                                 handleMultiUpdate={handleMultiUpdate}
                             />
+                            )}
                         </div>
                         <div className='multi-container'>
                             <label>Specialties</label>
-                            <MultipleInput 
+                            {specialties && (
+                                <MultipleInput 
                                 name='specialties' 
-                                suggestions={undefined} 
+                                suggestions={specialties}
+                                preview={formData.specialties} 
                                 handleMultiUpdate={handleMultiUpdate}
                             />
+                            )}
                         </div>
                     </div>
                     <img className='background-asset' src={scienceAsset} alt=''/>

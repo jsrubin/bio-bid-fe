@@ -5,8 +5,12 @@ import { LinkedinSquare } from '@styled-icons/boxicons-logos'
 export const Body= styled.div`
     display: flex;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
     .body{
         margin: 0 auto;
+        margin-top: 30px;
         width: 90%;
         .header-wrapper{
             margin-top: 50px;
@@ -29,6 +33,36 @@ export const Body= styled.div`
             height: 1px;
             background-color: ${theme.colors.scienceBlue};
         }
+    }
+`;
+
+export const HeaderError = styled.div`
+    display: ${props => props.display ? 'flex' : 'none'};
+    position: absolute;
+    height: 50px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: ${theme.colors.torchRead};
+    p{
+        font: ${theme.fontStyling.text};
+        margin: 0;
+        color: ${theme.colors.alabaster};
+    }
+`;
+
+export const SucceessMessage = styled.div`
+    display: ${props => props.display ? 'flex' : 'none'};
+    position: absolute;
+    height: 50px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: ${theme.colors.laPalma};
+    p{
+        font: ${theme.fontStyling.text};
+        margin: 0;
+        color: ${theme.colors.alabaster};
     }
 `;
 
@@ -95,7 +129,6 @@ export const Form = styled.div`
             height: 280px;
             padding: 0;
             margin-left: 50px;
-            margin-top: 50px;
             .error{
                 color: red;
                 margin: 0;
