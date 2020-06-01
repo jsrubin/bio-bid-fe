@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom';
 import Bids from './components/bids';
 import Form from './components/company-profile/Form/Form';
 import Companypage from './components/company-profiles-page/companyPage';
-import List from './components/company-index/list';
+import List from './components/company-profile/List/List';
 
 function App() {
   return (
