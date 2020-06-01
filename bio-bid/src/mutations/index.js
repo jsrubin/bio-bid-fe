@@ -1,9 +1,9 @@
 import { gql } from 'apollo-boost';
 
 export const DELETE_COMPANY = gql`
-  mutation deleteCompany($name: String!) {
-    deleteCompany(name: $name) {
-      name
+  mutation deleteCompany($id: ID!) {
+    deleteCompany(id: $id){
+      id
     }
   }
 `;

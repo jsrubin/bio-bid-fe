@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { Card, CardBody, CardTitle, CardText, CardImg, CardLink, CardDeck, Button, ButtonGroup } from 'reactstrap';
+import React from 'react';
+import { Card, CardBody, CardTitle, CardImg, CardLink, CardDeck, Button, ButtonGroup } from 'reactstrap';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
-
-import { BrowserRouter, Route, Link } from 'react-router-dom';
-
+import { useParams, useHistory } from 'react-router-dom';
 import { GET_COMPANY_BY_ID } from '../../queries/index';
-import { DELETE_COMPANY } from '../../mutations/index';
-import { specifiedScalarTypes } from 'graphql';
 
-export default (props) => {
+import { Link } from 'react-router-dom';
+
+import { DELETE_COMPANY } from '../../mutations/index';
+
+export default () => {
   const { id } = useParams();
+  const history = useHistory();
 
   const { loading, error, data } = useQuery(GET_COMPANY_BY_ID, {
     variables: { id },
   });
-  if (loading) return <h3>Loading...</h3>;
-  if (error) return <p>Error</p>;
 
   console.log(data);
 
@@ -27,9 +25,27 @@ export default (props) => {
 
   const [deleteCompany] = useMutation(DELETE_COMPANY);
 
+  const handleDelete = async() => {
+    try{
+      await deleteCompany({ variables: { id } });
+      history.push('/service-providers')
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
+
   return (
     <div className="div">
-      <Container>
+      {data && (
+        <CardContainer>
+        <nav className="user-cp">
+          <h1 style={{ fontSize: '30px', display: 'flex', alignItems: 'center' }}>{data&&data.company.name}</h1>
+        </nav>
+      </CardContainer>
+      )}
+      {data && (
+        <Container>
         <CardDeck>
           {/* card with image  */}
           <div className="cardonediv">
@@ -58,24 +74,28 @@ export default (props) => {
                 </CardTitle>
                 <CardTitle>
                   {' '}
-                  <h3>Company Size: </h3> {data.company.companySize}
+                  <h3>Company Size: </h3> 
+                  <p>{data.company.companySize}</p>
                 </CardTitle>
-                <CardText>
+                <div>
                   {' '}
-                  <h3>Company Overview:</h3> <p> {data.company.overview}</p>
-                </CardText>
+                  <h3>Company Overview:</h3> 
+                  <p> {data.company.overview}</p>
+                </div>
                 {/* edit delete and claim buttons */}
 
                 <ButtonGroup className="buttons">
                   <Button style={{ backgroundColor: '#389E0D' }} onClick={sayHello}>
                     Claim
                   </Button>{' '}
-                  <Button style={{ backgroundColor: '#BFBFBF' }}>
-                    <Link to="/service-providers/edit/:id">Edit</Link>
-                  </Button>
+                  <Link to={`/service-providers/edit/${id}`}>
+                    <Button style={{ backgroundColor: '#BFBFBF' }}>
+                      Edit
+                    </Button>
+                  </Link>
                   <Button
                     style={{ backgroundColor: '#F5222D' }}
-                    onClick={() => deleteCompany({ variables: { name: data.company.name } })}>
+                    onClick={handleDelete}>
                     Delete
                   </Button>{' '}
                 </ButtonGroup>
@@ -87,7 +107,7 @@ export default (props) => {
 
           <Card className="cardTWO">
             <CardBody className="cardtwobody">
-              <CardText>
+              <div>
                 {' '}
                 <h3>Services:</h3>{' '}
                 <ul>
@@ -95,15 +115,15 @@ export default (props) => {
                     <li>{service.name}</li>
                   ))}
                 </ul>
-              </CardText>
-              <CardText>
+              </div>
+              <div>
                 {' '}
                 <h3>Specialties:</h3>{' '}
                 {data.company.specialties.map((specialty) => (
                   <li> {specialty.name} </li>
                 ))}
-              </CardText>
-              <CardText>
+              </div>
+              <div>
                 <div>
                   {' '}
                   <h3>Regions Covered:</h3>{' '}
@@ -111,15 +131,15 @@ export default (props) => {
                     <li>{region.name}</li>
                   ))}
                 </div>
-              </CardText>
+              </div>
 
-              <CardText>
+              <div>
                 {' '}
                 <h3>Therapeutic Areas:</h3>{' '}
                 {data.company.therapeutics.map((therapeutic) => (
                   <li>{therapeutic.name}</li>
                 ))}
-              </CardText>
+              </div>
             </CardBody>
           </Card>
           <Card className="cardthreebody">
@@ -132,6 +152,7 @@ export default (props) => {
           </Card>
         </CardDeck>
       </Container>
+      )}
     </div>
   );
 };
@@ -199,5 +220,33 @@ const Container = styled.header`
   }
   .cardthreebody {
     max-width: 40rem;
+  }
+`;
+
+const CardContainer = styled.div`
+  width: 100%;
+  height: 6rem;
+  background: #0050b3;
+
+  display: flex;
+
+  /* navigation / user cp styling */
+  nav.user-cp {
+    display: flex;
+    letter-spacing: 0.1rem;
+    margin-left: 3rem;
+    color: #ffffff;
+    font-family: Lato;
+    font-style: normal;
+  }
+
+  /* nav bar hero text */
+  nav.user-text {
+    display: flex;
+    margin-left: 10rem;
+    letter-spacing: 0.1rem;
+    margin-top: 0.3rem;
+    color: #ffffff;
+    font-family: Lato;
   }
 `;

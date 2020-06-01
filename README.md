@@ -1,6 +1,6 @@
 # Bio-Bid
 
-You can find the deployed project at bio-bid.herokuapp.com.
+You can find the deployed project at https://biobidlabs.com/.
 
 ## Contributors
 [Alston Garrett](https://github.com/Neytoro) 

@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 // Component Imports
 import Bids from './components/bids';
 import Form from './components/company-profile/Form/Form';
-import Companypage from './components/company-profiles-page/companyPage';
+import Companypage from './components/company-profiles-page/imagecard';
 import List from './components/company-profile/List/List';
 
 function App() {
@@ -16,11 +16,11 @@ function App() {
       <Route exact path="/service-providers">
         <List/>
       </Route>
-      <Route exact path="/service-providers/:id">
-        <Companypage />
-      </Route>
       <Route exact path="/service-providers/add">
         <Form edit={false} />
+      </Route>
+      <Route exact path="/service-providers/:id">
+        <Companypage />
       </Route>
       <Route path="/service-providers/edit/:id">
         <Form edit={true} />
