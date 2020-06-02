@@ -18,7 +18,7 @@ export default ({company}) => {
                     <h3>{company.name}</h3>
                     <div className='details'>
                         {company.website && <p><span>Website URL: </span>{company.website}</p>}
-                        {company.linkedin && <p><span>LinkedIn URL: </span>{company.website}</p>}
+                        {company.linkedin && <p><span>LinkedIn URL: </span>{company.linkedin}</p>}
                     </div>
                     <div className='btn-container'>
                         <CardButton gray> 
