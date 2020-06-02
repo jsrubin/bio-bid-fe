@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_COMPANIES } from '../../../queries';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from 'react-router-dom';
 
 
 import CompanyCard from './CompanyCard';
@@ -19,11 +20,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default () => {        
     const classes = useStyles();
+    const history = useHistory();
 
     const [ companyData, setCompanyData ] = useState(null);
     const [ search, setSearch ] = useState('');
 
-    const {loading, data} = useQuery(GET_COMPANIES);
+    const { loading, data, refetch } = useQuery(GET_COMPANIES);
 
     const handleChange = e => {
         setSearch(e.target.value);
@@ -37,9 +39,17 @@ export default () => {
         }
     }
 
+    const handleReDirect = () => {
+        history.push('/service-providers/add');
+    }
+
     useEffect(() => {
         setCompanyData(data);
     }, [data]);
+
+    useEffect(() => {
+        refetch();
+    }, [])
 
     return (
         <CompanyList>
@@ -54,6 +64,9 @@ export default () => {
                         />
                         <Button onClick={handleSearch}>
                             <p>Search</p>
+                        </Button>
+                        <Button onClick={handleReDirect}>
+                            <p>Add Company</p>
                         </Button>
                     </div>
                 </div>

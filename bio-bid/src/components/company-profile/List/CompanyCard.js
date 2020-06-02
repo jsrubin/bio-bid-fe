@@ -17,8 +17,8 @@ export default ({company}) => {
                 <div className='text'>
                     <h3>{company.name}</h3>
                     <div className='details'>
-                        <p><span>Website URL: </span>{company.website}</p>
-                        <p><span>LinkedIn URL: </span>{company.website}</p>
+                        {company.website && <p><span>Website URL: </span>{company.website}</p>}
+                        {company.linkedin && <p><span>LinkedIn URL: </span>{company.website}</p>}
                     </div>
                     <div className='btn-container'>
                         <CardButton gray> 
@@ -32,7 +32,7 @@ export default ({company}) => {
                     </div>
                 </div>
                 <div className='overview'>
-                    <p className='bold'>Company Overview</p>
+                    {company.overview && <p className='bold'>Company Overview</p>}
                     <p>{company.overview}</p>
                 </div>
             </div>

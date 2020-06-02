@@ -224,7 +224,11 @@ export default (props) => {
     }
 
     const handleReDirect = () => {
-        history.push('/service-providers')
+        if(props.edit){
+            history.push(`/service-providers/${id}`);
+        }else{
+            history.push('/service-providers')
+        }
     }
 
     const validateUrl = url => {
