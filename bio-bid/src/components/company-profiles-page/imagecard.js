@@ -46,10 +46,6 @@ export default () => {
                 style={{
                   backgroundColor: '#FFFFFF',
                   color: ' #0050b3',
-                  display: 'flex',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
                 }}>
                 {' '}
                 Back
@@ -120,11 +116,9 @@ export default () => {
                 <div>
                   {' '}
                   <h3>Services:</h3>{' '}
-                  <ul>
-                    {data.company.services.map((service) => (
-                      <li>{service.name}</li>
-                    ))}
-                  </ul>
+                  {data.company.services.map((service) => (
+                    <li> {service.name}</li>
+                  ))}
                 </div>
                 <div>
                   {' '}
