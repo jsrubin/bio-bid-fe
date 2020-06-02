@@ -15,15 +15,12 @@ You can find the deployed project at https://biobidlabs.com/.
 <br>
 <br>
 
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
-
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![Maintainability](https://api.codeclimate.com/v1/badges/5172c7cb7e3b192f2a43/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/bio-bid-fe/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/5172c7cb7e3b192f2a43/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/bio-bid-fe/test_coverage)
 
-🚫 more info on using badges [here](https://github.com/badges/shields)
 
 ## Project Overview
 
@@ -37,7 +34,7 @@ You can find the deployed project at https://biobidlabs.com/.
 
 Connecting clinical trial sponsors to the right services providers for their needs.
 
-### 4️⃣ Key Features
+### Key Features
 
 - Dashboard for all users with a searchable table.
 - Profile page with a description of what they offer, link to their site, picture or logo.
@@ -83,8 +80,6 @@ Dependencies:
 - PostGres
 - Jest & Babel (Testing)
 
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
-
 # APIs
 
 ## 2️⃣ Authentication API here
@@ -92,12 +87,6 @@ Dependencies:
 🚫Replace text below with a description of the API
 
 Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
-
-## 2️⃣ Payment API here
-
-🚫Replace text below with a description of the API
-
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
 
 # Environment Variables
 
@@ -122,12 +111,10 @@ In order for the app to function correctly, the user must set up their own envir
 
 ## Other Scripts
 
-🚫replace these examples with your own
-
-    * typecheck - runs the TypeScript compiler
     * build - creates a build of the application
     * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+    * test - runs tests in **tests** directory 
+    * eject - copy the configuration files and dependencies into the project so you have full control over them
 
 # Contributing
 
