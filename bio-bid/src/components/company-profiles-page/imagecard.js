@@ -23,135 +23,145 @@ export default () => {
     alert('The Company Has Been Claimed Successfully');
   }
 
-  const [ deleteCompany ] = useMutation(DELETE_COMPANY);
+  const [deleteCompany] = useMutation(DELETE_COMPANY);
 
-  const handleDelete = async() => {
-    try{
+  const handleDelete = async () => {
+    try {
       await deleteCompany({ variables: { id } });
       history.push('/service-providers');
-    }
-    catch(err){
+    } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   return (
     <div className="div">
       {data && (
         <CardContainer>
-        <nav className="user-cp">
-          <h1 style={{ fontSize: '30px', display: 'flex', alignItems: 'center' }}>{data&&data.company.name}</h1>
-        </nav>
-      </CardContainer>
-      )}
+          <nav className="user-cp">
+            <h1 style={{ fontSize: '30px', display: 'flex', alignItems: 'center' }}>{data && data.company.name}</h1>{' '}
+            <Link to={`/service-providers`}>
+              <Button
+                className="backbutton "
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  color: ' #0050b3',
+                  display: 'flex',
+                  alignSelf: 'center',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                {' '}
+                Back
+              </Button>
+            </Link>
+          </nav>{' '}
+        </CardContainer>
+      )}{' '}
       {data && (
         <Container>
-        <CardDeck>
-          {/* card with image  */}
-          <div className="cardonediv">
-            <Card className="card">
-              <CardImg className="portfolioimage" src={data.company.logoURL} alt="Company Image" />
+          <CardDeck>
+            {/* card with image  */}
+            <div className="cardonediv">
+              <Card className="card">
+                <CardImg className="portfolioimage" src={data.company.logoURL} alt="Company Image" />
 
-              <CardBody className="cardbody">
-                <CardTitle>
-                  {' '}
-                  <h3>Company Name:</h3> <p>{data.company.name} </p>
-                </CardTitle>
+                <CardBody className="cardbody">
+                  <CardTitle>
+                    {' '}
+                    <h3>Company Name:</h3> <p>{data.company.name} </p>
+                  </CardTitle>
 
-                <CardTitle>
-                  {' '}
-                  <h3>Website:</h3>
-                  <CardLink href={data.company.website}> Click Here</CardLink>
-                </CardTitle>
-                <CardTitle>
-                  {' '}
-                  <h3>Linkedin:</h3>
-                  <CardLink href={data.company.linkedin}> Click Here</CardLink>
-                </CardTitle>
-                <CardTitle>
-                  {' '}
-                  <h3>Headquarters: </h3> <p>{data.company.headquarters}</p>
-                </CardTitle>
-                <CardTitle>
-                  {' '}
-                  <h3>Company Size: </h3> 
-                  <p>{data.company.companySize}</p>
-                </CardTitle>
+                  <CardTitle>
+                    {' '}
+                    <h3>Website:</h3>
+                    <CardLink href={data.company.website}> Click Here</CardLink>
+                  </CardTitle>
+                  <CardTitle>
+                    {' '}
+                    <h3>Linkedin:</h3>
+                    <CardLink href={data.company.linkedin}> Click Here</CardLink>
+                  </CardTitle>
+                  <CardTitle>
+                    {' '}
+                    <h3>Headquarters: </h3> <p>{data.company.headquarters}</p>
+                  </CardTitle>
+                  <CardTitle>
+                    {' '}
+                    <h3>Company Size: </h3>
+                    <p>{data.company.companySize}</p>
+                  </CardTitle>
+                  <div>
+                    {' '}
+                    <h3>Company Overview:</h3>
+                    <p> {data.company.overview}</p>
+                  </div>
+                  {/* edit delete and claim buttons */}
+
+                  <ButtonGroup className="buttons">
+                    <Button style={{ backgroundColor: '#389E0D' }} onClick={sayHello}>
+                      Claim
+                    </Button>{' '}
+                    <Link to={`/service-providers/edit/${id}`}>
+                      <Button style={{ backgroundColor: '#BFBFBF' }}>Edit</Button>
+                    </Link>
+                    <Button style={{ backgroundColor: '#F5222D' }} onClick={handleDelete}>
+                      Delete
+                    </Button>{' '}
+                  </ButtonGroup>
+                </CardBody>
+              </Card>
+            </div>
+
+            {/* card with services, specialties/ regions covered etc. */}
+
+            <Card className="cardTWO">
+              <CardBody className="cardtwobody">
                 <div>
                   {' '}
-                  <h3>Company Overview:</h3> 
-                  <p> {data.company.overview}</p>
+                  <h3>Services:</h3>{' '}
+                  <ul>
+                    {data.company.services.map((service) => (
+                      <li>{service.name}</li>
+                    ))}
+                  </ul>
                 </div>
-                {/* edit delete and claim buttons */}
+                <div>
+                  {' '}
+                  <h3>Specialties:</h3>{' '}
+                  {data.company.specialties.map((specialty) => (
+                    <li> {specialty.name} </li>
+                  ))}
+                </div>
+                <div>
+                  <div>
+                    {' '}
+                    <h3>Regions Covered:</h3>{' '}
+                    {data.company.regions.map((region) => (
+                      <li>{region.name}</li>
+                    ))}
+                  </div>
+                </div>
 
-                <ButtonGroup className="buttons">
-                  <Button style={{ backgroundColor: '#389E0D' }} onClick={sayHello}>
-                    Claim
-                  </Button>{' '}
-                  <Link to={`/service-providers/edit/${id}`}>
-                    <Button style={{ backgroundColor: '#BFBFBF' }}>
-                      Edit
-                    </Button>
-                  </Link>
-                  <Button
-                    style={{ backgroundColor: '#F5222D' }}
-                    onClick={handleDelete}>
-                    Delete
-                  </Button>{' '}
-                </ButtonGroup>
+                <div>
+                  {' '}
+                  <h3>Therapeutic Areas:</h3>{' '}
+                  {data.company.therapeutics.map((therapeutic) => (
+                    <li>{therapeutic.name}</li>
+                  ))}
+                </div>
               </CardBody>
             </Card>
-          </div>
-
-          {/* card with services, specialties/ regions covered etc. */}
-
-          <Card className="cardTWO">
-            <CardBody className="cardtwobody">
-              <div>
-                {' '}
-                <h3>Services:</h3>{' '}
-                <ul>
-                  {data.company.services.map((service) => (
-                    <li>{service.name}</li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                {' '}
-                <h3>Specialties:</h3>{' '}
-                {data.company.specialties.map((specialty) => (
-                  <li> {specialty.name} </li>
-                ))}
-              </div>
-              <div>
-                <div>
+            <Card className="cardthreebody">
+              <CardBody>
+                <CardTitle>
                   {' '}
-                  <h3>Regions Covered:</h3>{' '}
-                  {data.company.regions.map((region) => (
-                    <li>{region.name}</li>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                {' '}
-                <h3>Therapeutic Areas:</h3>{' '}
-                {data.company.therapeutics.map((therapeutic) => (
-                  <li>{therapeutic.name}</li>
-                ))}
-              </div>
-            </CardBody>
-          </Card>
-          <Card className="cardthreebody">
-            <CardBody>
-              <CardTitle>
-                {' '}
-                <h1 style={{ color: '#0050b3', fontSize: '1.9rem' }}>Future Company Rating ... </h1>
-              </CardTitle>
-            </CardBody>
-          </Card>
-        </CardDeck>
-      </Container>
+                  <h1 style={{ color: '#0050b3', fontSize: '1.9rem' }}>Future Company Rating ... </h1>
+                </CardTitle>
+              </CardBody>
+            </Card>
+          </CardDeck>
+        </Container>
       )}
     </div>
   );
@@ -248,5 +258,15 @@ const CardContainer = styled.div`
     margin-top: 0.3rem;
     color: #ffffff;
     font-family: Lato;
+  }
+  .backbutton {
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    margin-top: 1.75rem;
+    height: 2.3rem;
+    margin-left: 80rem;
   }
 `;
