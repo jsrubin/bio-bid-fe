@@ -57,16 +57,15 @@
     ]
   },
   "devDependencies": {},
-  "jest": {
-    "collectCoverageFrom": [
-      "**/*.{js,jsx}",
-      "!**/node_modules/**",
-      "!**/vendor/**",
-      "!**/database/**",
-      "!**/tests/**",
-      "!**/spec/**",
-      "!**/*.spec.{js,jsx}",
-      "!**/coverage/**"
-    ]
-  }
+  "collectCoverageFrom": [
+    "**/*.{js,jsx}",
+    "!**/node_modules/**",
+    "!**/vendor/**",
+    "!**/database/**",
+    "!**/tests/**",
+    "!**/spec/**",
+    "!**/*.spec.{js,jsx}",
+    "!**/coverage/**"
+  ]
+  
 }
