@@ -23,12 +23,12 @@ export default () => {
     alert('The Company Has Been Claimed Successfully');
   }
 
-  const [deleteCompany] = useMutation(DELETE_COMPANY);
+  const [ deleteCompany ] = useMutation(DELETE_COMPANY);
 
   const handleDelete = async() => {
     try{
       await deleteCompany({ variables: { id } });
-      history.push('/service-providers')
+      history.push('/service-providers');
     }
     catch(err){
       console.log(err);
