@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import defaultLogo from '../../../images/default-company-logo.png';
@@ -6,6 +6,22 @@ import defaultLogo from '../../../images/default-company-logo.png';
 import { CompanyCard, CardButton } from './styles';
 
 export default ({company}) => {
+    const [ overview, setOverview ] = useState('');
+    const [ tooLong, setTooLong ] = useState(false);
+
+    const formatOverview = () => {
+        if(company.overview.length >= 300){
+            setOverview(`${company.overview.substring(0, 300)}...`);
+            setTooLong(true);
+        }else{
+            setOverview(company.overview);
+        }
+    }
+
+    useEffect(() => {
+        formatOverview();
+    }, []);
+
     return (
         <CompanyCard>
             {company.logoURL ? (
@@ -33,7 +49,7 @@ export default ({company}) => {
                 </div>
                 <div className='overview'>
                     {company.overview && <p className='bold'>Company Overview</p>}
-                    <p>{company.overview}</p>
+                    <p>{overview} {tooLong && <Link to={`/service-providers/${company.id}`}> see more </Link>}</p>
                 </div>
             </div>
         </CompanyCard>
