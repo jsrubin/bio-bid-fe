@@ -12,7 +12,7 @@ import Bubble from './Bubble';
 
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { Details, Button, Website, LinkedIn } from './styles';
+import { Details, Button, Website, LinkedIn, Size, Location } from './styles';
 import logo from '../../../images/default-company-logo.png';
 
 const useStyles = makeStyles((theme) => ({
@@ -27,7 +27,9 @@ export default () => {
   const { id } = useParams();
   const history = useHistory();
 
-  const { loading, error, data, refetch } = useQuery(GET_COMPANY_BY_ID, {
+  const [ size, setSize ] = useState(undefined);
+
+  const { loading, data, refetch } = useQuery(GET_COMPANY_BY_ID, {
     variables: { id }
   })
 
@@ -45,7 +47,40 @@ export default () => {
 
   useEffect(() => {
     refetch();
-  }, [])
+    if(data && data.company.companySize){
+      switch(data.company.companySize){
+        case 'A':
+          setSize('Self-Employed');
+          break;
+        case 'B':
+          setSize('1-10 Employees');
+          break;
+        case 'C':
+          setSize('11-50 Employees');
+          break;
+        case 'D':
+          setSize('51-200 Employees');
+          break;
+        case 'E':
+          setSize('201-500 Employees');
+          break;
+        case 'F':
+        setSize('501-1,000 Employees');
+          break;
+        case 'G':
+          setSize('1,000-5,000 Employees');
+          break;
+        case 'H':
+          setSize('5,001-10,000 Employees');
+          break;
+        case 'I':
+          setSize('10,000+ Employees');
+          break;
+        default:
+          setSize('N/A')
+      }
+    }
+  }, [ data, refetch ]);
 
   return(
     <Details>
@@ -87,41 +122,63 @@ export default () => {
           <div className='basic-container'>
             <div className='basic-sidebar'>
               {data.company.logoURL ? (
-                <img src={data.company.logoURL}/>
+                <img src={data.company.logoURL} alt='Company logo'/>
               ) : (
-                <img src={logo}/>
+                <img src={logo} alt='Default Company Logo'/>
               )}
               <div className='nav-container'>
-                {data.company.website && (
                   <div className='link'>
                     <Website/>
-                    <a target='_blank' rel='noopener noreferrer' href={`https://${data.company.website}`}>{data.company.website}</a>
+                    {data.company.website ? (
+                      <a 
+                        target='_blank' 
+                        rel='noopener noreferrer' 
+                        href={`https://${data.company.website}`}>{data.company.website}
+                      </a>
+                    ) : (
+                      <p>N/A</p>
+                    )}
                   </div>
-                )}
-                {data.company.linkedin && (
-                  <div className='link'>
-                    <LinkedIn/>
-                    <a target='_blank' rel='noopener noreferrer' href={`https://${data.company.linkedin}`}>{data.company.linkedin}</a>
-                  </div>
-                )}
+                <div className='link'>
+                  <LinkedIn/>
+                  {data.company.linkedin ? (
+                    <a 
+                      target='_blank' 
+                      rel='noopener noreferrer' 
+                      href={`https://${data.company.linkedin}`}>{data.company.linkedin}
+                    </a>
+                  ) : (
+                    <p>N/A</p>
+                  )}
+                </div>
+              </div>
+              <div className='basic-info'>
+                <div className='info'>
+                  <Size alt='Company Size'/>
+                  <p>{size ? size : 'N/A'}</p>
+                </div>
+                <div className='info'>
+                  <Location/>
+                  <p>{data.company.headquarters ? data.company.headquarters : 'N/A'}</p>
+                </div>
               </div>
               <div className='overview'>
                 <h3>Overview</h3>
-                <p>{data.company.overview}</p>
+                <p>{data.company.overview ? data.company.overview : 'N/A'}</p>
               </div>
             </div>
             <div className='specifics'>
               <div className='regions'>
                 <h3>Regions</h3>
                   {data.company.regions.map(region => {
-                    return <Bubble content={region.name}/>
+                    return <Bubble key={Math.random()} content={region.name}/>
                   })}
               </div>  
               <div className='bar'/>
               <div className='therapeutic-areas'>
                 <h3>Therapeutic Areas</h3>
                 {data.company.therapeutics.map(therapeutic => {
-                  return <Bubble content={therapeutic.name}/>
+                  return <Bubble key={Math.random()} content={therapeutic.name}/>
                 })}
               </div>
               <div className='bar'/>

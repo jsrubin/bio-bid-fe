@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import theme from '../../../theme';
 import { Web } from '@styled-icons/foundation';
 import { LinkedinSquare } from '@styled-icons/boxicons-logos';
+import { People } from '@styled-icons/evaicons-solid';
+import { LocationPin } from '@styled-icons/entypo';
 
 export const Details = styled.section`
     header{
@@ -62,7 +64,19 @@ export const Details = styled.section`
                         display: flex;
                         width: 250px;
                         align-items: center;
-                        
+                        p{
+                            margin: 0;
+                        }
+                    }
+                }
+                .basic-info{
+                    width: 300px;
+                    .info{
+                        display: flex;
+                        align-items: center;
+                        p{
+                            margin: 0;
+                        }
                     }
                 }
                 .overview{
@@ -82,6 +96,7 @@ export const Details = styled.section`
             }
             .specifics{
                 width: 40%;
+                margin: 0 20px;
                 height: 100%;
                 margin-top: 50px;
                 background-color: ${theme.colors.alabaster};
@@ -96,17 +111,18 @@ export const Details = styled.section`
                 .bar{
                     height: 1px;
                     background-color: ${theme.colors.silver};
-                    width: 350px;
+                    width: 80%;
                     margin: 10px 0;
                 }
                 .regions{
-                    width: 350px;
+                    margin-top: 30px;
+                    width: 80%;
                 }
                 .therapeutic-areas{
-                    width: 350px;
+                    width: 80%;
                 }
                 .services{
-                    width: 350px;
+                    width: 80%;
                 }
             }
             .reviews{
@@ -118,7 +134,7 @@ export const Details = styled.section`
                 display: flex;
                 flex-direction: column;
                 h3{
-                    margin: 10px 25px;
+                    margin: 30px 25px;
                     font: ${theme.fontStyling.header3};
                 }
             }
@@ -165,6 +181,18 @@ export const Website = styled(Web)`
 `;
 
 export const LinkedIn = styled(LinkedinSquare)`
+    width: 30px;
+    color: ${theme.colors.mineShaft};
+    margin-right: 5px;
+`;
+
+export const Size = styled(People)`
+    width: 30px;
+    color: ${theme.colors.mineShaft};
+    margin-right: 5px;
+`;
+
+export const Location = styled(LocationPin)`
     width: 30px;
     color: ${theme.colors.mineShaft};
     margin-right: 5px;

@@ -9,18 +9,14 @@ export default ({company}) => {
     const [ overview, setOverview ] = useState('');
     const [ tooLong, setTooLong ] = useState(false);
 
-    const formatOverview = () => {
+    useEffect(() => {
         if(company.overview.length >= 300){
             setOverview(`${company.overview.substring(0, 300)}...`);
             setTooLong(true);
         }else{
             setOverview(company.overview);
         }
-    }
-
-    useEffect(() => {
-        formatOverview();
-    }, []);
+    }, [ company.overview ]);
 
     return (
         <CompanyCard>

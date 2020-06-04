@@ -49,7 +49,7 @@ export default () => {
 
     useEffect(() => {
         refetch();
-    }, [])
+    }, [ refetch ]);
 
     return (
         <CompanyList>
