@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
       zIndex: theme.zIndex.drawer + 1,
       color: '#fff',
     },
-  }));
+}));
 
 export default () => {        
     const classes = useStyles();
@@ -40,7 +40,7 @@ export default () => {
     }
 
     const handleReDirect = () => {
-        history.push('/service-providers/add');
+        history.push('/service-provider/add');
     }
 
     useEffect(() => {
@@ -49,7 +49,7 @@ export default () => {
 
     useEffect(() => {
         refetch();
-    }, [])
+    }, [ refetch ]);
 
     return (
         <CompanyList>

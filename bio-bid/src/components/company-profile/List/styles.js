@@ -84,10 +84,16 @@ export const CompanyCard = styled.div`
             }
         }
         .overview{
-            width: 300px;
+            width: 400px;
             .bold{
                 font: ${theme.fontStyling.text};
                 font-weight: bold;
+            }
+            p{
+                font: ${theme.fontStyling.text};
+                a{
+                    color: ${theme.colors.scienceBlue};
+                }
             }
         }
     }
@@ -111,15 +117,14 @@ export const Button = styled.div`
         color: inherit;
     }
     &:hover{
-        background-color: ${theme.colors.silver};
-        color: ${theme.colors.alabaster};
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     }
 `;
 
 export const CardButton = styled.div`
     margin-right: 10px;
-    width: 150px;
-    height: 40px;
+    width: 120px;
+    height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
