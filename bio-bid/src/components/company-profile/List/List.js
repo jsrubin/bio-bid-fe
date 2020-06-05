@@ -3,10 +3,8 @@ import { useQuery } from '@apollo/react-hooks';
 import { GET_COMPANIES } from '../../../queries';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
-
-
+import Login from '../../Login/Login.js'
 import CompanyCard from './CompanyCard';
-
 import { CompanyList, Button } from './styles';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -18,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export default () => {        
+export default (props) => {        
     const classes = useStyles();
     const history = useHistory();
 
@@ -68,6 +66,8 @@ export default () => {
                         <Button onClick={handleReDirect}>
                             <p>Add Company</p>
                         </Button>
+                        {/* implement login here */}
+                        <Login component={Login}/>
                     </div>
                 </div>
             </header>
