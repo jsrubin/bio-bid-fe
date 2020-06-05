@@ -1,20 +1,20 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
+import React from "react";
+import { Route } from "react-router-dom";
 
 // Component Imports
-import Bids from './components/bids';
-import Form from './components/company-profile/Form/Form';
-import Companypage from './components/company-profiles-page/imagecard';
-import List from './components/company-profile/List/List';
+import Bids from "./components/bids";
+import Form from "./components/company-profile/Form/Form";
+import Companypage from "./components/company-profiles-page/imagecard";
+import List from "./components/company-profile/List/List";
 
 function App() {
   return (
-    <div className='App'>
+    <div className="App">
       <Route path="/bids">
         <Bids />
       </Route>
       <Route exact path="/service-providers">
-        <List/>
+        <List />
       </Route>
       <Route exact path="/service-providers/add">
         <Form edit={false} />
