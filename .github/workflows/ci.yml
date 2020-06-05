@@ -4,7 +4,6 @@ jobs:
   coverage:
     name: Test and publish test coverage
     runs-on: ubuntu-latest
-    working-directory: bio-bid
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
