@@ -4,11 +4,13 @@ jobs:
   coverage:
     name: Test and publish test coverage
     runs-on: ubuntu-latest
+    working-directory: bio-bid
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
         with:
           node-version: '12'
+      - run: cd bio-bid
       - run: npm install
       - uses: paambaati/codeclimate-action@v2.4.0
         env:
