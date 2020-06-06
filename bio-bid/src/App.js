@@ -2,10 +2,10 @@ import React from "react";
 import { Route } from "react-router-dom";
 
 // Component Imports
-import Bids from "./components/bids";
-import Form from "./components/company-profile/Form/Form";
-import Companypage from "./components/company-profiles-page/imagecard";
-import List from "./components/company-profile/List/List";
+import Bids from './components/bids';
+import Form from './components/company-profile/Form/Form';
+import Details from './components/company-profile/Details/Details';
+import List from './components/company-profile/List/List';
 
 function App() {
   return (
@@ -16,13 +16,13 @@ function App() {
       <Route exact path="/service-providers">
         <List />
       </Route>
-      <Route exact path="/service-providers/add">
+      <Route path="/service-provider/add">
         <Form edit={false} />
       </Route>
-      <Route exact path="/service-providers/:id">
-        <Companypage />
+      <Route path="/service-providers/:id">
+        <Details />
       </Route>
-      <Route path="/service-providers/edit/:id">
+      <Route path="/service-provider/edit/:id">
         <Form edit={true} />
       </Route>
     </div>

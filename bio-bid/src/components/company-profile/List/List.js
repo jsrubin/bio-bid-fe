@@ -10,10 +10,10 @@ import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles((theme) => ({
-  backdrop: {
-    zIndex: theme.zIndex.drawer + 1,
-    color: "#fff",
-  },
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 1,
+      color: '#fff',
+    },
 }));
 
 export default (props) => {
@@ -41,17 +41,17 @@ export default (props) => {
     }
   };
 
-  const handleReDirect = () => {
-    history.push("/service-providers/add");
-  };
+    const handleReDirect = () => {
+        history.push('/service-provider/add');
+    }
 
   useEffect(() => {
     setCompanyData(data);
   }, [data]);
 
-  useEffect(() => {
-    refetch();
-  }, []);
+    useEffect(() => {
+        refetch();
+    }, [ refetch ]);
 
   return (
     <CompanyList>

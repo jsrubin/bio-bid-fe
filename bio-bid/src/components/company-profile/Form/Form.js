@@ -73,8 +73,9 @@ export default (props) => {
     */
     const { loading: companyLoading, error: companyError, data: companyData } = useQuery(GET_COMPANY_BY_ID, { 
         variables: { id },
-        skip: props.edit === false
+        skip: !props.edit
     });
+
     const { error: regionsError, data: regionsData } = useQuery(GET_REGIONS);
     const { error: therapeuticsError, data: therapeuticsData } = useQuery(GET_THERAPEUTICS);
     const { error: servicesError, data: servicesData} = useQuery(GET_SERVICES);
