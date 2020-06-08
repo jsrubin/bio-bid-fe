@@ -228,7 +228,7 @@ export default (props) => {
         if(props.edit){
             history.push(`/service-providers/${id}`);
         }else{
-            history.push('/service-providers')
+            history.push('/')
         }
     }
 

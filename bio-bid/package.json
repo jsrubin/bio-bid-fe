@@ -9,6 +9,7 @@
     "@apollo/react-testing": "^3.1.4",
     "@fullstory/browser": "^1.4.4",
     "@material-ui/core": "^4.9.14",
+    "@okta/okta-react": "^3.0.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -57,16 +58,15 @@
     ]
   },
   "devDependencies": {},
-  "jest": {
-    "collectCoverageFrom": [
-      "**/*.{js,jsx}",
-      "!**/node_modules/**",
-      "!**/vendor/**",
-      "!**/database/**",
-      "!**/tests/**",
-      "!**/spec/**",
-      "!**/*.spec.{js,jsx}",
-      "!**/coverage/**"
-    ]
-  }
+  "collectCoverageFrom": [
+    "**/*.{js,jsx}",
+    "!**/node_modules/**",
+    "!**/vendor/**",
+    "!**/database/**",
+    "!**/tests/**",
+    "!**/spec/**",
+    "!**/*.spec.{js,jsx}",
+    "!**/coverage/**"
+  ]
+  
 }
