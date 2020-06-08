@@ -80,6 +80,7 @@ export const ButtonContainer = styled.div`
     &:hover{
         background-color: rgba(68, 134, 246);
     }
+    transition: width .5s;
 `;
 
 export const Arrow = styled(ArrowFromLeft)`
