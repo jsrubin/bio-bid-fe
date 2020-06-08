@@ -3,10 +3,11 @@
 }
 
 Button.Logout {
-  margin-left: 1%;
+  margin-left: 2%;
   background-color: #F5222D;
   color: white;
   text-transform: none;
+  font-family: Inter, sans-serif;
   width: 100px;
 }
 Button.Logout:hover {
