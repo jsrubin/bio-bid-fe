@@ -15,7 +15,7 @@ export default function Login() {
     responseType: "id_token token",
     responseMode: "fragment",
     scope: "openid%20profile%20email",
-    redirectUri: `${window.location.origin}/service-providers`,
+    redirectUri: `${window.location.origin}`,
     state: "ANYVALUE",
     nonce: "ANYVALUE",
   };
@@ -34,7 +34,7 @@ export default function Login() {
   const finalUrl = `${url}?idp=${idp}&client_id=${clientId}&response_type=${responseType}&response_mode=${responseMode}&scope=${scope}&redirect_uri=${redirectUri}&state=${state}&nonce=${nonce}`;
 
   const logout = () => {
-    authService.logout("/service-providers"); // Redirect to '/' after logout
+    authService.logout("/"); // Redirect to '/' after logout
   };
 
   if (authState.isPending) {

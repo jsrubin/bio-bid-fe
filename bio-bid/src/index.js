@@ -34,7 +34,7 @@ const config = {
   // for okta-react components
   issuer: "https://dev-648803.okta.com/oauth2/default",
   clientId: "0oadk3f256MfKqlA74x6",
-  redirectUri: `${window.location.origin}/service-providers`,
+  redirectUri: `${window.location.origin}`,
   pkce: true,
 };
 

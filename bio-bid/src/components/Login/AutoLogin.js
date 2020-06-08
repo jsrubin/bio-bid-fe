@@ -11,12 +11,13 @@ export default function AutoLogin() {
   useEffect(() => {
     authService.handleAuthentication();
     if (location.hash.includes("#id_token")) {
-      authService.login("/service-providers");
-      // redirect to '/service-providers' after login
+      authService.login("/");
+      // redirect to 'home' after login
     }
   });
-  console.log("authservice and state:", authService, authState);
-  authService.getUser().then(console.log);
+  // uncomment these for auth and user information
+  // console.log("authservice and state:", authService, authState);
+  // authService.getUser().then(console.log);
 
   return (
     <div>
