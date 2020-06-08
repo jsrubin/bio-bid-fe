@@ -7,7 +7,7 @@ import { Button } from "@material-ui/core";
 
 export default function Login() {
   const { authState, authService } = useOktaAuth();
-  console.log({ authState, authService });
+  // console.log({ authState, authService });
   const linkedin = {
     url: "https://dev-648803.okta.com/oauth2/v1/authorize",
     idp: "0oadk2c9qgPCXavKf4x6",
