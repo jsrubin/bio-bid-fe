@@ -1,10 +1,10 @@
 .LoginLink {
-  margin-left: 2%;
+  margin-left: 1%;
 }
 
 Button.Logout {
-  margin-left: 2.5%;
-  background-color: rgb(190, 67, 73);
+  margin-left: 1%;
+  background-color: #F5222D;
   color: white;
   text-transform: none;
   width: 100px;
