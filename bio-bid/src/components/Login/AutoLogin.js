@@ -15,7 +15,7 @@ export default function AutoLogin() {
       // redirect to 'home' after login
     }
   });
-  // uncomment these for auth and user information
+  // uncomment/comment these for auth and user information
   // console.log("authservice and state:", authService, authState);
   // authService.getUser().then(console.log);
 
