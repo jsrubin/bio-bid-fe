@@ -38,7 +38,7 @@ export default () => {
   const handleDelete = async () => {
     try{
       await deleteCompany({ variables: { id } });
-      history.push('/service-providers');
+      history.push('/');
     }
     catch(err){
       console.log(err);
@@ -107,7 +107,7 @@ export default () => {
                   <p>Edit</p>
                 </Button>
               </Link>
-              <Link to='/service-providers'>
+              <Link to='/'>
                 <Button lg>
                   <p>Service Providers</p>
                 </Button>
