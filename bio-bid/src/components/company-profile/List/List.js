@@ -27,6 +27,8 @@ export default () => {
 
     const { loading, data, refetch } = useQuery(GET_COMPANIES);
 
+    console.log(data);
+
     const handleChange = e => {
         setSearch(e.target.value);
     }
