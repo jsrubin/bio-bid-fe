@@ -36,9 +36,9 @@ Connecting clinical trial sponsors to the right services providers for their nee
 
 #### Note
 
-BioBids main landing page will reside on Alex’s (stakeholder) WordPress website. From there it will be a button which when clicked will redirect the user to our BioBids application. Due to this fact in order to see content on our application, you would need to go to specific routes. For example, to see the list of service providers you’d have to input /service-providers
-Example:
-http://localhost:3000/service-providers/
+BioBids main landing page will reside on Alex’s (stakeholder) WordPress website. From there it will be a button which when clicked will redirect the user to our BioBids application. Once on our application, you’ll be met with a list of service providers. To access other items in our application you will need to use specific routes in your url. For example to access the “bids” page you’d need to go to https://biobidlabs.com then include /bids in your url for the bids page.
+
+Example: https://biobidlabs.com/bids
 
 ### Key Features
 
