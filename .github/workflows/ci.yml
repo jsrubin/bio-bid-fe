@@ -15,4 +15,4 @@ jobs:
           CC_TEST_REPORTER_ID: '${{ secrets.CODECLIMATEREPORTERID }}'
         with:
           coverageCommand: npm run coverage
-          coverageLocations: "./coverage/clover.xml:clover"
+          coverageLocations: "./bio-bid/coverage/clover.xml:clover"
