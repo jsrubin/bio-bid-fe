@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 export default function MaterialTableDemo() {
   const [state, setState] = React.useState({
-    columns: [{ title: 'Regions ', field: 'name' }],
+    columns: [{ title: 'Regions Covered ', field: 'name' }],
     data: [
       { name: 'New York' },
       {
@@ -18,7 +18,7 @@ export default function MaterialTableDemo() {
     <Card>
       <MaterialTable
         style={{ padding: '1rem' }}
-        title="Regions Covered"
+        title="Regions"
         columns={state.columns}
         data={state.data}
         editable={{
@@ -69,4 +69,11 @@ export const Card = styled.div`
   margin-left: 1rem;
   border: 2px solid #096dd9;
   border-radius: 5px;
+
+  h6 {
+    width: 120px;
+  }
+  button {
+    color: #096dd9;
+  }
 `;

@@ -69,4 +69,10 @@ export const Card = styled.div`
   margin-left: 1rem;
   border: 2px solid #096dd9;
   border-radius: 5px;
+  h6 {
+    width: 280px;
+  }
+  button {
+    color: #096dd9;
+  }
 `;

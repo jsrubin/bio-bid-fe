@@ -70,4 +70,10 @@ export const Card = styled.div`
   margin-right: 2rem;
   border: 2px solid #096dd9;
   border-radius: 5px;
+  h6 {
+    width: 120px;
+  }
+  button {
+    color: #096dd9;
+  }
 `;

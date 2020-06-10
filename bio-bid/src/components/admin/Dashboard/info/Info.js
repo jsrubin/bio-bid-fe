@@ -8,7 +8,9 @@ export default function Info() {
   return (
     <div style={{ display: 'flex' }}>
       <RegionsCovered />
+
       <TherapeuticAreas />
+
       <Services />
     </div>
   );
