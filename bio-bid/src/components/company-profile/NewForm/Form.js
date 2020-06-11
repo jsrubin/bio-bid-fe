@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import WarningCard from './WarningCard';
 import MultipleSelect from './MultipleSelect';
 
-import { GET_REGIONS, GET_THERAPEUTICS } from '../../../queries';
+import { GET_REGIONS, GET_THERAPEUTICS, GET_SERVICES } from '../../../queries';
 
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -27,9 +27,24 @@ export default () => {
     // Queries
     const { data: regionsData } = useQuery(GET_REGIONS);
     const { data: therapeuticsData } = useQuery(GET_THERAPEUTICS);
+    const { data: servicesData } = useQuery(GET_SERVICES);
 
     // State
     const [ confirmCancel, setConfirmCancel ] = useState(false);
+    const [ formData, setFormData ] = useState({
+        name: '',
+        logoURL: '',
+        website: '',
+        email: '',
+        linkedin: '',
+        overview: '',
+        headquarters: '',
+        companySize: '',
+        regions: [],
+        therapeutics: [],
+        services: [],
+        phases: []
+    })
 
     // Event handlers
     const handleCancel = () => {
@@ -38,6 +53,17 @@ export default () => {
 
     const handleReDirect = () => {
         history.push('/');
+    }
+
+    const handleSubmit = () => {
+        console.log(formData);
+    }
+
+    const handleChange = e => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
     }
     
     return (
@@ -73,31 +99,55 @@ export default () => {
                             <div className='row'>
                                 <div className='input-box'>
                                     <label>Company Name</label>
-                                    <input/>
+                                    <input
+                                        name='name'
+                                        onChange={handleChange}
+                                        value={formData.name}
+                                    />
                                 </div>
                                 <div className='input-box'>
                                     <label>RFP Email</label>
-                                    <input/>
+                                    <input
+                                        name='email'
+                                        onChange={handleChange}
+                                        value={formData.email}
+                                    />
                                 </div>
                             </div>
                             <div className='row'>
                                 <div className='input-box'>
                                     <label>LinkedIn</label>
-                                    <input/>
+                                    <input
+                                        name='linkedin'
+                                        onChange={handleChange}
+                                        value={formData.linkedin}
+                                    />
                                 </div>
                                 <div className='input-box'>
                                     <label>Website</label>
-                                    <input/>
+                                    <input
+                                        name='website'
+                                        onChange={handleChange}
+                                        value={formData.website}
+                                    />
                                 </div>
                             </div>
                             <div className='row'>
                                 <div className='input-box'>
                                     <label>Headquarters</label>
-                                    <input/>
+                                    <input
+                                        name='headquarters'
+                                        onChange={handleChange}
+                                        value={formData.headquarters}
+                                    />
                                 </div>
                                 <div className='input-box'>
                                     <label>Company Size</label>
-                                    <select>
+                                    <select
+                                        name='companySize'
+                                        onChange={handleChange}
+                                        value={formData.companySize}
+                                    >
                                         <option value='' defaultValue disabled hidden>Choose company size</option>
                                         <option value='N/A'>N/A</option>
                                         <option value='A'>A: Self Employed</option>
@@ -133,7 +183,11 @@ export default () => {
                                 </div>
                                 <div className='input-box'>
                                     <label>Company Overview</label>
-                                    <textarea/>
+                                    <textarea
+                                        name='overview'
+                                        value={formData.overview}
+                                        onChange={handleChange}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -141,7 +195,27 @@ export default () => {
                 </Basic>
                 <Services>
                     <h3>Services</h3>
+                    <div className='service-container'>
+                        <div className='wrapper'>
+                            <div className='container-col'>
+                                <label>Add Services</label>
+                                {servicesData && (
+                                    <MultipleSelect selectName='Services' options={servicesData.services}/>
+                                )}
+                            </div>     
+                            <div className='container-col'>
+                                <p>Overview</p>
+                            </div>             
+                        </div>
+                    </div>
+                    
                 </Services>
+                <div className='btn-wrapper'>
+                    <div className='btn-container'>
+                        <Button color='sun' onClick={handleCancel}><p>Cancel</p></Button>
+                        <Button color='scienceBlue' marginLeft='10px' onClick={handleSubmit}><p>Submit</p></Button>
+                    </div>
+                </div>
             </div>
         </Body>
     );

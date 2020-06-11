@@ -19,15 +19,15 @@ function App() {
       <Route exact path='/'>
         <List/>
       </Route>
-      <Route path='/service-provider/add'>
+      {/* <Route path='/service-provider/add'>
         <Form edit={false} />
-      </Route>
+      </Route> */}
       <Route path='/service-providers/:id'>
         <Details />
       </Route>
-      <Route path='/service-provider/edit/:id'>
+      {/* <Route path='/service-provider/edit/:id'>
         <Form edit={true} />
-      </Route>
+      </Route> */}
       <Route path='/admin/dashboard'>
         <Dashboard/>
       </Route>

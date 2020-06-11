@@ -15,7 +15,7 @@ export default (initialIsVisible) => {
         return () => {
             document.removeEventListener('click', handleClickOutside, true);
         };
-    });
+    }, [ref]);
 
     return { ref, isVisible, setIsVisible};
 }

@@ -20,7 +20,7 @@ export const ADD_COMPANY = gql`
     $regions: [RegionInput]
     $therapeutics: [TherapeuticInput]
     $services: [ServiceInput]
-    $specialties: [SpecialtyInput]
+    $phases: [Phase]
   ) {
     createCompany(
       name: $name
@@ -33,7 +33,7 @@ export const ADD_COMPANY = gql`
       regions: $regions
       therapeutics: $therapeutics
       services: $services
-      specialties: $specialties
+      phases: $phases
     ) {
       id
     }

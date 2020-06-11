@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import theme from '../../../theme';
 import { Warning } from '@styled-icons/entypo/';
 import { ArrowIosBackOutline, ArrowIosDownwardOutline } from '@styled-icons/evaicons-outline/';
+import { Check } from '@styled-icons/boxicons-regular/';
 
 export const Body = styled.div`
     width: 100%;
@@ -63,6 +64,16 @@ export const Body = styled.div`
             margin: 20px 0;
         }
     }
+    .btn-wrapper{
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        .btn-container{
+            display: flex;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+    }
 `;
 
 export const Basic = styled.div`
@@ -75,7 +86,7 @@ export const Basic = styled.div`
         width: 100%;
         justify-content: center;
         .form{
-            width: 90%;
+            width: 700px;
             .row{
                 display: flex;
                 justify-content: space-between;
@@ -144,18 +155,24 @@ export const Options = styled.div`
     position: absolute;
     background-color: ${theme.colors.alabaster};
     width: 300px;
-    z-index: 999;
     flex-direction: column;
     border: 1px solid  ${theme.colors.silver};
-    .option{
-        cursor: pointer;
-        height: 30px;
-        &:hover{
-            background-color: ${theme.colors.silver};
-        }
-        p{
-            margin: 0;
-        }
+`;
+
+export const Option = styled.div`
+    cursor: pointer;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    &:hover{
+        background-color: ${theme.colors.silver};
+    }
+    p{
+        margin: 0;
+    }
+    .check-container{
+        visibility: ${props => props.selected ? 'visible' : 'hidden'};
+        margin: 0 3px;
     }
 `;
 
@@ -164,6 +181,19 @@ export const Services = styled.div`
     width: 100%;
     box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.75);
     padding: 20px;
+    .service-container{
+        display: flex;
+        justify-content: center;
+        .wrapper{
+            display: flex;
+            justify-content: space-between;
+            width: 730px;
+            .container-col{
+                width: 300px;
+            }
+        }
+    }
+    
 `;
 
 export const WarningCard = styled.div`
@@ -200,7 +230,7 @@ export const Button = styled.div`
         props.color === 'scienceBlue' ? theme.colors.scienceBlue : null ||
         props.color === 'alabaster' ? theme.colors.alabaster : null
     };
-    border-radius: 10px;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -245,6 +275,11 @@ export const Arrow = styled(ArrowIosBackOutline)`
 `;
 
 export const DownArrow = styled(ArrowIosDownwardOutline)`
+    width: 20px;
+    color: ${theme.colors.mineShaft};
+`;
+
+export const CheckMark = styled(Check)`
     width: 20px;
     color: ${theme.colors.mineShaft};
 `;

@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MultipleSelect, DownArrow, Options } from './styles';
 import useComponentVisible from '../../../utils/useComponentVisibile';
+import Option from './Option';
 
 export default (props) => {
     const { ref , isVisible, setIsVisible} = useComponentVisible(false);
 
     const toggleOpen = () => {
         setIsVisible(!isVisible);
+    }
+
+    const handleStrictSelect = () => {
+        console.log('hi')
     }
 
     return(
@@ -16,10 +21,12 @@ export default (props) => {
                 <DownArrow/>
             </div>
             <Options open={isVisible} ref={ref}>
-                <div className='option'><p>N/A</p></div>
-                <div className='option'><p>All</p></div>
+                <Option optionName='N/A' onClick={handleStrictSelect}/>
+                <Option optionName='All' onClick={handleStrictSelect}/>
                 {props.options && props.options.map(option => {
-                    return <div className='option'><p>{option.name}</p></div>
+                    return (
+                        <Option optionName={option.name} key={Math.random()}/>
+                    );
                 })}
             </Options>
         </MultipleSelect>
