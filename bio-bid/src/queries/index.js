@@ -8,7 +8,9 @@ export const GET_CLAIMS = gql`
       email
       name
       company {
+        id
         name
+        maintainer
       }
       pending
       approved
