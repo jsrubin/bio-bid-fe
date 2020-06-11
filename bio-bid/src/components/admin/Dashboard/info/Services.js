@@ -68,12 +68,21 @@ export const Card = styled.div`
   margin-top: 3rem;
   margin-left: 1rem;
   margin-right: 2rem;
-  border: 2px solid #096dd9;
-  border-radius: 5px;
+  border: 3px solid #096dd9;
+  border-radius: 6px;
   h6 {
     width: 120px;
   }
   button {
+    color: black;
+  }
+  .MTablePaginationInner-root-212 {
     color: #096dd9;
+    button {
+      color: #096dd9;
+    }
+  }
+  .title {
+    color: red;
   }
 `;
