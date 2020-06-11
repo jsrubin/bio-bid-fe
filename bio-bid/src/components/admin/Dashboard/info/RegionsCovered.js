@@ -3,7 +3,7 @@ import MaterialTable from 'material-table';
 
 import styled from 'styled-components';
 
-export default function MaterialTableDemo() {
+export default function MaterialTableRegions() {
   const [state, setState] = React.useState({
     columns: [{ title: 'Regions Covered ', field: 'name' }],
     data: [

@@ -3,7 +3,7 @@ import MaterialTable from 'material-table';
 
 import styled from 'styled-components';
 
-export default function MaterialTableDemo() {
+export default function MaterialTableTherapeutic() {
   const [state, setState] = React.useState({
     columns: [{ title: 'Therapeutic Areas ', field: 'name' }],
     data: [
@@ -70,7 +70,7 @@ export const Card = styled.div`
   border: 3px solid #096dd9;
   border-radius: 6px;
   h6 {
-    width: 275px;
+    width: 280px;
   }
   button {
     color: black;

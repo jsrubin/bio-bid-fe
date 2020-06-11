@@ -28,6 +28,7 @@ export const Title = styled.div`
   justify-content: center;
   margin-top: 1.5rem;
   color: #096dd9;
+  margin-bottom: -1rem;
 
   h1 {
     font-size: 3.5rem;
