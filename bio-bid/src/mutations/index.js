@@ -12,18 +12,18 @@ export const CLAIM_COMPANY = gql`
       email: $email
       name: $name
       company: $company
-    ){
+    ) {
       id
-    user
-    email
-    name
-    company {
-      id
+      user
+      email
       name
+      company {
+        id
+       name
+      }
+      pending
+      approved
     }
-    pending
-    approved
-  }
   }
 `;
 export const APPROVE_CLAIM = gql``;
