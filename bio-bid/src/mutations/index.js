@@ -26,8 +26,31 @@ export const CLAIM_COMPANY = gql`
     }
   }
 `;
-export const APPROVE_CLAIM = gql``;
-export const DENY_CLAIM = gql``;
+
+export const APPROVE_CLAIM = gql`
+mutation approveClaim( $id: ID! ) {
+  approveClaim( id: $id ) {
+    id
+    user
+    email
+    name
+    company{
+      id
+      name
+    }
+    pending
+    approved
+  }
+}
+`;
+
+export const DENY_CLAIM = gql`
+  mutation denyClaim( $id: ID! ) {
+    denyClaim( id: $id ) {
+      id
+    }
+  }
+`;
 
 export const DELETE_COMPANY = gql`
   mutation deleteCompany($id: ID!) {
