@@ -4,7 +4,7 @@ import { LoginCallback, useOktaAuth } from "@okta/okta-react";
 import "./Login.css";
 
 export default function AutoLogin() {
-  const { authService, authState } = useOktaAuth();
+  const { authService } = useOktaAuth();
   let location = useLocation();
 
   useEffect(() => {
