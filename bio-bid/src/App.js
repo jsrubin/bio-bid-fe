@@ -6,6 +6,7 @@ import Bids from './components/bids';
 import Form from './components/company-profile/Form/Form';
 import Details from './components/company-profile/Details/Details';
 import List from './components/company-profile/List/List';
+import NewForm from './components/company-profile/NewForm/Form';
 
 import Dashboard from './components/admin/Dashboard/Dashboard';
 
@@ -29,6 +30,9 @@ function App() {
       </Route>
       <Route path='/admin/dashboard'>
         <Dashboard/>
+      </Route>
+      <Route path='/dev-form'>
+        <NewForm/>
       </Route>
     </div>
   );
